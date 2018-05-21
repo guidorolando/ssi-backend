@@ -3,12 +3,15 @@ package com.ssi.ssi.resources;
 import com.ssi.ssi.domain.model.Material;
 import com.ssi.ssi.domain.model.Store;
 
+
 public class StoreResource {
     private  final Store store;
     private Long id;
     private String name;
     private Material material;
     private Integer quantity;
+
+    
 
     public  StoreResource(final Store store){
         this.store = store;
