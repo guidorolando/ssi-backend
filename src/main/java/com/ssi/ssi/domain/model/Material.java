@@ -15,6 +15,9 @@ public class Material {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "material_description")
+    private String matDescription;
+
     @ManyToOne
     @JoinColumn(name = "material_id")
     private MaterialType materialType;
@@ -41,5 +44,13 @@ public class Material {
 
     public void setMaterialType(MaterialType materialType) {
         this.materialType = materialType;
+    }
+
+    public String getMatDescription() {
+        return matDescription;
+    }
+
+    public void setMatDescription(String matDescription) {
+        this.matDescription = matDescription;
     }
 }
