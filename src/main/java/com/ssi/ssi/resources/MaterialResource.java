@@ -13,6 +13,10 @@ public class MaterialResource {
     private String name;
     private MaterialType materialType;
 
+
+
+
+    
     public  MaterialResource(final Material material){
         this.material = material;
         this.id = material.getId();
