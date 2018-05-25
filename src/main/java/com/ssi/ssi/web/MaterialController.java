@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/Material")
-@Api(value="Material", description="security material")
+@Api(value="Material", description="Materials")
 public class MaterialController {
 
     @Autowired
