@@ -22,7 +22,10 @@ public class PersonController {
 
     @GetMapping()
     public ResponseEntity<List<PersonResource>> getAllPersons() {
-        final List<PersonResource> collection = personService.getAll().stream().map(PersonResource::new).collect(Collectors.toList());
+        final List<PersonResource> collection = personService.getAll()
+                .stream()
+                .map(PersonResource::new)
+                .collect(Collectors.toList());
         return ResponseEntity.ok(collection);
     }
 
