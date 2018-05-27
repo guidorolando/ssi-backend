@@ -7,13 +7,11 @@ import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/Material")
@@ -34,6 +32,32 @@ public class MaterialController {
     private ResponseEntity<MaterialResource> createMaterial(@RequestBody Material materialNew){
         Material material = materialService.saveMaterial(materialNew);
         return ResponseEntity.ok(new MaterialResource(material));
+    }
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    public ResponseEntity<Material> findMaterialById(@PathVariable Long id){
+        Optional<Material> material = materialService.getMaterialById(id);
+        if(material.isPresent()){
+            return new ResponseEntity<Material>(material.get(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @RequestMapping( value = "/{id}",method = RequestMethod.DELETE)
+    public ResponseEntity<Void> deleteMaterial(@PathVariable Long id) {
+
+        Boolean wasDeleted = materialService.deleteById(id);
+        HttpStatus responseStatus = wasDeleted ? HttpStatus.NO_CONTENT : HttpStatus.NOT_FOUND;
+        return new ResponseEntity<>(responseStatus);
+    }
+
+    @RequestMapping( value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Material> updateMaterial(@PathVariable Long id, @RequestBody Material updatedMaterial){
+
+        Boolean wasUpdated =  materialService.updateMaterial(id, updatedMaterial);
+        if(wasUpdated){
+            return findMaterialById(id);
+        }
+        return new ResponseEntity<Material>(HttpStatus.NOT_FOUND);
     }
 
 }

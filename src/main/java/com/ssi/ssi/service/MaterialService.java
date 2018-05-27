@@ -40,8 +40,16 @@ public class MaterialService {
         materialRepository.delete(material);
     }
 
-    public void deleteById(Long id) {
-        materialRepository.deleteById(id);
+    public Boolean deleteById(Long id) {
+        Boolean wasDeleted = Boolean.FALSE;
+        Optional<Material> customer = getMaterialById(id);
+
+        if (customer.isPresent()){
+            materialRepository.delete(customer.get());
+            wasDeleted = Boolean.TRUE;
+        }
+
+        return wasDeleted;
     }
 
     public Boolean updateMaterial(Long id, Material updatedMaterial){

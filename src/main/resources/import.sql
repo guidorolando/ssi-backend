@@ -33,3 +33,16 @@ INSERT INTO user (id, password, username, person_id) VALUES (2, '821f498d827d4ed
 INSERT INTO user_role(user_id, role_id) VALUES(1,1);
 INSERT INTO user_role(user_id, role_id) VALUES(2,1);
 INSERT INTO user_role(user_id, role_id) VALUES(2,2);
+
+
+--MaterialType
+insert into material_type (id, name) values (1, 'proteccion personal')
+insert into material_type (id, name) values (2, 'seguridad')
+insert into material_type (id, name) values (3, 'Adicional')
+
+--Material
+insert into material (id, name, mat_description, material_type) values (1, 'casco', 'description01', '1')
+insert into material (id, name, mat_description, material_type) values (2, 'arnez', 'description02', '2')
+
+--Employees
+
