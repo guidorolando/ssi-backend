@@ -1,7 +1,9 @@
 package com.ssi.ssi.service;
 
 import com.ssi.ssi.domain.model.Material;
+import com.ssi.ssi.domain.model.MaterialType;
 import com.ssi.ssi.domain.repository.MaterialRepository;
+import com.ssi.ssi.domain.repository.MaterialTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,9 @@ public class MaterialService {
     @Autowired
     private MaterialRepository materialRepository;
 
+    @Autowired
+    private MaterialTypeRepository materialTypeRepository;
+
         public List<Material> getAllMaterial(){
             return (List<Material>) materialRepository.findAll();
         }
@@ -23,6 +28,11 @@ public class MaterialService {
     }
 
     public Material saveMaterial(Material material) {
+        MaterialType materialType = materialTypeRepository.findById(material.getMaterialType().getId()).get();
+        material.setMaterialType(materialType);
+
+        System.out.println("\n\n"+materialType.getName()+"\n\n");
+
         return materialRepository.save(material);
     }
 
