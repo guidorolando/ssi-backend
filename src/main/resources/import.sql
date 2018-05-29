@@ -38,3 +38,16 @@ insert into employee (id, first_name, last_name, birth_date, gender, email, phon
 insert into employee (id, first_name, last_name, birth_date, gender, email, phone, address, salary) values (2, 'Carlos', 'Cori', '1980-05-26', 'MALE', 'carlos@cori.com', 70304800, 'tiquepaya', 4000.00);
 insert into employee (id, first_name, last_name, birth_date, gender, email, phone, address, salary) values (3, 'Maximilian', 'Toro', '1985-05-26', 'MALE', 'maxi@toro.com', 60574635, 'quillacollo', 5000.00);
 insert into employee (id, first_name, last_name, birth_date, gender, email, phone, address, salary) values (4, 'Marco', 'Herrera', '1986-05-26', 'MALE', 'marco@herrera.com', 67453634, 'sebastian pagador', 5000.00);
+
+
+--MaterialType
+insert into material_type (id, name) values (1, 'proteccion personal')
+insert into material_type (id, name) values (2, 'seguridad')
+insert into material_type (id, name) values (3, 'Adicional')
+
+--Material
+insert into material (id, name, mat_description, material_type) values (1, 'casco', 'description01', '1')
+insert into material (id, name, mat_description, material_type) values (2, 'arnez', 'description02', '2')
+
+--Employees
+

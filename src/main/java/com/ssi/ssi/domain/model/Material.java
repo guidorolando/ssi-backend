@@ -15,6 +15,9 @@ public class Material {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "vida_util")
+    private Long vidaUtil;
+
     @Column(name = "material_description")
     private String matDescription;
 
@@ -36,6 +39,14 @@ public class Material {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Long getVidaUtil() {
+        return vidaUtil;
+    }
+
+    public void setVidaUtil(Long vidaUtil) {
+        this.vidaUtil = vidaUtil;
     }
 
     public MaterialType getMaterialType() {
