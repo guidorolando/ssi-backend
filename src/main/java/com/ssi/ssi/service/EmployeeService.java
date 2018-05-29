@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @autor Marco Herrera.
@@ -17,5 +18,9 @@ public class EmployeeService {
 
     public List<Employee> getAll(){
         return (List<Employee>) employeeRepository.findAll();
+    }
+
+    public Optional<Employee> findById(Long id){
+        return employeeRepository.findById(id);
     }
 }
