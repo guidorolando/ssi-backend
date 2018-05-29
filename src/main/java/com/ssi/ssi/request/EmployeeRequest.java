@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * @autor Marco Herrera.
  */
-public class EmployeeResouceRequest {
+public class EmployeeRequest {
 
     private String firstName;
 
