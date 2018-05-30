@@ -59,10 +59,10 @@ INSERT INTO personalInformation(id,first_name,last_name,area,capacity,role_type,
 
 
 -- Employee
-insert into employee (id, first_name, last_name, birth_date, gender, email, phone, address, salary) values (1, 'carmen', 'guzman', '1990-05-26', 'FEMALE', 'carmen@guzman.com', 70304856, 'sacaba', 4000.00);
-insert into employee (id, first_name, last_name, birth_date, gender, email, phone, address, salary) values (2, 'Carlos', 'Cori', '1980-05-26', 'MALE', 'carlos@cori.com', 70304800, 'tiquepaya', 4000.00);
-insert into employee (id, first_name, last_name, birth_date, gender, email, phone, address, salary) values (3, 'Maximilian', 'Toro', '1985-05-26', 'MALE', 'maxi@toro.com', 60574635, 'quillacollo', 5000.00);
-insert into employee (id, first_name, last_name, birth_date, gender, email, phone, address, salary) values (4, 'Marco', 'Herrera', '1986-05-26', 'MALE', 'marco@herrera.com', 67453634, 'sebastian pagador', 5000.00);
+insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary) values (1, '7676764', 'carmen', 'guzman', '1990-05-26', 'FEMALE', 'carmen@guzman.com', 70304856, 'sacaba', 4000.00);
+insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary) values (2, '5454345', 'Carlos', 'Cori', '1980-05-26', 'MALE', 'carlos@cori.com', 70304800, 'tiquepaya', 4000.00);
+insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary) values (3, '1234567', 'Maximilian', 'Toro', '1985-05-26', 'MALE', 'maxi@toro.com', 60574635, 'quillacollo', 5000.00);
+insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary) values (4, '1234567', 'Marco', 'Herrera', '1986-05-26', 'MALE', 'marco@herrera.com', 67453634, 'sebastian pagador', 5000.00);
 
 
 --MaterialType
