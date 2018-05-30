@@ -23,6 +23,7 @@ INSERT INTO role (id, role_name, description) VALUES (2, 'ADMIN_USER', 'Admin Us
 
 insert into person (id, first_name, last_name, birth_date, gender) values (1, 'admin', 'admin', '2000-05-26', 'MALE');
 insert into person (id, first_name, last_name, birth_date, gender) values (2, 'john', 'doe', '2000-05-26', 'MALE');
+insert into person (id, first_name, last_name, birth_date, gender) values (3, 'nicol', 'admin', '2015-05-26', 'MALE');
 
 -- USER
 -- non-encrypted password: jwtpass
@@ -33,6 +34,29 @@ INSERT INTO user (id, password, username, person_id) VALUES (2, '821f498d827d4ed
 INSERT INTO user_role(user_id, role_id) VALUES(1,1);
 INSERT INTO user_role(user_id, role_id) VALUES(2,1);
 INSERT INTO user_role(user_id, role_id) VALUES(2,2);
+
+
+--- AREA
+-- insert values Area
+
+INSERT INTO area(id,name,description,codigo) VALUES(1,'Area A','Planta Baja' ,'001');
+INSERT INTO area(id,name,description,codigo) VALUES(2,'Area B','Planta Baja' ,'002');
+INSERT INTO area(id,name,description,codigo) VALUES(3,'Area C','Planta Alta' ,'003');
+
+
+-- ROLE
+-- insert Role
+INSERT INTO role(id,name,role_name,description) VALUES(1,'Area A','STANDARD_USER' ,'Jefe de Operaciones');
+INSERT INTO role(id,name,role_name,description) VALUES(2,'Area B','STANDARD_USER' ,'Jefe de Operciones electricista');
+INSERT INTO role(id,name,role_name,description) VALUES(3,'Area C','STANDARD_USER','Jefe de Operciones Plomero');
+
+-- Personal Information
+-- insert PersonalInformation
+INSERT INTO personalInformation(id,first_name,last_name,area,capacity,role_type,observations,registration_date) VALUES(1,'firstName3','lastName3','area3','capacity3','role3','observations3','1990-05-26');
+INSERT INTO personalInformation(id,first_name,last_name,area,capacity,role_type,observations,registration_date) VALUES(2,'firstName1','lastName1','area1','capacity1','role1','observations1','1990-05-26');
+INSERT INTO personalInformation(id,first_name,last_name,area,capacity,role_type,observations,registration_date) VALUES(3,'firstName2','lastName2','area2','capacity2','role2','observations2','1990-05-26');
+
+
 
 -- Employee
 insert into employee (id, first_name, last_name, birth_date, gender, email, phone, address, salary) values (1, 'carmen', 'guzman', '1990-05-26', 'FEMALE', 'carmen@guzman.com', 70304856, 'sacaba', 4000.00);
