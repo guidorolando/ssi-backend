@@ -18,6 +18,9 @@ public class Employee {
     )
     private Long id;
 
+    @Column(name = "ci")
+    private String ci;
+
     @Column(name = "first_name")
     private String firstName;
 
@@ -58,6 +61,14 @@ public class Employee {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCi() {
+        return ci;
+    }
+
+    public void setCi(String ci) {
+        this.ci = ci;
     }
 
     public Double getSalary() {

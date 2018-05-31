@@ -9,6 +9,8 @@ import java.util.Date;
  */
 public class EmployeeRequest {
 
+    protected String ci;
+
     private String firstName;
 
     private String lastName;
@@ -26,6 +28,14 @@ public class EmployeeRequest {
     private Double salary;
 
     private Long employeeTypeId;
+
+    public String getCi() {
+        return ci;
+    }
+
+    public void setCi(String ci) {
+        this.ci = ci;
+    }
 
     public String getFirstName() {
         return firstName;
