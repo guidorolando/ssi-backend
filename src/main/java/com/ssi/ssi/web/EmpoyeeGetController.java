@@ -53,4 +53,18 @@ public class EmpoyeeGetController extends AbstractEmployeeController {
         service.addEmployee(employeeRequest);
         return new SuccessRestResponse();
     }
+
+    @ApiOperation(value = "Update employee")
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public SuccessRestResponse upDateEmployee(@RequestBody EmployeeRequest employeeRequest, @PathVariable Long id){
+        service.upDateEmployee(employeeRequest, id);
+        return new SuccessRestResponse();
+    }
+
+    @ApiOperation(value = "Delete employee")
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public SuccessRestResponse removeEmployee(@PathVariable Long id){
+        service.deleteEmployeeById(id);
+        return new SuccessRestResponse();
+    }
 }

@@ -37,4 +37,34 @@ public class EmployeeService {
         employee.setSalary(employeeRequest.getSalary());
         employeeRepository.save(employee);
     }
+
+    public void upDateEmployee(EmployeeRequest employeeRequest, Long id){
+        Optional<Employee> employee = findById(id);
+        if(employee.isPresent()){
+            employee.get().setFirstName(employeeRequest.getFirstName());
+            employee.get().setLastName(employeeRequest.getLastName());
+            employee.get().setCi(employeeRequest.getCi());
+            employee.get().setGender(employeeRequest.getGender());
+            employee.get().setAddress(employeeRequest.getAddress());
+            employee.get().setPhone(employeeRequest.getPhone());
+            employee.get().setBirthDate(employeeRequest.getBirthDate());
+            employee.get().setSalary(employeeRequest.getSalary());
+            employeeRepository.save(employee.get());
+        }
+        else
+        {
+            System.out.println("No exist the Employee with id '" + id + "' for upDate.");
+        }
+    }
+
+    public void deleteEmployeeById(Long id){
+        if(employeeRepository.existsById(id)) {
+            employeeRepository.deleteById(id);
+            System.out.println("The Employee with id '" + id + "' is deleted.");
+        }
+        else
+        {
+            System.out.println("No exist the Eployee with id '" + id + "' for delete.");
+        }
+    }
 }
