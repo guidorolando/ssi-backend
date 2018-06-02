@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -21,6 +23,21 @@ public class IncidentController {
 
     @Autowired
     private IncidentService incidentService;
+
+    @RequestMapping(
+            method = RequestMethod.GET
+    )
+    public List<Incident> findAllIncident() {
+
+        List<Incident> incidentList = new ArrayList<>();
+
+        incidentService.getAllIncident().forEach(
+                incident -> incidentList.add(incident)
+        );
+
+        return incidentList;
+
+    }
 
     @RequestMapping(
             method = RequestMethod.POST,
@@ -36,8 +53,8 @@ public class IncidentController {
     )
     public ResponseEntity<Incident> updateIncident(@RequestBody IncidentResource incidentResource) {
 
-        Boolean wasUpdated =  incidentService.updateIncident(incidentResource);
-        if(wasUpdated){
+        Boolean wasUpdated = incidentService.updateIncident(incidentResource);
+        if (wasUpdated) {
             Optional<Incident> incident = incidentService.findIncidentById(incidentResource.getIncidentId());
             return new ResponseEntity<Incident>(incident.get(), HttpStatus.OK);
         }

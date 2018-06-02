@@ -94,3 +94,25 @@ insert into incident_type (id, name, description) values (2, 'Alta', 'el trabajd
 insert into incident_type (id, name, description) values (3, 'Media', 'el trabajador faltara unos dias al trabajo')
 insert into incident_type (id, name, description) values (4, 'Baja', 'el trabajador sufrio contuciones y no puede trabajar el resto de dia')
 insert into incident_type (id, name, description) values (5, 'General', 'golpes y lesiones leves')
+
+--Insert lesion type
+insert into lesion_type (id, type, description) values (1, 'Quemadura','desc')
+insert into lesion_type (id, type, description) values (2, 'Fractura','desc')
+insert into lesion_type (id, type, description) values (3, 'Luxacion','desc')
+insert into lesion_type (id, type, description) values (4, 'Torcedura,esguince,desgarre muscular','desc')
+insert into lesion_type (id, type, description) values (5, 'Conmocion,Trauma interno',' desc')
+insert into lesion_type (id, type, description) values (6, 'Amputacion,enucleacion(expulsion o perdida del ojo)','desc')
+insert into lesion_type (id, type, description) values (7, 'Golpe contucion o aplastamiento',' desc')
+insert into lesion_type (id, type, description) values (8, 'Envenenamiento,intoxicacion,alergia','desc')
+insert into lesion_type (id, type, description) values (9, 'Efecto de la electricidad','desc')
+
+--Insert Accident Agent
+insert into accident_agent (id, agent_name) values (1, 'Maquinaria y,o equipos')
+insert into accident_agent (id, agent_name) values (2, 'Medios de transporte')
+insert into accident_agent (id, agent_name) values (3, 'Aparatos (otros)')
+insert into accident_agent (id, agent_name) values (4, 'Herramientas, implementos o utencilios')
+insert into accident_agent (id, agent_name) values (5, 'Conmocion,Trauma interno')
+insert into accident_agent (id, agent_name) values (6, 'Amputacion,enucleacion(expulsion o perdida del ojo)')
+insert into accident_agent (id, agent_name) values (7, 'Golpe contucion o aplastamiento')
+insert into accident_agent (id, agent_name) values (8, 'Envenenamiento,intoxicacion,alergia')
+insert into accident_agent (id, agent_name) values (9, 'Efecto de la electricidad')
