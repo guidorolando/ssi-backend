@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
         description = AbstractEmployeeController.DESCRIPTION
 )
 @RestController
-public class EmpoyeeGetController extends AbstractEmployeeController {
+public class EmployeeController extends AbstractEmployeeController {
     @Autowired
     private EmployeeService service;
 
@@ -42,9 +42,18 @@ public class EmpoyeeGetController extends AbstractEmployeeController {
     @RequestMapping(value = "/{id}",
             method = RequestMethod.GET
     )
-    public SingleRestResponse<Optional<EmployeeResource>> getById(@PathVariable Long id){
+    public SingleRestResponse<EmployeeResource> getById(@PathVariable Long id){
         final EmployeeResource resource = service.findById(id).map(EmployeeResource::new).get();
-        return new SingleRestResponse(resource);
+        return new SingleRestResponse<>(resource);
+    }
+
+    @ApiOperation(value = "Search employee by name")
+    @RequestMapping(value = "/search",
+            method = RequestMethod.GET
+    )
+    public ListRestResponse<EmployeeResource> fingByName(@RequestParam String text){
+        final List<EmployeeResource> collection = service.findByText(text).stream().map(EmployeeResource::new).collect(Collectors.toList());;
+        return new ListRestResponse<>(collection);
     }
 
     @ApiOperation(value = "Create new employee")
@@ -53,4 +62,22 @@ public class EmpoyeeGetController extends AbstractEmployeeController {
         service.addEmployee(employeeRequest);
         return new SuccessRestResponse();
     }
+
+    @ApiOperation(value = "Update employee")
+    @RequestMapping(value = "/{id}",
+            method = RequestMethod.PUT)
+    public SuccessRestResponse updateEmployee(@PathVariable Long id, @RequestBody EmployeeRequest updPizza){
+        service.upDateEmployee(updPizza, id);
+        return new SuccessRestResponse();
+    }
+
+    @ApiOperation(value = "Remove employee")
+    @RequestMapping(value = "/{id}",
+            method = RequestMethod.DELETE)
+    public SuccessRestResponse deleteEmployee(@PathVariable Long id){
+        service.deleteEmployeeById(id);
+        return new SuccessRestResponse();
+    }
+
+
 }
