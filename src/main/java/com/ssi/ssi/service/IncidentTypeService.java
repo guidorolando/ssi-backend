@@ -43,6 +43,7 @@ public class IncidentTypeService {
     }
 
     public List<IncidentType> getAllIncidentType() {
+
         return (List<IncidentType>) incidentTypeRepository.findAll();
     }
 
