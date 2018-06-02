@@ -16,4 +16,7 @@ import java.util.List;
 public interface EmployeeRepository extends CrudRepository<Employee, Long> {
     @Query("select emplo from Employee emplo where emplo.firstName like CONCAT('%',:name,'%') or emplo.email like CONCAT('%',:name,'%')")
     List<Employee> searchByText(@Param("name") String name);
+
+    @Query("SELECT p FROM Employee p WHERE p.firstName like CONCAT('%',:search,'%') OR p.lastName like CONCAT('%',:search,'%') OR p.ci like CONCAT('%',:search,'%')")
+    List<Employee> find11(@Param("search") String search);
 }

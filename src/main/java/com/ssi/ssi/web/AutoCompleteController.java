@@ -31,7 +31,7 @@ public class AutoCompleteController {
         List<AutoCompleteResource> autoCompleteResources = new ArrayList<>();
 
         autoCompleteService.findAllPersonsByParameter(search).forEach(
-                person -> autoCompleteResources.add( new AutoCompleteResource(person))
+                employee -> autoCompleteResources.add( new AutoCompleteResource(employee))
         );
 
         return autoCompleteResources;
