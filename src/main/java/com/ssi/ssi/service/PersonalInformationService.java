@@ -35,7 +35,7 @@ public class PersonalInformationService {
 
     public  boolean isValidatePersonalInformation( PersonalInformation personalInformation){
         boolean isValidate = Boolean.FALSE;
-        if(null != personalInformation.getFirstName()){
+        if(null != personalInformation.getLegalName()){
             isValidate = Boolean.TRUE;
         }
         return isValidate;
