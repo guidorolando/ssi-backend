@@ -2,9 +2,11 @@ package com.ssi.ssi.resources;
 
 import com.ssi.ssi.domain.model.Person;
 import com.ssi.ssi.domain.model.PersonalInformation;
+import com.ssi.ssi.domain.model.Responsibility;
 
 import javax.persistence.Column;
 import java.util.Date;
+import java.util.List;
 
 public class PersonalInformationResource {
 
@@ -12,15 +14,13 @@ public class PersonalInformationResource {
 
     private Long id;
 
-    private String firstName;
-
-    private String lastName;
+    private String legalName;
 
     private String area;
 
     private String capacity;
 
-    private String role;
+    private String employeeType;
 
     private String observations;
 
@@ -29,11 +29,10 @@ public class PersonalInformationResource {
     public PersonalInformationResource(final PersonalInformation personalInformation) {
         this.personalInformation = personalInformation;
         this.id = personalInformation.getId();
-        this.firstName = personalInformation.getFirstName();
-        this.lastName = personalInformation.getLastName();
+        this.legalName =personalInformation.getLegalName();
         this.area = personalInformation.getArea();
         this.capacity = personalInformation.getCapacity();
-        this.role = personalInformation.getRole();
+        this.employeeType = personalInformation.getEmployeeType();
         this.observations = personalInformation.getObservations();
         this.registrationDate = personalInformation.getRegistrationDate();
     }
@@ -46,20 +45,12 @@ public class PersonalInformationResource {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getLegalName() {
+        return legalName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLegalName(String legalName) {
+        this.legalName = legalName;
     }
 
     public String getArea() {
@@ -78,12 +69,12 @@ public class PersonalInformationResource {
         this.capacity = capacity;
     }
 
-    public String getRole() {
-        return role;
+    public String getEmployeeType() {
+        return employeeType;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setEmployeeType(String employeeType) {
+        this.employeeType = employeeType;
     }
 
     public String getObservations() {

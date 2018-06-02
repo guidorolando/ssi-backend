@@ -2,6 +2,7 @@ package com.ssi.ssi.domain.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "personal_information")
@@ -13,11 +14,9 @@ public class PersonalInformation {
     )
     private Long id;
 
-    @Column(name = "first_name")
-    private String firstName;
+    @Column(name = "legal_name")
+    private String legalName;
 
-    @Column(name = "last_name")
-    private String lastName;
 
     @Column(name = "area")
     private String area;
@@ -25,15 +24,18 @@ public class PersonalInformation {
     @Column(name = "capacity")
     private String capacity;
 
-    @Column(name = "role_type")
-    private String role;
 
     @Column(name = "observations")
     private String observations;
 
     @Column(name = "registration_date")
     private Date registrationDate;
- 
+
+    @Column(name = "employee_Type")
+    private String employeeType;
+
+
+
     public Long getId() {
         return id;
     }
@@ -42,20 +44,12 @@ public class PersonalInformation {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getLegalName() {
+        return legalName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLegalName(String legalName) {
+        this.legalName = legalName;
     }
 
     public String getArea() {
@@ -70,17 +64,18 @@ public class PersonalInformation {
         return capacity;
     }
 
+    public String getEmployeeType() {
+        return employeeType;
+    }
+
+    public void setEmployeeType(String employeeType) {
+        this.employeeType = employeeType;
+    }
+
     public void setCapacity(String capacity) {
         this.capacity = capacity;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 
     public String getObservations() {
         return observations;
