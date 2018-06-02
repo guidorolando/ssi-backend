@@ -14,6 +14,8 @@ public class EmployeeResource {
 
     private Long id;
 
+    private String ci;
+
     private String firstName;
 
     private String lastName;
@@ -35,6 +37,7 @@ public class EmployeeResource {
     public EmployeeResource(final Employee employee) {
         this.employee = employee;
         this.id = employee.getId();
+        this.ci = employee.getCi();
         this.firstName = employee.getFirstName();
         this.lastName = employee.getLastName();
         this.birthDate = employee.getBirthDate();
@@ -52,6 +55,14 @@ public class EmployeeResource {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCi() {
+        return ci;
+    }
+
+    public void setCi(String ci) {
+        this.ci = ci;
     }
 
     public String getFirstName() {
