@@ -22,7 +22,10 @@ public class PersonService {
         return personRepository.findById(id);
     }
 
-    public Person save(Person person) {
+    public Person save(Person personRequest) {
+        Person person = new Person();
+        person.setFirstName(personRequest.getFirstName());
+        person.setLastName(personRequest.getLastName());
         return personRepository.save(person);
     }
 

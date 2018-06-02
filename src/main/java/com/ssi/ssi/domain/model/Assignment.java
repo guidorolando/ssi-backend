@@ -1,6 +1,7 @@
 package com.ssi.ssi.domain.model;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -13,6 +14,9 @@ public class Assignment {
 
     @Column(name = "quantity")
     private Integer quantity;
+
+    @Column(name = "assignment_date")
+    private Date assignmentDate;
 
     @ManyToOne
     private Material material;
@@ -31,6 +35,14 @@ public class Assignment {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public Date getAssignmentDate() {
+        return assignmentDate;
+    }
+
+    public void setAssignmentDate(Date assignmentDate) {
+        this.assignmentDate = assignmentDate;
     }
 
     public Material getMaterial() {
