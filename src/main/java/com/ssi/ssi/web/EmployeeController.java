@@ -1,54 +1,83 @@
 package com.ssi.ssi.web;
 
+import com.ssi.ssi.common.response.rest.ListRestResponse;
+import com.ssi.ssi.common.response.rest.SingleRestResponse;
+import com.ssi.ssi.common.response.rest.SuccessRestResponse;
 import com.ssi.ssi.domain.model.Employee;
-import com.ssi.ssi.domain.repository.exception.EmployeeNotFountException;
-import com.ssi.ssi.resources.EmployeeResourse;
+import com.ssi.ssi.request.EmployeeRequest;
+import com.ssi.ssi.resources.EmployeeResource;
 import com.ssi.ssi.service.EmployeeService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Controller
-@RequestMapping("/employee")
-public class EmployeeController {
+/**
+ * @autor Marco Herrera.
+ */
+@Api(
+        tags = AbstractEmployeeController.TAG_NAME,
+        description = AbstractEmployeeController.DESCRIPTION
+)
+@RestController
+public class EmployeeController extends AbstractEmployeeController {
     @Autowired
-    private EmployeeService employeeService;
+    private EmployeeService service;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<EmployeeResourse>> getAllEmployee() {
-        final List<EmployeeResourse> collection = employeeService.getAllEmployees()
-                .stream()
-                .map(EmployeeResourse::new)
-                .collect(Collectors.toList());
-
-        return ResponseEntity.ok(collection);
-    }
-    @GetMapping("/{id}")
-    public ResponseEntity<EmployeeResourse> get (@PathVariable final long id) {
-        return employeeService.getEmployeeById(id).map(p -> ResponseEntity.ok(new EmployeeResourse(p))).orElseThrow(() -> new EmployeeNotFountException(id));
-    }
-    @PostMapping
-    public ResponseEntity<EmployeeResourse> post(@RequestBody final Employee employeeFromRequest) {
-        final Employee employee = employeeService.createEmployee(employeeFromRequest);
-        return ResponseEntity.ok(new EmployeeResourse(employee));
+    @ApiOperation(value = "Get all employee")
+    @RequestMapping(
+            method = RequestMethod.GET
+    )
+    public ListRestResponse<EmployeeResource> getAll(){
+        final List<EmployeeResource> collection = service.getAll().stream().map(EmployeeResource::new).collect(Collectors.toList());;
+        return new ListRestResponse<>(collection);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<EmployeeResourse> put(@PathVariable("id") final long id, @RequestBody Employee employeeFromRequest) {
-        final Employee employee = employeeFromRequest;
-        employeeService.createEmployee(employee);
-        final EmployeeResourse resourceEmployee = new EmployeeResourse(employee);
-        return ResponseEntity.ok(resourceEmployee);
+    @ApiOperation(value = "Get employee by Id")
+    @RequestMapping(value = "/{id}",
+            method = RequestMethod.GET
+    )
+    public SingleRestResponse<EmployeeResource> getById(@PathVariable Long id){
+        final EmployeeResource resource = service.findById(id).map(EmployeeResource::new).get();
+        return new SingleRestResponse<>(resource);
     }
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable("id") final long id) {
-        return employeeService.getEmployeeById(id).map(p -> {
-            employeeService.deleteEmployeeById(id);
-            return ResponseEntity.noContent().build();
-        }).orElseThrow(() -> new EmployeeNotFountException(id));
+
+    @ApiOperation(value = "Search employee by name")
+    @RequestMapping(value = "/search",
+            method = RequestMethod.GET
+    )
+    public ListRestResponse<EmployeeResource> fingByName(@RequestParam String text){
+        final List<EmployeeResource> collection = service.findByText(text).stream().map(EmployeeResource::new).collect(Collectors.toList());;
+        return new ListRestResponse<>(collection);
     }
+
+    @ApiOperation(value = "Create new employee")
+    @RequestMapping(method = RequestMethod.POST)
+    public SuccessRestResponse createEmployee(@RequestBody EmployeeRequest employeeRequest){
+        service.addEmployee(employeeRequest);
+        return new SuccessRestResponse();
+    }
+
+    @ApiOperation(value = "Update employee")
+    @RequestMapping(value = "/{id}",
+            method = RequestMethod.PUT)
+    public SuccessRestResponse updateEmployee(@PathVariable Long id, @RequestBody EmployeeRequest updPizza){
+        service.upDateEmployee(updPizza, id);
+        return new SuccessRestResponse();
+    }
+
+    @ApiOperation(value = "Remove employee")
+    @RequestMapping(value = "/{id}",
+            method = RequestMethod.DELETE)
+    public SuccessRestResponse deleteEmployee(@PathVariable Long id){
+        service.deleteEmployeeById(id);
+        return new SuccessRestResponse();
+    }
+
+
 }

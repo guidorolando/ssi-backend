@@ -1,26 +1,23 @@
-package com.ssi.ssi.domain.model;
+package com.ssi.ssi.resources;
 
+import com.ssi.ssi.domain.model.Area;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "area")
-public class Area {
-
-    @Id
-    @GeneratedValue(
-            strategy = GenerationType.IDENTITY
-    )
+public class AreaResource {
+    private final Area area;
     private Long id;
-
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "description")
     private String description;
-
-    @Column(name = "codigo")
     private  String codigo;
+
+
+    public AreaResource(final Area area) {
+       this.area = area;
+       this.id = area.getId();
+       this.name = area.getName();
+       this.description = area.getDescription();
+       this.codigo = area.getCodigo();
+
+    }
 
 
     public Long getId() {
@@ -54,4 +51,7 @@ public class Area {
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
+
+
+
 }

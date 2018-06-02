@@ -1,59 +1,53 @@
-package com.ssi.ssi.domain.model;
+package com.ssi.ssi.resources;
 
-import javax.persistence.*;
+import com.ssi.ssi.domain.model.Employee;
+import com.ssi.ssi.domain.model.GenderType;
+
 import java.util.Date;
-import java.util.List;
 
 /**
- * @autor Marco Herrera
+ * @autor Marco Herrera.
  */
+public class EmployeeResource {
 
-@Entity
-@Table(name = "employee")
-public class Employee {
+    private final Employee employee;
 
-    @Id
-    @GeneratedValue(
-            strategy = GenerationType.IDENTITY
-    )
     private Long id;
 
-    @Column(name = "ci")
     private String ci;
 
-    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "birth_date")
     private Date birthDate;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "gender")
     private GenderType gender;
 
-    @Column(name = "email")
     private String email;
 
-    @Column(name = "phone")
     private Long phone;
 
-    @Column(name = "address")
     private String address;
 
-    @Column(name = "salary")
     private Double salary;
 
-    @ManyToOne
-    private EmployeeType employeeType;
+    private Long employeeTypeId;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "employee_capacities",
-    joinColumns = {@JoinColumn(name = "employee_id")},
-    inverseJoinColumns = {@JoinColumn(name = "capacities_id")})
-    private List<Capacity> capacities;
+    public EmployeeResource(final Employee employee) {
+        this.employee = employee;
+        this.id = employee.getId();
+        this.ci = employee.getCi();
+        this.firstName = employee.getFirstName();
+        this.lastName = employee.getLastName();
+        this.birthDate = employee.getBirthDate();
+        this.gender = employee.getGender();
+        this.email = employee.getEmail();
+        this.phone = employee.getPhone();
+        this.address = employee.getAddress();
+        this.salary = employee.getSalary();
+//        this.employeeTypeId = employee.getEmployeeType().getId();
+    }
 
     public Long getId() {
         return id;
@@ -69,30 +63,6 @@ public class Employee {
 
     public void setCi(String ci) {
         this.ci = ci;
-    }
-
-    public Double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(Double salary) {
-        this.salary = salary;
-    }
-
-    public EmployeeType getEmployeeType() {
-        return employeeType;
-    }
-
-    public void setEmployeeType(EmployeeType employeeType) {
-        this.employeeType = employeeType;
-    }
-
-    public List<Capacity> getCapacities() {
-        return capacities;
-    }
-
-    public void setCapacities(List<Capacity> capacities) {
-        this.capacities = capacities;
     }
 
     public String getFirstName() {
@@ -151,4 +121,19 @@ public class Employee {
         this.address = address;
     }
 
+    public Double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Double salary) {
+        this.salary = salary;
+    }
+
+    public Long getEmployeeTypeId() {
+        return employeeTypeId;
+    }
+
+    public void setEmployeeTypeId(Long employeeTypeId) {
+        this.employeeTypeId = employeeTypeId;
+    }
 }
