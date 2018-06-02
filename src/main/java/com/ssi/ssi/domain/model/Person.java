@@ -26,6 +26,11 @@ public class Person {
     @Column(name = "gender")
     private GenderType gender;
 
+    @Column(name = "ci")
+    private String ci;
+
+
+
 
     public Long getId() {
         return id;
@@ -67,4 +72,11 @@ public class Person {
         this.gender = gender;
     }
 
+    public String getCi() {
+        return ci;
+    }
+
+    public void setCi(String ci) {
+        this.ci = ci;
+    }
 }
