@@ -85,3 +85,11 @@ insert into material (id, name, mat_description, material_type) values (2, 'arne
 
 --Employees
 
+--Incident Type
+
+insert into incident_type (id, name, description) values (1, 'Critica', 'el trabajador se encuentra en peligro de muerte')
+insert into incident_type (id, name, description) values (2, 'Alta', 'el trabajdor tendra baja medica por un largo tiempo')
+insert into incident_type (id, name, description) values (3, 'Media', 'el trabajador faltara unos dias al trabajo')
+insert into incident_type (id, name, description) values (4, 'Baja', 'el trabajador sufrio contuciones y no puede trabajar el resto de dia')
+insert into incident_type (id, name, description) values (5, 'General', 'golpes y lesiones leves')
+
