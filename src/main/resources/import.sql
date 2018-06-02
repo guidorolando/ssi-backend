@@ -1,29 +1,31 @@
 -- product items
-insert into product(id, description, name, price) values(1, 'Retornable', 'Coca-Cola', 10);
-insert into product(id, description, name, price) values(2, 'Etiqueta Negra', 'Casa Real', 75);
-insert into product(id, description, name, price) values(3, 'Etiqueta Roja', 'Casa Real', 75);
-insert into product(id, description, name, price) values(4, '620', 'Huari', 15);
-insert into product(id, description, name, price) values(5, 'Sin Alcohol', 'Huari', 10);
-insert into product(id, description, name, price) values(6, 'Cigarrillo LM Azul', 'LM Azul', 12);
-insert into product(id, description, name, price) values(7, 'Cigarrillo LM Rojo', 'LM Rojo', 12);
-insert into product(id, description, name, price) values(8, 'Cigarrillo Derby Antiguo', 'Derby Antiguo', 8.5);
+--insert into product(id, description, name, price) values(1, 'Retornable', 'Coca-Cola', 10);
+--insert into product(id, description, name, price) values(2, 'Etiqueta Negra', 'Casa Real', 75);
+--insert into product(id, description, name, price) values(3, 'Etiqueta Roja', 'Casa Real', 75);
+--insert into product(id, description, name, price) values(4, '620', 'Huari', 15);
+--insert into product(id, description, name, price) values(5, 'Sin Alcohol', 'Huari', 10);
+--insert into product(id, description, name, price) values(6, 'Cigarrillo LM Azul', 'LM Azul', 12);
+--insert into product(id, description, name, price) values(7, 'Cigarrillo LM Rojo', 'LM Rojo', 12);
+--insert into product(id, description, name, price) values(8, 'Cigarrillo Derby Antiguo', 'Derby Antiguo', 8.5);
 
 
 -- customer items
-insert into customer(id, first_name, last_name, address, gender, image_url) values(1, 'garance', 'joly', 'Quillacollo', 'FEMALE', 'https://randomuser.me/api/portraits/thumb/women/51.jpg');
-insert into customer(id, first_name, last_name, address, gender, image_url) values(2, 'christian', 'lenz', 'Vinto', 'MALE', 'https://randomuser.me/api/portraits/thumb/men/86.jpg');
-insert into customer(id, first_name, last_name, address, gender, image_url) values(3, 'lauren', 'peterson', 'Punata', 'FEMALE', 'https://randomuser.me/api/portraits/thumb/women/9.jpg');
-insert into customer(id, first_name, last_name, address, gender, image_url) values(4, 'Dalmiro', 'Cuellar', 'Sipe-Sipe', 'MALE', 'https://randomuser.me/api/portraits/thumb/men/71.jpg');
-insert into customer(id, first_name, last_name, address, gender, image_url) values(5, 'Lia', 'Saldazo', 'Sacaba', 'FEMALE', 'https://randomuser.me/api/portraits/thumb/women/93.jpg');
+--insert into customer(id, first_name, last_name, address, gender, image_url) values(1, 'garance', 'joly', 'Quillacollo', 'FEMALE', 'https://randomuser.me/api/portraits/thumb/women/51.jpg');
+--insert into customer(id, first_name, last_name, address, gender, image_url) values(2, 'christian', 'lenz', 'Vinto', 'MALE', 'https://randomuser.me/api/portraits/thumb/men/86.jpg');
+--insert into customer(id, first_name, last_name, address, gender, image_url) values(3, 'lauren', 'peterson', 'Punata', 'FEMALE', 'https://randomuser.me/api/portraits/thumb/women/9.jpg');
+--insert into customer(id, first_name, last_name, address, gender, image_url) values(4, 'Dalmiro', 'Cuellar', 'Sipe-Sipe', 'MALE', 'https://randomuser.me/api/portraits/thumb/men/71.jpg');
+--insert into customer(id, first_name, last_name, address, gender, image_url) values(5, 'Lia', 'Saldazo', 'Sacaba', 'FEMALE', 'https://randomuser.me/api/portraits/thumb/women/93.jpg');
 
 
 -- security
 INSERT INTO role (id, role_name, description) VALUES (1, 'STANDARD_USER', 'Standard User - Has no admin rights');
 INSERT INTO role (id, role_name, description) VALUES (2, 'ADMIN_USER', 'Admin User - Has permission to perform admin tasks');
 
-insert into person (id, first_name, last_name, birth_date, gender) values (1, 'admin', 'admin', '2000-05-26', 'MALE');
-insert into person (id, first_name, last_name, birth_date, gender) values (2, 'john', 'doe', '2000-05-26', 'MALE');
-insert into person (id, first_name, last_name, birth_date, gender) values (3, 'nicol', 'admin', '2015-05-26', 'MALE');
+
+insert into person (id, first_name, last_name, birth_date, gender, ci) values (1, 'admin', 'admin', '2000-05-26', 'MALE','1111111');
+insert into person (id, first_name, last_name, birth_date, gender, ci) values (2, 'john', 'doe', '2000-05-26', 'MALE', '2222222');
+insert into person (id, first_name, last_name, birth_date, gender, ci) values (3, 'nicol', 'admin', '2015-05-26', 'MALE', '333333');
+
 
 -- USER
 -- non-encrypted password: jwtpass
@@ -52,9 +54,9 @@ INSERT INTO role(id,name,role_name,description) VALUES(3,'Area C','STANDARD_USER
 
 -- Personal Information
 -- insert PersonalInformation
-INSERT INTO personalInformation(id,first_name,last_name,area,capacity,role_type,observations,registration_date) VALUES(1,'firstName3','lastName3','area3','capacity3','role3','observations3','1990-05-26');
-INSERT INTO personalInformation(id,first_name,last_name,area,capacity,role_type,observations,registration_date) VALUES(2,'firstName1','lastName1','area1','capacity1','role1','observations1','1990-05-26');
-INSERT INTO personalInformation(id,first_name,last_name,area,capacity,role_type,observations,registration_date) VALUES(3,'firstName2','lastName2','area2','capacity2','role2','observations2','1990-05-26');
+INSERT INTO personal_information(id,legal_name,area,capacity,employee_Type,observations,registration_date) VALUES(1,'legalName','area3','capacity3','role3','observations3','1990-05-26');
+INSERT INTO personal_information(id,legal_name,area,capacity,employee_Type,observations,registration_date) VALUES(2,'legalName','area3','capacity3','role3','observations3','1990-05-26');
+INSERT INTO personal_information(id,legal_name,area,capacity,employee_Type,observations,registration_date) VALUES(3,'legalName','area3','capacity3','role3','observations3','1990-05-26');
 
 -- Type Employee
 insert into employee_type (id, name, description) values (1, 'Obrero', 'pesronal de man de obra');
@@ -79,5 +81,14 @@ insert into material_type (id, name) values (3, 'Adicional')
 insert into material (id, name, mat_description, material_type) values (1, 'casco', 'description01', '1')
 insert into material (id, name, mat_description, material_type) values (2, 'arnez', 'description02', '2')
 
---Employees
+-- capacity
+insert into capacity(id,name,description,employeeList) values (1, 'proteccion personal', 'Capataz', '')
+insert into capacity(id,name,description,employeeList) values (2, 'proteccion personal', 'Capataz','')
+insert into capacity(id,name,description,employeeList) values (3, 'proteccion personal', 'Capataz', '')
 
+--Incident Type
+insert into incident_type (id, name, description) values (1, 'Critica', 'el trabajador se encuentra en peligro de muerte')
+insert into incident_type (id, name, description) values (2, 'Alta', 'el trabajdor tendra baja medica por un largo tiempo')
+insert into incident_type (id, name, description) values (3, 'Media', 'el trabajador faltara unos dias al trabajo')
+insert into incident_type (id, name, description) values (4, 'Baja', 'el trabajador sufrio contuciones y no puede trabajar el resto de dia')
+insert into incident_type (id, name, description) values (5, 'General', 'golpes y lesiones leves')
