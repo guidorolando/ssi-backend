@@ -1,5 +1,7 @@
 package com.ssi.ssi.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -46,7 +48,13 @@ public class Employee {
     @Column(name = "salary")
     private Double salary;
 
+    @Column(name = "employee_type", updatable = false, insertable = false)
+    private Long employeeTypeId;
+
+
     @ManyToOne
+    @JoinColumn(name = "employee_type")
+    @JsonBackReference
     private EmployeeType employeeType;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -77,14 +85,6 @@ public class Employee {
 
     public void setSalary(Double salary) {
         this.salary = salary;
-    }
-
-    public EmployeeType getEmployeeType() {
-        return employeeType;
-    }
-
-    public void setEmployeeType(EmployeeType employeeType) {
-        this.employeeType = employeeType;
     }
 
     public List<Capacity> getCapacities() {
@@ -151,4 +151,19 @@ public class Employee {
         this.address = address;
     }
 
+    public Long getEmployeeTypeId() {
+        return employeeTypeId;
+    }
+
+    public void setEmployeeTypeId(Long employeeTypeId) {
+        this.employeeTypeId = employeeTypeId;
+    }
+
+    public EmployeeType getEmployeeType() {
+        return employeeType;
+    }
+
+    public void setEmployeeType(EmployeeType employeeType) {
+        this.employeeType = employeeType;
+    }
 }
