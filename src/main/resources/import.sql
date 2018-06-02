@@ -1,29 +1,31 @@
 -- product items
-insert into product(id, description, name, price) values(1, 'Retornable', 'Coca-Cola', 10);
-insert into product(id, description, name, price) values(2, 'Etiqueta Negra', 'Casa Real', 75);
-insert into product(id, description, name, price) values(3, 'Etiqueta Roja', 'Casa Real', 75);
-insert into product(id, description, name, price) values(4, '620', 'Huari', 15);
-insert into product(id, description, name, price) values(5, 'Sin Alcohol', 'Huari', 10);
-insert into product(id, description, name, price) values(6, 'Cigarrillo LM Azul', 'LM Azul', 12);
-insert into product(id, description, name, price) values(7, 'Cigarrillo LM Rojo', 'LM Rojo', 12);
-insert into product(id, description, name, price) values(8, 'Cigarrillo Derby Antiguo', 'Derby Antiguo', 8.5);
+--insert into product(id, description, name, price) values(1, 'Retornable', 'Coca-Cola', 10);
+--insert into product(id, description, name, price) values(2, 'Etiqueta Negra', 'Casa Real', 75);
+--insert into product(id, description, name, price) values(3, 'Etiqueta Roja', 'Casa Real', 75);
+--insert into product(id, description, name, price) values(4, '620', 'Huari', 15);
+--insert into product(id, description, name, price) values(5, 'Sin Alcohol', 'Huari', 10);
+--insert into product(id, description, name, price) values(6, 'Cigarrillo LM Azul', 'LM Azul', 12);
+--insert into product(id, description, name, price) values(7, 'Cigarrillo LM Rojo', 'LM Rojo', 12);
+--insert into product(id, description, name, price) values(8, 'Cigarrillo Derby Antiguo', 'Derby Antiguo', 8.5);
 
 
 -- customer items
-insert into customer(id, first_name, last_name, address, gender, image_url) values(1, 'garance', 'joly', 'Quillacollo', 'FEMALE', 'https://randomuser.me/api/portraits/thumb/women/51.jpg');
-insert into customer(id, first_name, last_name, address, gender, image_url) values(2, 'christian', 'lenz', 'Vinto', 'MALE', 'https://randomuser.me/api/portraits/thumb/men/86.jpg');
-insert into customer(id, first_name, last_name, address, gender, image_url) values(3, 'lauren', 'peterson', 'Punata', 'FEMALE', 'https://randomuser.me/api/portraits/thumb/women/9.jpg');
-insert into customer(id, first_name, last_name, address, gender, image_url) values(4, 'Dalmiro', 'Cuellar', 'Sipe-Sipe', 'MALE', 'https://randomuser.me/api/portraits/thumb/men/71.jpg');
-insert into customer(id, first_name, last_name, address, gender, image_url) values(5, 'Lia', 'Saldazo', 'Sacaba', 'FEMALE', 'https://randomuser.me/api/portraits/thumb/women/93.jpg');
+--insert into customer(id, first_name, last_name, address, gender, image_url) values(1, 'garance', 'joly', 'Quillacollo', 'FEMALE', 'https://randomuser.me/api/portraits/thumb/women/51.jpg');
+--insert into customer(id, first_name, last_name, address, gender, image_url) values(2, 'christian', 'lenz', 'Vinto', 'MALE', 'https://randomuser.me/api/portraits/thumb/men/86.jpg');
+--insert into customer(id, first_name, last_name, address, gender, image_url) values(3, 'lauren', 'peterson', 'Punata', 'FEMALE', 'https://randomuser.me/api/portraits/thumb/women/9.jpg');
+--insert into customer(id, first_name, last_name, address, gender, image_url) values(4, 'Dalmiro', 'Cuellar', 'Sipe-Sipe', 'MALE', 'https://randomuser.me/api/portraits/thumb/men/71.jpg');
+--insert into customer(id, first_name, last_name, address, gender, image_url) values(5, 'Lia', 'Saldazo', 'Sacaba', 'FEMALE', 'https://randomuser.me/api/portraits/thumb/women/93.jpg');
 
 
 -- security
 INSERT INTO role (id, role_name, description) VALUES (1, 'STANDARD_USER', 'Standard User - Has no admin rights');
 INSERT INTO role (id, role_name, description) VALUES (2, 'ADMIN_USER', 'Admin User - Has permission to perform admin tasks');
 
-insert into person (id, first_name, last_name, birth_date, gender) values (1, 'admin', 'admin', '2000-05-26', 'MALE');
-insert into person (id, first_name, last_name, birth_date, gender) values (2, 'john', 'doe', '2000-05-26', 'MALE');
-insert into person (id, first_name, last_name, birth_date, gender) values (3, 'nicol', 'admin', '2015-05-26', 'MALE');
+
+insert into person (id, first_name, last_name, birth_date, gender, ci) values (1, 'admin', 'admin', '2000-05-26', 'MALE','1111111');
+insert into person (id, first_name, last_name, birth_date, gender, ci) values (2, 'john', 'doe', '2000-05-26', 'MALE', '2222222');
+insert into person (id, first_name, last_name, birth_date, gender, ci) values (3, 'nicol', 'admin', '2015-05-26', 'MALE', '333333');
+
 
 -- USER
 -- non-encrypted password: jwtpass
