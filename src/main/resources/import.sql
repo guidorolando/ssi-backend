@@ -83,11 +83,14 @@ insert into material_type (id, name) values (3, 'Adicional')
 insert into material (id, name, mat_description, material_type) values (1, 'casco', 'description01', '1')
 insert into material (id, name, mat_description, material_type) values (2, 'arnez', 'description02', '2')
 
---Employees
-
 -- capacity
-
---Employees
 insert into capacity(id,name,description,employeeList) values (1, 'proteccion personal', 'Capataz', '')
 insert into capacity(id,name,description,employeeList) values (2, 'proteccion personal', 'Capataz','')
 insert into capacity(id,name,description,employeeList) values (3, 'proteccion personal', 'Capataz', '')
+
+--Incident Type
+insert into incident_type (id, name, description) values (1, 'Critica', 'el trabajador se encuentra en peligro de muerte')
+insert into incident_type (id, name, description) values (2, 'Alta', 'el trabajdor tendra baja medica por un largo tiempo')
+insert into incident_type (id, name, description) values (3, 'Media', 'el trabajador faltara unos dias al trabajo')
+insert into incident_type (id, name, description) values (4, 'Baja', 'el trabajador sufrio contuciones y no puede trabajar el resto de dia')
+insert into incident_type (id, name, description) values (5, 'General', 'golpes y lesiones leves')
