@@ -64,6 +64,13 @@ insert into employee (id, ci, first_name, last_name, birth_date, gender, email, 
 insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary) values (3, '1234567', 'Maximilian', 'Toro', '1985-05-26', 'MALE', 'maxi@toro.com', 60574635, 'quillacollo', 5000.00);
 insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary) values (4, '1234567', 'Marco', 'Herrera', '1986-05-26', 'MALE', 'marco@herrera.com', 67453634, 'sebastian pagador', 5000.00);
 
+-- Type Employee
+insert into employee_type (id, name, description) values (1, 'Obrero', 'pesronal de man de obra');
+insert into employee_type (id, name, description) values (2, 'Maestro Constructor', 'pesronal de man de obra');
+insert into employee_type (id, name, description) values (3, 'Contratista', 'pesronal de man de obra');
+insert into employee_type (id, name, description) values (4, 'Administrativo', 'pesronal de man de obra');
+insert into employee_type (id, name, description) values (5, 'Ejecutivo', 'pesronal de man de obra');
+
 
 --MaterialType
 insert into material_type (id, name) values (1, 'proteccion personal')
