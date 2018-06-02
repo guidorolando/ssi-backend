@@ -25,6 +25,10 @@ public class EmployeeService {
         return employeeRepository.findById(id);
     }
 
+    public List<Employee> findByText(String name){
+        return (List<Employee>) employeeRepository.searchByText(name);
+    }
+
     public void addEmployee(EmployeeRequest employeeRequest){
         Employee employee = new Employee();
         employee.setFirstName(employeeRequest.getFirstName());
@@ -35,6 +39,7 @@ public class EmployeeService {
         employee.setPhone(employeeRequest.getPhone());
         employee.setBirthDate(employeeRequest.getBirthDate());
         employee.setSalary(employeeRequest.getSalary());
+        employee.setEmail(employeeRequest.getEmail());
         employeeRepository.save(employee);
     }
 
@@ -49,6 +54,7 @@ public class EmployeeService {
             employee.get().setPhone(employeeRequest.getPhone());
             employee.get().setBirthDate(employeeRequest.getBirthDate());
             employee.get().setSalary(employeeRequest.getSalary());
+            employee.get().setEmail(employeeRequest.getEmail());
             employeeRepository.save(employee.get());
         }
         else
@@ -64,7 +70,7 @@ public class EmployeeService {
         }
         else
         {
-            System.out.println("No exist the Eployee with id '" + id + "' for delete.");
+            System.out.println("No exist the Employee with id '" + id + "' for delete.");
         }
     }
 }
