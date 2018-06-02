@@ -54,9 +54,9 @@ INSERT INTO role(id,name,role_name,description) VALUES(3,'Area C','STANDARD_USER
 
 -- Personal Information
 -- insert PersonalInformation
-INSERT INTO personalInformation(id,first_name,last_name,area,capacity,role_type,observations,registration_date) VALUES(1,'firstName3','lastName3','area3','capacity3','role3','observations3','1990-05-26');
-INSERT INTO personalInformation(id,first_name,last_name,area,capacity,role_type,observations,registration_date) VALUES(2,'firstName1','lastName1','area1','capacity1','role1','observations1','1990-05-26');
-INSERT INTO personalInformation(id,first_name,last_name,area,capacity,role_type,observations,registration_date) VALUES(3,'firstName2','lastName2','area2','capacity2','role2','observations2','1990-05-26');
+INSERT INTO personal_information(id,first_name,last_name,area,capacity,role_type,observations,registration_date) VALUES(1,'firstName3','lastName3','area3','capacity3','role3','observations3','1990-05-26');
+INSERT INTO personal_information(id,first_name,last_name,area,capacity,role_type,observations,registration_date) VALUES(2,'firstName1','lastName1','area1','capacity1','role1','observations1','1990-05-26');
+INSERT INTO personal_information(id,first_name,last_name,area,capacity,role_type,observations,registration_date) VALUES(3,'firstName2','lastName2','area2','capacity2','role2','observations2','1990-05-26');
 
 
 
@@ -85,3 +85,9 @@ insert into material (id, name, mat_description, material_type) values (2, 'arne
 
 --Employees
 
+-- capacity
+
+--Employees
+insert into capacity(id,name,description,employeeList) values (1, 'proteccion personal', 'Capataz', '')
+insert into capacity(id,name,description,employeeList) values (2, 'proteccion personal', 'Capataz','')
+insert into capacity(id,name,description,employeeList) values (3, 'proteccion personal', 'Capataz', '')

@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "personalInformation")
+@Table(name = "personal_information")
 public class PersonalInformation {
 
     @Id
@@ -33,7 +33,7 @@ public class PersonalInformation {
 
     @Column(name = "registration_date")
     private Date registrationDate;
-
+ 
     public Long getId() {
         return id;
     }
