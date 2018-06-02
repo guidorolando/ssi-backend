@@ -26,11 +26,11 @@ public class AutoCompleteController {
             method = RequestMethod.GET,
             value = "/{search}"
     )
-    public List<AutoCompleteResource> findAllPersonsByParameter(@PathVariable("search") String search){
+    public List<AutoCompleteResource> findAllEmployeeByParameter(@PathVariable("search") String search){
 
         List<AutoCompleteResource> autoCompleteResources = new ArrayList<>();
 
-        autoCompleteService.findAllPersonsByParameter(search).forEach(
+        autoCompleteService.findAllEmployeeByParameter(search).forEach(
                 employee -> autoCompleteResources.add( new AutoCompleteResource(employee))
         );
 

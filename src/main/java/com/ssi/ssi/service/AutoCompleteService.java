@@ -12,7 +12,7 @@ public class AutoCompleteService {
     private EmployeeRepository employeeRepository;
 
 
-    public Iterable<Employee> findAllPersonsByParameter(String search) {
-        return employeeRepository.find11(search);
+    public Iterable<Employee> findAllEmployeeByParameter(String search) {
+        return employeeRepository.findEmployee(search);
     }
 }

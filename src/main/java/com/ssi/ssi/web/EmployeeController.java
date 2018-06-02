@@ -3,14 +3,12 @@ package com.ssi.ssi.web;
 import com.ssi.ssi.common.response.rest.ListRestResponse;
 import com.ssi.ssi.common.response.rest.SingleRestResponse;
 import com.ssi.ssi.common.response.rest.SuccessRestResponse;
-import com.ssi.ssi.domain.model.Employee;
 import com.ssi.ssi.request.EmployeeRequest;
 import com.ssi.ssi.resources.EmployeeResource;
 import com.ssi.ssi.service.EmployeeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,6 +24,7 @@ import java.util.stream.Collectors;
 )
 @RestController
 public class EmployeeController extends AbstractEmployeeController {
+
     @Autowired
     private EmployeeService service;
 
@@ -34,7 +33,7 @@ public class EmployeeController extends AbstractEmployeeController {
             method = RequestMethod.GET
     )
     public ListRestResponse<EmployeeResource> getAll(){
-        final List<EmployeeResource> collection = service.getAll().stream().map(EmployeeResource::new).collect(Collectors.toList());;
+        final List<EmployeeResource> collection = service.getAll().stream().map(EmployeeResource::new).collect(Collectors.toList());
         return new ListRestResponse<>(collection);
     }
 
@@ -57,7 +56,8 @@ public class EmployeeController extends AbstractEmployeeController {
     }
 
     @ApiOperation(value = "Create new employee")
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(
+            method = RequestMethod.POST)
     public SuccessRestResponse createEmployee(@RequestBody EmployeeRequest employeeRequest){
         service.addEmployee(employeeRequest);
         return new SuccessRestResponse();
@@ -66,18 +66,16 @@ public class EmployeeController extends AbstractEmployeeController {
     @ApiOperation(value = "Update employee")
     @RequestMapping(value = "/{id}",
             method = RequestMethod.PUT)
-    public SuccessRestResponse updateEmployee(@PathVariable Long id, @RequestBody EmployeeRequest updPizza){
-        service.upDateEmployee(updPizza, id);
+    public SuccessRestResponse upDateEmployee(@RequestBody EmployeeRequest employeeRequest, @PathVariable Long id){
+        service.upDateEmployee(employeeRequest, id);
         return new SuccessRestResponse();
     }
 
-    @ApiOperation(value = "Remove employee")
+    @ApiOperation(value = "Delete employee")
     @RequestMapping(value = "/{id}",
             method = RequestMethod.DELETE)
-    public SuccessRestResponse deleteEmployee(@PathVariable Long id){
+    public SuccessRestResponse removeEmployee(@PathVariable Long id){
         service.deleteEmployeeById(id);
         return new SuccessRestResponse();
     }
-
-
 }
