@@ -19,7 +19,7 @@ public class MaterialService {
     @Autowired
     private MaterialTypeRepository materialTypeRepository;
 
-        public List<Material> getAllMaterial(){
+    public List<Material> getAllMaterial(){
             return (List<Material>) materialRepository.findAll();
         }
 
@@ -40,8 +40,16 @@ public class MaterialService {
         materialRepository.delete(material);
     }
 
-    public void deleteById(Long id) {
-        materialRepository.deleteById(id);
+    public Boolean deleteById(Long id) {
+        Boolean wasDeleted = Boolean.FALSE;
+        Optional<Material> material = getMaterialById(id);
+
+        if (material.isPresent()){
+            materialRepository.delete(material.get());
+            wasDeleted = Boolean.TRUE;
+        }
+
+        return wasDeleted;
     }
 
     public Boolean updateMaterial(Long id, Material updatedMaterial){
@@ -57,4 +65,6 @@ public class MaterialService {
         }
         return wasUpdated;
     }
+
+
 }

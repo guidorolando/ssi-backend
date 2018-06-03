@@ -1,6 +1,7 @@
 package com.ssi.ssi.domain.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "store")
@@ -15,11 +16,12 @@ public class Store {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne
-    private Material material;
+    @OneToMany
+    @JoinColumn(name = "material_id")
+    private List<Material> materialList;
 
-    @Column(name = "quantity")
-    private Integer quantity;
+    @Column(name = "stock")
+    private Integer stock;
 
     public Long getId() {
         return id;
@@ -37,19 +39,19 @@ public class Store {
         this.name = name;
     }
 
-    public Material getMaterial() {
-        return material;
+    public List<Material> getMaterialList() {
+        return materialList;
     }
 
-    public void setMaterial(Material material) {
-        this.material = material;
+    public void setMaterialList(List<Material> materialList) {
+        this.materialList = materialList;
     }
 
-    public Integer getQuantity() {
-        return quantity;
+    public Integer getStock() {
+        return stock;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
 }

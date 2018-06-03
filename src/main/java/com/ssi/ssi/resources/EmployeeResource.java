@@ -1,6 +1,7 @@
 package com.ssi.ssi.resources;
 
 import com.ssi.ssi.domain.model.Employee;
+import com.ssi.ssi.domain.model.EmployeeType;
 import com.ssi.ssi.domain.model.GenderType;
 
 import java.util.Date;
@@ -13,6 +14,8 @@ public class EmployeeResource {
     private final Employee employee;
 
     private Long id;
+
+    private String ci;
 
     private String firstName;
 
@@ -30,11 +33,13 @@ public class EmployeeResource {
 
     private Double salary;
 
-    private Long employeeTypeId;
+    //private Long employeeTypeId;
+    private EmployeeTypeResource employeeType;
 
     public EmployeeResource(final Employee employee) {
         this.employee = employee;
         this.id = employee.getId();
+        this.ci = employee.getCi();
         this.firstName = employee.getFirstName();
         this.lastName = employee.getLastName();
         this.birthDate = employee.getBirthDate();
@@ -43,7 +48,7 @@ public class EmployeeResource {
         this.phone = employee.getPhone();
         this.address = employee.getAddress();
         this.salary = employee.getSalary();
-//        this.employeeTypeId = employee.getEmployeeType().getId();
+        this.employeeType = build(employee.getEmployeeType());
     }
 
     public Long getId() {
@@ -52,6 +57,14 @@ public class EmployeeResource {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCi() {
+        return ci;
+    }
+
+    public void setCi(String ci) {
+        this.ci = ci;
     }
 
     public String getFirstName() {
@@ -118,11 +131,16 @@ public class EmployeeResource {
         this.salary = salary;
     }
 
-    public Long getEmployeeTypeId() {
-        return employeeTypeId;
+    public EmployeeTypeResource getEmployeeType() {
+        return employeeType;
     }
 
-    public void setEmployeeTypeId(Long employeeTypeId) {
-        this.employeeTypeId = employeeTypeId;
+    public EmployeeTypeResource build(EmployeeType employeeType){
+        EmployeeTypeResource resource = new EmployeeTypeResource(employeeType);
+        return resource;
+    }
+
+    public void setEmployeeType(EmployeeTypeResource employeeType) {
+        this.employeeType = employeeType;
     }
 }

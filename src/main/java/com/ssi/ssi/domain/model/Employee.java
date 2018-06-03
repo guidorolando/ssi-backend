@@ -1,5 +1,7 @@
 package com.ssi.ssi.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +19,9 @@ public class Employee {
             strategy = GenerationType.IDENTITY
     )
     private Long id;
+
+    @Column(name = "ci")
+    private String ci;
 
     @Column(name = "first_name")
     private String firstName;
@@ -43,7 +48,11 @@ public class Employee {
     @Column(name = "salary")
     private Double salary;
 
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
+
     @ManyToOne
+    @JoinColumn(name = "employee_type")
     private EmployeeType employeeType;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -60,20 +69,20 @@ public class Employee {
         this.id = id;
     }
 
+    public String getCi() {
+        return ci;
+    }
+
+    public void setCi(String ci) {
+        this.ci = ci;
+    }
+
     public Double getSalary() {
         return salary;
     }
 
     public void setSalary(Double salary) {
         this.salary = salary;
-    }
-
-    public EmployeeType getEmployeeType() {
-        return employeeType;
-    }
-
-    public void setEmployeeType(EmployeeType employeeType) {
-        this.employeeType = employeeType;
     }
 
     public List<Capacity> getCapacities() {
@@ -140,4 +149,19 @@ public class Employee {
         this.address = address;
     }
 
+    public EmployeeType getEmployeeType() {
+        return employeeType;
+    }
+
+    public void setEmployeeType(EmployeeType employeeType) {
+        this.employeeType = employeeType;
+    }
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
+    }
 }

@@ -11,7 +11,7 @@ public abstract class AbstractEmployeeController {
 
     public static final String PATH = Constants.EMPLOYEE_BASE_PATH;
 
-    public static final String TAG_NAME = "Employees";
+    public static final String TAG_NAME = "Employee";
 
-    public static final String DESCRIPTION = "Available operations over employee";
+    public static final String DESCRIPTION = "Available operations over Employee ";
 }

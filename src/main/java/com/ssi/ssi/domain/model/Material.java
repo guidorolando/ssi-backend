@@ -15,11 +15,14 @@ public class Material {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "vida_util")
+    private Long vidaUtil;
+
     @Column(name = "material_description")
     private String matDescription;
 
     @ManyToOne
-    @JoinColumn(name = "material_id")
+    @JoinColumn(name = "material_type_id")
     private MaterialType materialType;
 
     public Long getId() {
@@ -36,6 +39,14 @@ public class Material {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Long getVidaUtil() {
+        return vidaUtil;
+    }
+
+    public void setVidaUtil(Long vidaUtil) {
+        this.vidaUtil = vidaUtil;
     }
 
     public MaterialType getMaterialType() {

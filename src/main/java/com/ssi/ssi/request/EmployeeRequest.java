@@ -7,7 +7,9 @@ import java.util.Date;
 /**
  * @autor Marco Herrera.
  */
-public class EmployeeResouceRequest {
+public class EmployeeRequest {
+
+    protected String ci;
 
     private String firstName;
 
@@ -26,6 +28,14 @@ public class EmployeeResouceRequest {
     private Double salary;
 
     private Long employeeTypeId;
+
+    public String getCi() {
+        return ci;
+    }
+
+    public void setCi(String ci) {
+        this.ci = ci;
+    }
 
     public String getFirstName() {
         return firstName;

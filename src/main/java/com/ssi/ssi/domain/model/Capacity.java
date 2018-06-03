@@ -26,6 +26,18 @@ public class Capacity {
         return id;
     }
 
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
+
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }

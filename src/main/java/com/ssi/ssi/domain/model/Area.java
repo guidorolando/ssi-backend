@@ -19,6 +19,20 @@ public class Area {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "codigo")
+    private  String codigo;
+
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
+    }
+
     public Long getId() {
         return id;
     }
@@ -42,4 +56,15 @@ public class Area {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+
+
 }

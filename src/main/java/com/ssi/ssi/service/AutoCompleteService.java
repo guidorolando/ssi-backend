@@ -1,5 +1,9 @@
 package com.ssi.ssi.service;
 
+import com.ssi.ssi.domain.model.Employee;
+import com.ssi.ssi.domain.repository.EmployeeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import com.ssi.ssi.domain.model.Person;
 import com.ssi.ssi.domain.repository.PersonRepository;
 import com.ssi.ssi.resources.AutoCompleteResource;
@@ -17,10 +21,10 @@ import java.util.List;
 public class AutoCompleteService {
 
     @Autowired
-    private PersonRepository personRepository;
+    private EmployeeRepository employeeRepository;
 
 
-    public Iterable<Person> findAllPersonsByParameter(String search) {
-        return personRepository.findByFirstNameLikeAndCiLike(search, search, search);
+    public Iterable<Employee> findAllEmployeeByParameter(String search) {
+        return employeeRepository.findEmployee(search);
     }
 }
