@@ -1,8 +1,11 @@
 package com.ssi.ssi.web;
 
+import com.ssi.ssi.domain.model.AccidentAgent;
 import com.ssi.ssi.domain.model.Area;
+import com.ssi.ssi.domain.model.Incident;
 import com.ssi.ssi.domain.repository.exception.MessageNotFountException;
 import com.ssi.ssi.resources.AreaResource;
+import com.ssi.ssi.resources.IncidentResource;
 import com.ssi.ssi.service.AreaService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +30,13 @@ public class AreaController {
         final List<AreaResource> collection = areaService.getAll().stream().map(AreaResource::new).collect(Collectors.toList());
         return ResponseEntity.ok(collection);
     }
+
+//    @RequestMapping(
+//            method = RequestMethod.POST
+//    )
+//    private ResponseEntity<Area> createArea(@RequestBody Area area) {
+//        return new ResponseEntity<Area>(areaService.createArea(area), HttpStatus.CREATED);
+//    }
 
 
     @GetMapping("/{id}")
