@@ -18,8 +18,8 @@ public interface EmployeeRepository extends CrudRepository<Employee, Long> {
     @Query("SELECT employee FROM Employee employee WHERE employee.isDeleted=0 ")
     List<Employee> getAll();
 
-    @Query("SELECT employee FROM Employee employee WHERE employee.id = :id and employee.isDeleted=0 ")
-    Optional<Employee> findById(@Param("id") Long id);
+    /*@Query("SELECT employee FROM Employee employee WHERE employee.id = :id and employee.isDeleted=0 ")
+    Optional<Employee> findById(@Param("id") Long id);*/
 
     @Query("select employee from Employee employee where employee.firstName like CONCAT('%',:name,'%') or employee.email like CONCAT('%',:name,'%')")
     List<Employee> searchByText(@Param("name") String name);

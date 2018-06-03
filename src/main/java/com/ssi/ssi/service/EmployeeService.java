@@ -32,7 +32,7 @@ public class EmployeeService {
 
     public Optional<Employee> findById(Long id) {
         Optional<Employee> employee = employeeRepository.findById(id);
-        if(employee.isPresent()){
+        if(employee.isPresent() && employee.get().getDeleted().equals(Boolean.FALSE)){
             return employee;
         }else {
             return null;
