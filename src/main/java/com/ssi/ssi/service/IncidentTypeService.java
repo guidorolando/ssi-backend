@@ -15,7 +15,7 @@ public class IncidentTypeService {
     @Autowired
     private IncidentTypeRepository incidentTypeRepository;
 
-    public Optional<IncidentType> findIncidentTypeById(Long id){
+    public Optional<IncidentType> findIncidentTypeById(Long id) {
         return incidentTypeRepository.findById(id);
     }
 
@@ -47,4 +47,11 @@ public class IncidentTypeService {
         return incidentTypeRepository.findAll();
     }
 
+    public void delete(Long id) {
+        Optional<IncidentType> incidentTypeDb = findIncidentTypeById(id);
+        if (incidentTypeDb.isPresent()) {
+            incidentTypeDb.get().setIsDeleted(Boolean.TRUE);
+            incidentTypeRepository.save(incidentTypeDb.get());
+        }
+    }
 }

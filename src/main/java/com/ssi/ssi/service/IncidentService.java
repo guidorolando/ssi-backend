@@ -37,7 +37,7 @@ public class IncidentService {
         Optional<IncidentType> incidentTypeDb = incidentTypeService.findIncidentTypeById(incidentResource.getIncidentTypeId());
         Optional<LesionType> lesionTypeDb = lesionTypeService.findLesionTypeById(incidentResource.getLesionTypeId());
         Optional<AccidentAgent> accidentAgentDb = accidentAgentService.findAccidentAgentById(incidentResource.getAccidentAgentId());
-        if(employeeDb.isPresent() && incidentTypeDb.isPresent() && lesionTypeDb.isPresent() && accidentAgentDb.isPresent()){
+        if (employeeDb.isPresent() && incidentTypeDb.isPresent() && lesionTypeDb.isPresent() && accidentAgentDb.isPresent()) {
             Incident incident = new Incident();
             incident.setIncidentType(incidentTypeDb.get());
             incident.setEmployee(employeeDb.get());
@@ -82,5 +82,13 @@ public class IncidentService {
 
     public Iterable<Incident> getAllIncident() {
         return incidentRepository.findAll();
+    }
+
+    public void delete(Long id) {
+        Optional<Incident> incidentDb = findIncidentById(id);
+        if (incidentDb.isPresent()) {
+            incidentDb.get().setIsDeleted(Boolean.TRUE);
+            incidentRepository.save(incidentDb.get());
+        }
     }
 }

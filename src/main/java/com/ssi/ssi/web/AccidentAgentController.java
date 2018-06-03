@@ -1,15 +1,14 @@
 package com.ssi.ssi.web;
 
+import com.ssi.ssi.common.response.rest.SuccessRestResponse;
 import com.ssi.ssi.domain.model.AccidentAgent;
 import com.ssi.ssi.service.AccidentAgentService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,5 +56,27 @@ public class AccidentAgentController {
 
         return accidentAgents;
 
+    }
+
+    @ApiOperation(value = "Delete Accident Agent")
+    @RequestMapping(value = "/{id}",
+            method = RequestMethod.DELETE
+    )
+    public SuccessRestResponse remove(@PathVariable Long id) {
+        accidentAgentService.delete(id);
+        return new SuccessRestResponse();
+    }
+
+    @ApiOperation(value = "Get accident agent by Id")
+    @RequestMapping(value = "/{id}",
+            method = RequestMethod.GET
+    )
+    public ResponseEntity<AccidentAgent> getById(@PathVariable Long id) {
+        Optional<AccidentAgent> accidentAgent = accidentAgentService.findAccidentAgentById(id);
+        if (accidentAgent.isPresent()) {
+            return new ResponseEntity<AccidentAgent>(accidentAgent.get(), HttpStatus.OK);
+        }
+
+        return new ResponseEntity<AccidentAgent>(HttpStatus.NOT_FOUND);
     }
 }
