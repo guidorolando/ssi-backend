@@ -8,6 +8,7 @@ public class AreaResource {
     private String name;
     private String description;
     private  String codigo;
+    private Boolean isDeleted;
 
 
     public AreaResource(final Area area) {
@@ -16,9 +17,16 @@ public class AreaResource {
        this.name = area.getName();
        this.description = area.getDescription();
        this.codigo = area.getCodigo();
-
+       this.isDeleted = area.getDeleted();
     }
 
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
+    }
 
     public Long getId() {
         return id;
