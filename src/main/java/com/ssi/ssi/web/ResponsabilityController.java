@@ -2,8 +2,10 @@ package com.ssi.ssi.web;
 
 
 import com.ssi.ssi.common.response.rest.ListRestResponse;
+import com.ssi.ssi.common.response.rest.SuccessRestResponse;
 import com.ssi.ssi.domain.model.Capacity;
 import com.ssi.ssi.domain.model.Responsibility;
+import com.ssi.ssi.request.ResponsibilityRequest;
 import com.ssi.ssi.resources.CapacityResource;
 import com.ssi.ssi.resources.ResponsabilityResource;
 import com.ssi.ssi.service.ResposabilityService;
@@ -43,7 +45,8 @@ public class ResponsabilityController {
     @RequestMapping(
             method = RequestMethod.POST
     )
-    private ResponseEntity<Responsibility> createResposability(@RequestBody Responsibility responsibility) {
-        return new ResponseEntity<Responsibility>(resposabilityService.createResponsabilit(responsibility), HttpStatus.CREATED);
+    private SuccessRestResponse createResposability(@RequestBody ResponsibilityRequest responsibility) {
+        resposabilityService.createResponsabilit(responsibility);
+        return new SuccessRestResponse();
     }
 }

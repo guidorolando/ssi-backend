@@ -12,7 +12,7 @@ public class ResponsabilityResource {
     private String name;
     private String description;
     private Boolean isDeleted;
-
+    private EmployeeTypeResource employeeType;
 
     public ResponsabilityResource(final Responsibility responsibility) {
         this.responsibility = responsibility;
@@ -20,6 +20,7 @@ public class ResponsabilityResource {
         this.name = responsibility.getName();
         this.description =responsibility.getDescription();
         this.isDeleted = responsibility.getDeleted();
+        this.employeeType = build(responsibility.getEmployeeType());
 
     }
 
@@ -56,5 +57,17 @@ public class ResponsabilityResource {
         this.description = description;
     }
 
+    public EmployeeTypeResource getEmployeeType() {
+        return employeeType;
+    }
+
+    public void setEmployeeType(EmployeeTypeResource employeeType) {
+        this.employeeType = employeeType;
+    }
+
+    public EmployeeTypeResource build(EmployeeType employeeType){
+        EmployeeTypeResource resource = new EmployeeTypeResource(employeeType);
+        return resource;
+    }
 
 }

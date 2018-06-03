@@ -28,9 +28,6 @@ INSERT INTO area(id,name,description,codigo,is_deleted) VALUES(1,'Area A','Plant
 INSERT INTO area(id,name,description,codigo,is_deleted) VALUES(2,'Area B','Planta Baja' ,'002',0);
 INSERT INTO area(id,name,description,codigo,is_deleted) VALUES(3,'Area C','Planta Alta' ,'003',0);
 
-
-
-
 -- Type Employee
 insert into employee_type (id, name, description) values (1, 'Obrero', 'pesronal de man de obra');
 insert into employee_type (id, name, description) values (2, 'Maestro Constructor', 'pesronal de man de obra');
@@ -101,9 +98,9 @@ insert into accident_agent (id, agent_name, is_deleted) values (9, 'Efecto de la
 
 
 --Responsability
-insert into responsibility (id, name,description,is_deleted) values (1, 'name','Description',0)
-insert into responsibility (id, name,description,is_deleted) values (2, 'name2','Description2',0)
-insert into responsibility (id, name,description,is_deleted) values (3, 'name3','Description3',0)
+insert into responsibility (id, name,description,is_deleted, employee_type_id) values (1, 'name1','Description1',0, 4)
+insert into responsibility (id, name,description,is_deleted, employee_type_id) values (2, 'name2','Description2',0, 5)
+insert into responsibility (id, name,description,is_deleted, employee_type_id) values (3, 'name3','Description3',0, 3
 
 --insert incident
 
@@ -117,4 +114,3 @@ insert into incident (id, accident_date, accident_day, accident_site, accident_t
 insert into incident (id, accident_date, accident_day, accident_site, accident_time, affected_part, is_deleted, working_turn, accident_agent_id, employee_id, incident_type_id, lesion_type_id) VALUES (8,	'2017-06-01 23:36:54.567',	'Martes',	'gradas',	'12:23',	'manos',	0,	'EXTRA_HOURS',	2,	2,	2,	1)
 insert into incident (id, accident_date, accident_day, accident_site, accident_time, affected_part, is_deleted, working_turn, accident_agent_id, employee_id, incident_type_id, lesion_type_id) VALUES (9,	'2018-06-02 23:45:54.567',	'Martes',	'almacén',	'12:12',	'estomago, manos',	0,	'EXTRA_HOURS',	3,	3,	3,	3)
 insert into incident (id, accident_date, accident_day, accident_site, accident_time, affected_part, is_deleted, working_turn, accident_agent_id, employee_id, incident_type_id, lesion_type_id) VALUES (10,	'2014-06-01 23:55:54.567',	'Martes',	'subiendo al 2do piso',	'12:21',	'manos',	0,	'EXTRA_HOURS',	2,	2,	2,	2)
-
