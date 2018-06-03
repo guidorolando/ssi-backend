@@ -1,7 +1,11 @@
 package com.ssi.ssi.service;
 
-import com.ssi.ssi.domain.model.PersonalInformation;
+import com.ssi.ssi.domain.model.*;
 import com.ssi.ssi.domain.repository.PersonalInformationRepository;
+import com.ssi.ssi.resources.AreaResource;
+import com.ssi.ssi.resources.IncidentResource;
+import com.ssi.ssi.resources.PersonResource;
+import com.ssi.ssi.resources.PersonalInformationResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +17,71 @@ public class PersonalInformationService {
     @Autowired
     PersonalInformationRepository personalInformationRepository;
 
+    @Autowired
+    EmployeeTypeService employeeTypeService;
 
+    @Autowired
+    AreaService areaService;
+
+    @Autowired
+    CapacityService capacityService;
+
+
+    public Optional<PersonalInformation> findEmployeeById(Long id) {
+
+        return personalInformationRepository.findById(id);
+    }
+
+    public PersonalInformation createPersonalInformation(PersonalInformationResource personalInformationResource) {
+
+        Optional<Area> areaDb = areaService.getId(personalInformationResource.getAreaId());
+        Optional<Capacity> capacityDb = capacityService.getId(personalInformationResource.getCapacityId());
+        Optional<EmployeeType> employeeTypeDb = employeeTypeService.findById(personalInformationResource.getEmployeeTypeId());
+
+
+        if(areaDb.isPresent() && capacityDb.isPresent() && employeeTypeDb.isPresent()){
+            PersonalInformation personalInformation = new PersonalInformation();
+            personalInformation.setArea(areaDb.get());
+            personalInformation.setCapacity(capacityDb.get());
+           // personalInformation.setEmployeeType((employeeTypeDb.get()));
+            return personalInformationRepository.save(personalInformation);
+        }
+
+        return new PersonalInformation();
+
+    }
+
+
+    public Boolean updatePersonalInformation(PersonalInformationResource personResource) {
+
+        Boolean wasUpdated = Boolean.FALSE;
+
+        Optional<PersonalInformation> personalInformationDb = findEmployeeById(personResource.getEmployeeTypeId());
+       // List<EmployeeType> employeeTypeDb = employeeTypeService.findById(personResource.getEmployeeTypeId());
+
+         if (personalInformationDb.isPresent()) {
+            // personalInformationDb.get().setEmployeeType(employeeTypeDb.);
+             personalInformationRepository.save(personalInformationDb.get());
+            wasUpdated = Boolean.TRUE;
+        }
+
+        return wasUpdated;
+    }
+
+    public Iterable<PersonalInformation> getAllPersonalInformation() {
+        return personalInformationRepository.findAll();
+    }
+
+
+
+
+
+
+
+
+
+
+/*
     public List<PersonalInformation> getAllPersonal(){
         return (List<PersonalInformation>) personalInformationRepository.findAll();
     }
@@ -33,14 +101,7 @@ public class PersonalInformationService {
         personalInformationRepository.deleteById(id);
     }
 
-    public  boolean isValidatePersonalInformation( PersonalInformation personalInformation){
-        boolean isValidate = Boolean.FALSE;
-        if(null != personalInformation.getLegalName()){
-            isValidate = Boolean.TRUE;
-        }
-        return isValidate;
-
-    }
+*/
 
 
 }

@@ -48,13 +48,11 @@ public class Employee {
     @Column(name = "salary")
     private Double salary;
 
-    @Column(name = "employee_type", updatable = false, insertable = false)
-    private Long employeeTypeId;
-
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
 
     @ManyToOne
     @JoinColumn(name = "employee_type")
-    @JsonBackReference
     private EmployeeType employeeType;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -151,19 +149,19 @@ public class Employee {
         this.address = address;
     }
 
-    public Long getEmployeeTypeId() {
-        return employeeTypeId;
-    }
-
-    public void setEmployeeTypeId(Long employeeTypeId) {
-        this.employeeTypeId = employeeTypeId;
-    }
-
     public EmployeeType getEmployeeType() {
         return employeeType;
     }
 
     public void setEmployeeType(EmployeeType employeeType) {
         this.employeeType = employeeType;
+    }
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
     }
 }
