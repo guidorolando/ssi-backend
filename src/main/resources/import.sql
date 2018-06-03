@@ -1,26 +1,9 @@
--- product items
---insert into product(id, description, name, price) values(1, 'Retornable', 'Coca-Cola', 10);
---insert into product(id, description, name, price) values(2, 'Etiqueta Negra', 'Casa Real', 75);
---insert into product(id, description, name, price) values(3, 'Etiqueta Roja', 'Casa Real', 75);
---insert into product(id, description, name, price) values(4, '620', 'Huari', 15);
---insert into product(id, description, name, price) values(5, 'Sin Alcohol', 'Huari', 10);
---insert into product(id, description, name, price) values(6, 'Cigarrillo LM Azul', 'LM Azul', 12);
---insert into product(id, description, name, price) values(7, 'Cigarrillo LM Rojo', 'LM Rojo', 12);
---insert into product(id, description, name, price) values(8, 'Cigarrillo Derby Antiguo', 'Derby Antiguo', 8.5);
-
-
--- customer items
---insert into customer(id, first_name, last_name, address, gender, image_url) values(1, 'garance', 'joly', 'Quillacollo', 'FEMALE', 'https://randomuser.me/api/portraits/thumb/women/51.jpg');
---insert into customer(id, first_name, last_name, address, gender, image_url) values(2, 'christian', 'lenz', 'Vinto', 'MALE', 'https://randomuser.me/api/portraits/thumb/men/86.jpg');
---insert into customer(id, first_name, last_name, address, gender, image_url) values(3, 'lauren', 'peterson', 'Punata', 'FEMALE', 'https://randomuser.me/api/portraits/thumb/women/9.jpg');
---insert into customer(id, first_name, last_name, address, gender, image_url) values(4, 'Dalmiro', 'Cuellar', 'Sipe-Sipe', 'MALE', 'https://randomuser.me/api/portraits/thumb/men/71.jpg');
---insert into customer(id, first_name, last_name, address, gender, image_url) values(5, 'Lia', 'Saldazo', 'Sacaba', 'FEMALE', 'https://randomuser.me/api/portraits/thumb/women/93.jpg');
-
-
 -- security
 INSERT INTO role (id, role_name, description) VALUES (1, 'STANDARD_USER', 'Standard User - Has no admin rights');
 INSERT INTO role (id, role_name, description) VALUES (2, 'ADMIN_USER', 'Admin User - Has permission to perform admin tasks');
-
+INSERT INTO role (id,role_name,description) VALUES(3,'STANDARD_USER' ,'Jefe de Operaciones');
+INSERT INTO role (id,role_name,description) VALUES(4,'STANDARD_USER' ,'Jefe de Operciones electricista');
+INSERT INTO role (id,role_name,description) VALUES(5,'STANDARD_USER','Jefe de Operciones Plomero')
 
 insert into person (id, first_name, last_name, birth_date, gender, ci) values (1, 'admin', 'admin', '2000-05-26', 'MALE','1111111');
 insert into person (id, first_name, last_name, birth_date, gender, ci) values (2, 'john', 'doe', '2000-05-26', 'MALE', '2222222');
@@ -44,13 +27,6 @@ INSERT INTO user_role(user_id, role_id) VALUES(2,2);
 INSERT INTO area(id,name,description,codigo,is_deleted) VALUES(1,'Area A','Planta Baja' ,'001',0);
 INSERT INTO area(id,name,description,codigo,is_deleted) VALUES(2,'Area B','Planta Baja' ,'002',0);
 INSERT INTO area(id,name,description,codigo,is_deleted) VALUES(3,'Area C','Planta Alta' ,'003',0);
-
-
--- ROLE
--- insert Role
-INSERT INTO role(id,name,role_name,description) VALUES(1,'Area A','STANDARD_USER' ,'Jefe de Operaciones');
-INSERT INTO role(id,name,role_name,description) VALUES(2,'Area B','STANDARD_USER' ,'Jefe de Operciones electricista');
-INSERT INTO role(id,name,role_name,description) VALUES(3,'Area C','STANDARD_USER','Jefe de Operciones Plomero')
 
 -- Type Employee
 insert into employee_type (id, name, description) values (1, 'Obrero', 'pesronal de man de obra');
@@ -125,3 +101,16 @@ insert into accident_agent (id, agent_name, is_deleted) values (9, 'Efecto de la
 insert into responsibility (id, name,description,is_deleted, employee_type_id) values (1, 'name','Description',0, 4)
 insert into responsibility (id, name,description,is_deleted, employee_type_id) values (2, 'name2','Description2',0, 5)
 insert into responsibility (id, name,description,is_deleted, employee_type_id) values (3, 'name3','Description3',0, 3
+
+--insert incident
+
+insert into incident (id, accident_date, accident_day, accident_site, accident_time, affected_part, is_deleted, working_turn, accident_agent_id, employee_id, incident_type_id, lesion_type_id) VALUES (1,	'2017-06-01 21:36:54.567',	'Martes',	'parqueo',	'12:50',	'piernas',	0,	'EXTRA_HOURS',	1,	1,	1,	1)
+insert into incident (id, accident_date, accident_day, accident_site, accident_time, affected_part, is_deleted, working_turn, accident_agent_id, employee_id, incident_type_id, lesion_type_id) VALUES (2,	'2017-06-01 21:36:54.567',	'Martes',	'parqueo',	'12:50',	'piernas',	0,	'EXTRA_HOURS',	1,	1,	1,	1)
+insert into incident (id, accident_date, accident_day, accident_site, accident_time, affected_part, is_deleted, working_turn, accident_agent_id, employee_id, incident_type_id, lesion_type_id) VALUES (3,	'2015-06-02 23:36:54.567',	'Jueves',	'almacén',	'08:50',	'cabeza, manos',	0,	'EXTRA_HOURS',	1,	2,	2,	2)
+insert into incident (id, accident_date, accident_day, accident_site, accident_time, affected_part, is_deleted, working_turn, accident_agent_id, employee_id, incident_type_id, lesion_type_id) VALUES (4,	'2010-06-01 23:36:54.567',	'Viernes',	'trabajo con grua',	'12:50',	'espalda',	0,	'EXTRA_HOURS',	3,	3,	3,	3)
+insert into incident (id, accident_date, accident_day, accident_site, accident_time, affected_part, is_deleted, working_turn, accident_agent_id, employee_id, incident_type_id, lesion_type_id) VALUES (5,	'2014-06-02 23:12:54.567',	'Miercoles', 'almacén',	'10:50',	'cabeza, manos',	0,	'EXTRA_HOURS',	1,	3,	3,	2)
+insert into incident (id, accident_date, accident_day, accident_site, accident_time, affected_part, is_deleted, working_turn, accident_agent_id, employee_id, incident_type_id, lesion_type_id) VALUES (6,	'2014-06-01 23:23:54.567',	'Martes',	'oficina',	'12:43',	'dedos',	0,	'EXTRA_HOURS',	2,	2,	2,	1)
+insert into incident (id, accident_date, accident_day, accident_site, accident_time, affected_part, is_deleted, working_turn, accident_agent_id, employee_id, incident_type_id, lesion_type_id) VALUES (7,	'2012-06-02 23:36:54.567',	'Lunes',	'almacén',	'12:02',	'cabeza, manos',	0,	'EXTRA_HOURS',	1,	1,	1,	2)
+insert into incident (id, accident_date, accident_day, accident_site, accident_time, affected_part, is_deleted, working_turn, accident_agent_id, employee_id, incident_type_id, lesion_type_id) VALUES (8,	'2017-06-01 23:36:54.567',	'Martes',	'gradas',	'12:23',	'manos',	0,	'EXTRA_HOURS',	2,	2,	2,	1)
+insert into incident (id, accident_date, accident_day, accident_site, accident_time, affected_part, is_deleted, working_turn, accident_agent_id, employee_id, incident_type_id, lesion_type_id) VALUES (9,	'2018-06-02 23:45:54.567',	'Martes',	'almacén',	'12:12',	'estomago, manos',	0,	'EXTRA_HOURS',	3,	3,	3,	3)
+insert into incident (id, accident_date, accident_day, accident_site, accident_time, affected_part, is_deleted, working_turn, accident_agent_id, employee_id, incident_type_id, lesion_type_id) VALUES (10,	'2014-06-01 23:55:54.567',	'Martes',	'subiendo al 2do piso',	'12:21',	'manos',	0,	'EXTRA_HOURS',	2,	2,	2,	2)
