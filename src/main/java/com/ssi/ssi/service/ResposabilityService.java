@@ -1,6 +1,5 @@
 package com.ssi.ssi.service;
 
-import com.ssi.ssi.domain.model.Capacity;
 import com.ssi.ssi.domain.model.EmployeeType;
 import com.ssi.ssi.domain.model.Responsibility;
 import com.ssi.ssi.domain.repository.EmployeeTypeRepository;
@@ -29,7 +28,7 @@ public class ResposabilityService {
             Optional<EmployeeType> employeeType = employeeTypeRepository.findById(responsibilityRequest.getEmployeeTypeId());
             Responsibility responsibility = new Responsibility();
             responsibility.setName(responsibilityRequest.getName());
-            responsibility.setDeleted(false);
+            responsibility.setIsDeleted(false);
             responsibility.setDescription(responsibilityRequest.getDescription());
             responsibility.setEmployeeType(employeeType.get());
             responsabilityRepository.save(responsibility);
@@ -44,7 +43,7 @@ public class ResposabilityService {
     public Responsibility createResponsability(ResponsabilityResource responsabilityResource) {
         Responsibility responsibility = new Responsibility();
         responsibility.setName(responsibility.getName());
-        responsibility.setDeleted(false);
+        responsibility.setIsDeleted(false);
         responsibility.setDescription(responsibility.getDescription());
         return responsabilityRepository.save(responsibility);
     }
