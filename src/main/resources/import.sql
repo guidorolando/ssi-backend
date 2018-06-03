@@ -125,3 +125,17 @@ insert into accident_agent (id, agent_name, is_deleted) values (9, 'Efecto de la
 insert into responsibility (id, name,description,is_deleted) values (1, 'name','Description',0)
 insert into responsibility (id, name,description,is_deleted) values (2, 'name2','Description2',0)
 insert into responsibility (id, name,description,is_deleted) values (3, 'name3','Description3',0)
+
+--insert incident
+
+insert into incident (id, accident_date, accident_day, accident_site, accident_time, affected_part, is_deleted, working_turn, accident_agent_id, employee_id, incident_type_id, lesion_type_id) VALUES (1,	'2017-06-01 21:36:54.567',	'Martes',	'parqueo',	'12:50',	'piernas',	0,	'EXTRA_HOURS',	1,	1,	1,	1)
+insert into incident (id, accident_date, accident_day, accident_site, accident_time, affected_part, is_deleted, working_turn, accident_agent_id, employee_id, incident_type_id, lesion_type_id) VALUES (2,	'2017-06-01 21:36:54.567',	'Martes',	'parqueo',	'12:50',	'piernas',	0,	'EXTRA_HOURS',	1,	1,	1,	1)
+insert into incident (id, accident_date, accident_day, accident_site, accident_time, affected_part, is_deleted, working_turn, accident_agent_id, employee_id, incident_type_id, lesion_type_id) VALUES (3,	'2015-06-02 23:36:54.567',	'Jueves',	'almacén',	'08:50',	'cabeza, manos',	0,	'EXTRA_HOURS',	1,	2,	2,	2)
+insert into incident (id, accident_date, accident_day, accident_site, accident_time, affected_part, is_deleted, working_turn, accident_agent_id, employee_id, incident_type_id, lesion_type_id) VALUES (4,	'2010-06-01 23:36:54.567',	'Viernes',	'trabajo con grua',	'12:50',	'espalda',	0,	'EXTRA_HOURS',	3,	3,	3,	3)
+insert into incident (id, accident_date, accident_day, accident_site, accident_time, affected_part, is_deleted, working_turn, accident_agent_id, employee_id, incident_type_id, lesion_type_id) VALUES (5,	'2014-06-02 23:12:54.567',	'Miercoles', 'almacén',	'10:50',	'cabeza, manos',	0,	'EXTRA_HOURS',	1,	3,	3,	2)
+insert into incident (id, accident_date, accident_day, accident_site, accident_time, affected_part, is_deleted, working_turn, accident_agent_id, employee_id, incident_type_id, lesion_type_id) VALUES (6,	'2014-06-01 23:23:54.567',	'Martes',	'oficina',	'12:43',	'dedos',	0,	'EXTRA_HOURS',	2,	2,	2,	1)
+insert into incident (id, accident_date, accident_day, accident_site, accident_time, affected_part, is_deleted, working_turn, accident_agent_id, employee_id, incident_type_id, lesion_type_id) VALUES (7,	'2012-06-02 23:36:54.567',	'Lunes',	'almacén',	'12:02',	'cabeza, manos',	0,	'EXTRA_HOURS',	1,	1,	1,	2)
+insert into incident (id, accident_date, accident_day, accident_site, accident_time, affected_part, is_deleted, working_turn, accident_agent_id, employee_id, incident_type_id, lesion_type_id) VALUES (8,	'2017-06-01 23:36:54.567',	'Martes',	'gradas',	'12:23',	'manos',	0,	'EXTRA_HOURS',	2,	2,	2,	1)
+insert into incident (id, accident_date, accident_day, accident_site, accident_time, affected_part, is_deleted, working_turn, accident_agent_id, employee_id, incident_type_id, lesion_type_id) VALUES (9,	'2018-06-02 23:45:54.567',	'Martes',	'almacén',	'12:12',	'estomago, manos',	0,	'EXTRA_HOURS',	3,	3,	3,	3)
+insert into incident (id, accident_date, accident_day, accident_site, accident_time, affected_part, is_deleted, working_turn, accident_agent_id, employee_id, incident_type_id, lesion_type_id) VALUES (10,	'2014-06-01 23:55:54.567',	'Martes',	'subiendo al 2do piso',	'12:21',	'manos',	0,	'EXTRA_HOURS',	2,	2,	2,	2)
+
