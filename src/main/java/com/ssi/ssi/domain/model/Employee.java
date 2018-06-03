@@ -46,6 +46,9 @@ public class Employee {
     @Column(name = "salary")
     private Double salary;
 
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
+
     @ManyToOne
     private EmployeeType employeeType;
 
@@ -151,4 +154,11 @@ public class Employee {
         this.address = address;
     }
 
+    public Boolean getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(Boolean isDeleted) {
+        this.isDeleted = isDeleted;
+    }
 }

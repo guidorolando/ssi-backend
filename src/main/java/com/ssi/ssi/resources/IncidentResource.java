@@ -1,5 +1,7 @@
 package com.ssi.ssi.resources;
 
+import com.ssi.ssi.domain.model.WorkingTurn;
+
 import java.util.Date;
 
 public class IncidentResource {
@@ -10,7 +12,7 @@ public class IncidentResource {
     private Long accidentAgentId;
     private Long lesionTypeId;
     private String accidentSite;
-    private String workingDay;
+    private WorkingTurn workingTurn;
     private Date accidentDate;
     private String accidentDay;
     private String accidentTime;
@@ -64,12 +66,12 @@ public class IncidentResource {
         this.accidentSite = accidentSite;
     }
 
-    public String getWorkingDay() {
-        return workingDay;
+    public WorkingTurn getWorkingTurn() {
+        return workingTurn;
     }
 
-    public void setWorkingDay(String workingDay) {
-        this.workingDay = workingDay;
+    public void setWorkingTurn(WorkingTurn workingTurn) {
+        this.workingTurn = workingTurn;
     }
 
     public Date getAccidentDate() {

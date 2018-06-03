@@ -24,6 +24,7 @@ public class IncidentTypeService {
         IncidentType incidentType = new IncidentType();
         incidentType.setName(incidentTypeResource.getName());
         incidentType.setDescription(incidentTypeResource.getDescription());
+        incidentType.setIsDeleted(false);
         return incidentTypeRepository.save(incidentType);
     }
 
@@ -43,7 +44,7 @@ public class IncidentTypeService {
     }
 
     public List<IncidentType> getAllIncidentType() {
-        return (List<IncidentType>) incidentTypeRepository.findAll();
+        return incidentTypeRepository.findAll();
     }
 
 }

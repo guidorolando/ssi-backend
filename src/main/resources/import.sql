@@ -61,10 +61,10 @@ INSERT INTO personal_information(id,legal_name,area,capacity,employee_Type,obser
 
 
 -- Employee
-insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary) values (1, '7676764', 'carmen', 'guzman', '1990-05-26', 'FEMALE', 'carmen@guzman.com', 70304856, 'sacaba', 4000.00);
-insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary) values (2, '5454345', 'Carlos', 'Cori', '1980-05-26', 'MALE', 'carlos@cori.com', 70304800, 'tiquepaya', 4000.00);
-insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary) values (3, '1234567', 'Maximilian', 'Toro', '1985-05-26', 'MALE', 'maxi@toro.com', 60574635, 'quillacollo', 5000.00);
-insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary) values (4, '1234567', 'Marco', 'Herrera', '1986-05-26', 'MALE', 'marco@herrera.com', 67453634, 'sebastian pagador', 5000.00);
+insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary, is_deleted) values (1, '7676764', 'carmen', 'guzman', '1990-05-26', 'FEMALE', 'carmen@guzman.com', 70304856, 'sacaba', 4000.00, 0);
+insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary, is_deleted) values (2, '5454345', 'Carlos', 'Cori', '1980-05-26', 'MALE', 'carlos@cori.com', 70304800, 'tiquepaya', 4000.00, 0);
+insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary, is_deleted) values (3, '1234567', 'Maximilian', 'Toro', '1985-05-26', 'MALE', 'maxi@toro.com', 60574635, 'quillacollo', 5000.00, 0);
+insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary, is_deleted) values (4, '1234567', 'Marco', 'Herrera', '1986-05-26', 'MALE', 'marco@herrera.com', 67453634, 'sebastian pagador', 5000.00, 0);
 
 -- Type Employee
 insert into employee_type (id, name, description) values (1, 'Obrero', 'pesronal de man de obra');
@@ -89,30 +89,30 @@ insert into capacity(id,name,description,employeeList) values (2, 'proteccion pe
 insert into capacity(id,name,description,employeeList) values (3, 'proteccion personal', 'Capataz', '')
 
 --Incident Type
-insert into incident_type (id, name, description) values (1, 'Critica', 'el trabajador se encuentra en peligro de muerte')
-insert into incident_type (id, name, description) values (2, 'Alta', 'el trabajdor tendra baja medica por un largo tiempo')
-insert into incident_type (id, name, description) values (3, 'Media', 'el trabajador faltara unos dias al trabajo')
-insert into incident_type (id, name, description) values (4, 'Baja', 'el trabajador sufrio contuciones y no puede trabajar el resto de dia')
-insert into incident_type (id, name, description) values (5, 'General', 'golpes y lesiones leves')
+insert into incident_type (id, name, description, is_deleted) values (1, 'Critica', 'el trabajador se encuentra en peligro de muerte', 0)
+insert into incident_type (id, name, description, is_deleted) values (2, 'Alta', 'el trabajdor tendra baja medica por un largo tiempo', 0)
+insert into incident_type (id, name, description, is_deleted) values (3, 'Media', 'el trabajador faltara unos dias al trabajo', 0)
+insert into incident_type (id, name, description, is_deleted) values (4, 'Baja', 'el trabajador sufrio contuciones y no puede trabajar el resto de dia', 0)
+insert into incident_type (id, name, description, is_deleted) values (5, 'General', 'golpes y lesiones leves', 0)
 
 --Insert lesion type
-insert into lesion_type (id, type, description) values (1, 'Quemadura','desc')
-insert into lesion_type (id, type, description) values (2, 'Fractura','desc')
-insert into lesion_type (id, type, description) values (3, 'Luxacion','desc')
-insert into lesion_type (id, type, description) values (4, 'Torcedura,esguince,desgarre muscular','desc')
-insert into lesion_type (id, type, description) values (5, 'Conmocion,Trauma interno',' desc')
-insert into lesion_type (id, type, description) values (6, 'Amputacion,enucleacion(expulsion o perdida del ojo)','desc')
-insert into lesion_type (id, type, description) values (7, 'Golpe contucion o aplastamiento',' desc')
-insert into lesion_type (id, type, description) values (8, 'Envenenamiento,intoxicacion,alergia','desc')
-insert into lesion_type (id, type, description) values (9, 'Efecto de la electricidad','desc')
+insert into lesion_type (id, type, description, is_deleted) values (1, 'Quemadura','desc', 0)
+insert into lesion_type (id, type, description, is_deleted) values (2, 'Fractura','desc', 0)
+insert into lesion_type (id, type, description, is_deleted) values (3, 'Luxacion','desc', 0)
+insert into lesion_type (id, type, description, is_deleted) values (4, 'Torcedura,esguince,desgarre muscular','desc', 0)
+insert into lesion_type (id, type, description, is_deleted) values (5, 'Conmocion,Trauma interno',' desc', 0)
+insert into lesion_type (id, type, description, is_deleted) values (6, 'Amputacion,enucleacion(expulsion o perdida del ojo)','desc', 0)
+insert into lesion_type (id, type, description, is_deleted) values (7, 'Golpe contucion o aplastamiento',' desc', 0)
+insert into lesion_type (id, type, description, is_deleted) values (8, 'Envenenamiento,intoxicacion,alergia','desc', 0)
+insert into lesion_type (id, type, description, is_deleted) values (9, 'Efecto de la electricidad','desc', 0)
 
 --Insert Accident Agent
-insert into accident_agent (id, agent_name) values (1, 'Maquinaria y,o equipos')
-insert into accident_agent (id, agent_name) values (2, 'Medios de transporte')
-insert into accident_agent (id, agent_name) values (3, 'Aparatos (otros)')
-insert into accident_agent (id, agent_name) values (4, 'Herramientas, implementos o utencilios')
-insert into accident_agent (id, agent_name) values (5, 'Conmocion,Trauma interno')
-insert into accident_agent (id, agent_name) values (6, 'Amputacion,enucleacion(expulsion o perdida del ojo)')
-insert into accident_agent (id, agent_name) values (7, 'Golpe contucion o aplastamiento')
-insert into accident_agent (id, agent_name) values (8, 'Envenenamiento,intoxicacion,alergia')
-insert into accident_agent (id, agent_name) values (9, 'Efecto de la electricidad')
+insert into accident_agent (id, agent_name, is_deleted) values (1, 'Maquinaria y,o equipos', 0)
+insert into accident_agent (id, agent_name, is_deleted) values (2, 'Medios de transporte', 0)
+insert into accident_agent (id, agent_name, is_deleted) values (3, 'Aparatos (otros)', 0)
+insert into accident_agent (id, agent_name, is_deleted) values (4, 'Herramientas, implementos o utencilios', 0)
+insert into accident_agent (id, agent_name, is_deleted) values (5, 'Conmocion,Trauma interno', 0)
+insert into accident_agent (id, agent_name, is_deleted) values (6, 'Amputacion,enucleacion(expulsion o perdida del ojo)', 0)
+insert into accident_agent (id, agent_name, is_deleted) values (7, 'Golpe contucion o aplastamiento', 0)
+insert into accident_agent (id, agent_name, is_deleted) values (8, 'Envenenamiento,intoxicacion,alergia', 0)
+insert into accident_agent (id, agent_name, is_deleted) values (9, 'Efecto de la electricidad', 0)

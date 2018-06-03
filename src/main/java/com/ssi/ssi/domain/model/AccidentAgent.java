@@ -13,6 +13,10 @@ public class AccidentAgent {
     @Column(name = "agent_name")
     private String agentName;
 
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
+
+
     public Long getId() {
         return id;
     }
@@ -27,5 +31,13 @@ public class AccidentAgent {
 
     public void setAgentName(String agentName) {
         this.agentName = agentName;
+    }
+
+    public Boolean getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(Boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 }
