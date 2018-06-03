@@ -98,7 +98,7 @@ insert into accident_agent (id, agent_name, is_deleted) values (9, 'Efecto de la
 
 
 --Responsability
-insert into responsibility (id, name,description,is_deleted, employee_type_id) values (1, 'name','Description',0, 4)
+insert into responsibility (id, name,description,is_deleted, employee_type_id) values (1, 'name1','Description1',0, 4)
 insert into responsibility (id, name,description,is_deleted, employee_type_id) values (2, 'name2','Description2',0, 5)
 insert into responsibility (id, name,description,is_deleted, employee_type_id) values (3, 'name3','Description3',0, 3
 
