@@ -47,8 +47,9 @@ public class IncidentService {
             incident.setAccidentDay(incidentResource.getAccidentDay());
             incident.setAccidentTime(incidentResource.getAccidentTime());
             incident.setAccidentSite(incidentResource.getAccidentSite());
-            incident.setWorkingDay(incidentResource.getWorkingDay());
+            incident.setWorkingTurn(incidentResource.getWorkingTurn());
             incident.setAffectedPart(incidentResource.getAffectedPart());
+            incident.setIsDeleted(Boolean.FALSE);
             return incidentRepository.save(incident);
         }
 
@@ -62,8 +63,16 @@ public class IncidentService {
 
         Optional<Incident> incidentDb = findIncidentById(incidentResource.getIncidentId());
         Optional<IncidentType> incidentTypeDb = incidentTypeService.findIncidentTypeById(incidentResource.getIncidentTypeId());
-        if (incidentDb.isPresent() && incidentTypeDb.isPresent()) {
+        Optional<AccidentAgent> accidentAgentDb = accidentAgentService.findAccidentAgentById(incidentResource.getAccidentAgentId());
+        Optional<LesionType> lesionTypeDb = lesionTypeService.findLesionTypeById(incidentResource.getLesionTypeId());
+        if (incidentDb.isPresent() && incidentTypeDb.isPresent() && accidentAgentDb.isPresent() && lesionTypeDb.isPresent()) {
             incidentDb.get().setIncidentType(incidentTypeDb.get());
+            incidentDb.get().setAccidentDate(incidentResource.getAccidentDate());
+            incidentDb.get().setAccidentDay(incidentResource.getAccidentDay());
+            incidentDb.get().setAccidentTime(incidentResource.getAccidentTime());
+            incidentDb.get().setAccidentSite(incidentResource.getAccidentSite());
+            incidentDb.get().setWorkingTurn(incidentResource.getWorkingTurn());
+            incidentDb.get().setAffectedPart(incidentResource.getAffectedPart());
             incidentRepository.save(incidentDb.get());
             wasUpdated = Boolean.TRUE;
         }

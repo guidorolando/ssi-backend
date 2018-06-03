@@ -18,6 +18,9 @@ public class LesionType {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
+
     public Long getId() {
         return id;
     }
@@ -40,5 +43,13 @@ public class LesionType {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Boolean getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(Boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 }

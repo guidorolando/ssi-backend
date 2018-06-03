@@ -20,6 +20,7 @@ public class LesionTypeService {
 
 
     public LesionType createLesionType(LesionType lesionType) {
+        lesionType.setIsDeleted(false);
         return lesionTypeRepository.save(lesionType);
     }
 
@@ -39,6 +40,6 @@ public class LesionTypeService {
     }
 
     public List<LesionType> getAllLesionTypes() {
-        return (List<LesionType>) lesionTypeRepository.findAll();
+        return lesionTypeRepository.findAll();
     }
 }

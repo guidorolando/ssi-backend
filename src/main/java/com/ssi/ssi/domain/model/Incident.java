@@ -17,9 +17,6 @@ public class Incident {
     @Column(name = "accident_site")
     private String accidentSite;
 
-    @Column(name = "working_date")
-    private String workingDay;
-
     @Column(name = "accident_date")
     private Date accidentDate;
 
@@ -32,12 +29,19 @@ public class Incident {
     @Column(name = "affected_part")
     private String affectedPart;
 
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
+
 
     @ManyToMany
     @JoinTable(name = "incident_incident_tag",
             joinColumns = {@JoinColumn(name = "indicent_id")},
             inverseJoinColumns = {@JoinColumn(name = "incident_tags_id")})
     private List<IncidentTag> incidentTags;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "workingTurn")
+    private WorkingTurn workingTurn;
 
     @ManyToOne
     private IncidentType incidentType;
@@ -84,12 +88,12 @@ public class Incident {
         this.accidentSite = accidentSite;
     }
 
-    public String getWorkingDay() {
-        return workingDay;
+    public WorkingTurn getWorkingTurn() {
+        return workingTurn;
     }
 
-    public void setWorkingDay(String workingDay) {
-        this.workingDay = workingDay;
+    public void setWorkingTurn(WorkingTurn workingTurn) {
+        this.workingTurn = workingTurn;
     }
 
     public Date getAccidentDate() {
@@ -138,5 +142,13 @@ public class Incident {
 
     public void setAffectedPart(String affectedPart) {
         this.affectedPart = affectedPart;
+    }
+
+    public Boolean getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(Boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 }

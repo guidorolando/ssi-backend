@@ -20,6 +20,7 @@ public class AccidentAgentService {
 
 
     public AccidentAgent createAccidentAgent(AccidentAgent accidentAgent) {
+        accidentAgent.setIsDeleted(false);
         return accidentAgentRepository.save(accidentAgent);
     }
 
@@ -38,6 +39,6 @@ public class AccidentAgentService {
     }
 
     public List<AccidentAgent> getAllAccidentAgents() {
-        return (List<AccidentAgent>) accidentAgentRepository.findAll();
+        return accidentAgentRepository.findAll();
     }
 }
