@@ -1,24 +1,25 @@
 package com.ssi.ssi.domain.model;
 
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "incident_type")
-public class IncidentType {
+@Table(name = "lesion_type")
+public class LesionType {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "type")
+    private String type;
 
     @Column(name = "description")
     private String description;
 
     @Column(name = "is_deleted")
     private Boolean isDeleted;
-
 
     public Long getId() {
         return id;
@@ -28,12 +29,12 @@ public class IncidentType {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getType() {
+        return type;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getDescription() {

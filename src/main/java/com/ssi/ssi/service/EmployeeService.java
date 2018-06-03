@@ -40,6 +40,7 @@ public class EmployeeService {
         employee.setBirthDate(employeeRequest.getBirthDate());
         employee.setSalary(employeeRequest.getSalary());
         employee.setEmail(employeeRequest.getEmail());
+        employee.setIsDeleted(false);
         employeeRepository.save(employee);
     }
 

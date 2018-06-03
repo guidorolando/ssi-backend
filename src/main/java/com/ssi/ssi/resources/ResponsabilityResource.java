@@ -1,29 +1,28 @@
-package com.ssi.ssi.domain.model;
+package com.ssi.ssi.resources;
+
+import com.ssi.ssi.domain.model.Capacity;
+import com.ssi.ssi.domain.model.EmployeeType;
+import com.ssi.ssi.domain.model.Responsibility;
 
 
-import javax.persistence.*;
+public class ResponsabilityResource {
 
-@Entity
-@Table(name = "area")
-public class Area {
-
-    @Id
-    @GeneratedValue(
-            strategy = GenerationType.IDENTITY
-    )
+    final Responsibility responsibility;
     private Long id;
-
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "description")
     private String description;
-
-    @Column(name = "codigo")
-    private  String codigo;
-
-    @Column(name = "is_deleted")
     private Boolean isDeleted;
+
+
+    public ResponsabilityResource(final Responsibility responsibility) {
+        this.responsibility = responsibility;
+        this.id = responsibility.getId();
+        this.name = responsibility.getName();
+        this.description =responsibility.getDescription();
+        this.isDeleted = responsibility.getDeleted();
+
+    }
+
 
     public Boolean getDeleted() {
         return isDeleted;
@@ -56,15 +55,6 @@ public class Area {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
 
 
 }

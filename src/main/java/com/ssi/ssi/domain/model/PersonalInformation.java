@@ -14,27 +14,35 @@ public class PersonalInformation {
     )
     private Long id;
 
-    @Column(name = "legal_name")
-    private String legalName;
-
-
-    @Column(name = "area")
-    private String area;
-
-    @Column(name = "capacity")
-    private String capacity;
-
-
-    @Column(name = "observations")
-    private String observations;
-
     @Column(name = "registration_date")
     private Date registrationDate;
 
-    @Column(name = "employee_Type")
-    private String employeeType;
+    @Column(name = "legal_name")
+    private String legalName;
+
+    @ManyToOne
+    private Area area;
+
+    @ManyToOne
+    private Capacity capacity;
 
 
+    @ManyToMany
+    @JoinTable(name = "personal_information_employee_type",
+            joinColumns = {@JoinColumn(name = "personal_information_id")},
+            inverseJoinColumns = {@JoinColumn(name = "employee_type_id")})
+    private List<EmployeeType> employeeType;
+
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
+    }
 
     public Long getId() {
         return id;
@@ -44,46 +52,31 @@ public class PersonalInformation {
         this.id = id;
     }
 
-    public String getLegalName() {
-        return legalName;
-    }
-
-    public void setLegalName(String legalName) {
-        this.legalName = legalName;
-    }
-
-    public String getArea() {
+    public Area getArea() {
         return area;
     }
 
-    public void setArea(String area) {
+    public void setArea(Area area) {
         this.area = area;
     }
 
-    public String getCapacity() {
+    public Capacity getCapacity() {
         return capacity;
     }
 
-    public String getEmployeeType() {
-        return employeeType;
-    }
-
-    public void setEmployeeType(String employeeType) {
-        this.employeeType = employeeType;
-    }
-
-    public void setCapacity(String capacity) {
+    public void setCapacity(Capacity capacity) {
         this.capacity = capacity;
     }
 
 
-    public String getObservations() {
-        return observations;
+    public List<EmployeeType> getEmployeeType() {
+        return employeeType;
     }
 
-    public void setObservations(String observations) {
-        this.observations = observations;
+    public void setEmployeeType(List<EmployeeType> employeeType) {
+        this.employeeType = employeeType;
     }
+
 
     public Date getRegistrationDate() {
         return registrationDate;
@@ -91,5 +84,13 @@ public class PersonalInformation {
 
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
+    }
+
+    public String getLegalName() {
+        return legalName;
+    }
+
+    public void setLegalName(String legalName) {
+        this.legalName = legalName;
     }
 }

@@ -41,30 +41,18 @@ INSERT INTO user_role(user_id, role_id) VALUES(2,2);
 --- AREA
 -- insert values Area
 
-INSERT INTO area(id,name,description,codigo) VALUES(1,'Area A','Planta Baja' ,'001');
-INSERT INTO area(id,name,description,codigo) VALUES(2,'Area B','Planta Baja' ,'002');
-INSERT INTO area(id,name,description,codigo) VALUES(3,'Area C','Planta Alta' ,'003');
+INSERT INTO area(id,name,description,codigo,is_deleted) VALUES(1,'Area A','Planta Baja' ,'001',0);
+INSERT INTO area(id,name,description,codigo,is_deleted) VALUES(2,'Area B','Planta Baja' ,'002',0);
+INSERT INTO area(id,name,description,codigo,is_deleted) VALUES(3,'Area C','Planta Alta' ,'003',0);
 
 
 -- ROLE
 -- insert Role
-INSERT INTO role(id,name,role_name,description) VALUES(1,'Area A','STANDARD_USER' ,'Jefe de Operaciones');
-INSERT INTO role(id,name,role_name,description) VALUES(2,'Area B','STANDARD_USER' ,'Jefe de Operciones electricista');
-INSERT INTO role(id,name,role_name,description) VALUES(3,'Area C','STANDARD_USER','Jefe de Operciones Plomero');
-
--- Personal Information
--- insert PersonalInformation
-INSERT INTO personal_information(id,legal_name,area,capacity,employee_Type,observations,registration_date) VALUES(1,'legalName','area3','capacity3','role3','observations3','1990-05-26');
-INSERT INTO personal_information(id,legal_name,area,capacity,employee_Type,observations,registration_date) VALUES(2,'legalName','area3','capacity3','role3','observations3','1990-05-26');
-INSERT INTO personal_information(id,legal_name,area,capacity,employee_Type,observations,registration_date) VALUES(3,'legalName','area3','capacity3','role3','observations3','1990-05-26');
+--INSERT INTO role(id,name,role_name,description) VALUES(1,'Area A','STANDARD_USER' ,'Jefe de Operaciones');
+--INSERT INTO role(id,name,role_name,description) VALUES(2,'Area B','STANDARD_USER' ,'Jefe de Operciones electricista');
+--INSERT INTO role(id,name,role_name,description) VALUES(3,'Area C','STANDARD_USER','Jefe de Operciones Plomero');
 
 
-
--- Employee
-insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary) values (1, '7676764', 'carmen', 'guzman', '1990-05-26', 'FEMALE', 'carmen@guzman.com', 70304856, 'sacaba', 4000.00);
-insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary) values (2, '5454345', 'Carlos', 'Cori', '1980-05-26', 'MALE', 'carlos@cori.com', 70304800, 'tiquepaya', 4000.00);
-insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary) values (3, '1234567', 'Maximilian', 'Toro', '1985-05-26', 'MALE', 'maxi@toro.com', 60574635, 'quillacollo', 5000.00);
-insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary) values (4, '1234567', 'Marco', 'Herrera', '1986-05-26', 'MALE', 'marco@herrera.com', 67453634, 'sebastian pagador', 5000.00);
 
 -- Type Employee
 insert into employee_type (id, name, description) values (1, 'Obrero', 'pesronal de man de obra');
@@ -72,6 +60,15 @@ insert into employee_type (id, name, description) values (2, 'Maestro Constructo
 insert into employee_type (id, name, description) values (3, 'Contratista', 'pesronal de man de obra');
 insert into employee_type (id, name, description) values (4, 'Administrativo', 'pesronal de man de obra');
 insert into employee_type (id, name, description) values (5, 'Ejecutivo', 'pesronal de man de obra');
+insert into employee_type (id, name, description) values (6, 'Capataz', 'Encargado del Area A')
+insert into employee_type (id, name, description) values (7, 'Obrero', 'Trabajador del Area B')
+insert into employee_type (id, name, description) values (8, 'Electricista', 'Consultor del Area S')
+
+-- Employee
+insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary, is_deleted, employee_type_id) values (1, '7676764', 'carmen', 'guzman', '1990-05-26', 'FEMALE', 'carmen@guzman.com', 70304856, 'sacaba', 4000.00, 0, 1);
+insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary, is_deleted, employee_type_id) values (2, '5454345', 'Carlos', 'Cori', '1980-05-26', 'MALE', 'carlos@cori.com', 70304800, 'tiquepaya', 4000.00, 0, 1);
+insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary, is_deleted, employee_type_id) values (3, '1234567', 'Maximilian', 'Toro', '1985-05-26', 'MALE', 'maxi@toro.com', 60574635, 'quillacollo', 5000.00, 0, 1);
+insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary, is_deleted, employee_type_id) values (4, '1234567', 'Marco', 'Herrera', '1986-05-26', 'MALE', 'marco@herrera.com', 67453634, 'sebastian pagador', 5000.00, 0, 1);
 
 
 --MaterialType
@@ -80,17 +77,53 @@ insert into material_type (id, name) values (2, 'seguridad')
 insert into material_type (id, name) values (3, 'Adicional')
 
 --Material
-insert into material (id, name, mat_description, material_type) values (1, 'casco', 'description01', '1')
-insert into material (id, name, mat_description, material_type) values (2, 'arnez', 'description02', '2')
+insert into material (id, name, material_description, material_type_id) values (1, 'casco', 'description01', 1)
+insert into material (id, name, material_description, material_type_id) values (2, 'arnez', 'description02', 2)
 
 -- capacity
-insert into capacity(id,name,description,employeeList) values (1, 'proteccion personal', 'Capataz', '')
-insert into capacity(id,name,description,employeeList) values (2, 'proteccion personal', 'Capataz','')
-insert into capacity(id,name,description,employeeList) values (3, 'proteccion personal', 'Capataz', '')
+insert into capacity(id,name,description,is_deleted) values (1, 'descripcion Capacidad A', 'Capataz',0)
+insert into capacity(id,name,description,is_deleted) values (2, 'descripcion Capacidad B', 'Capataz',0)
+insert into capacity(id,name,description,is_deleted) values (3, 'descripcion Capacidad C', 'Capataz',0)
+
+-- Personal Information
+-- insert PersonalInformation
+INSERT INTO personal_information(id,legal_name,area_id,capacity_id,registration_date,is_deleted) VALUES(1,'legalName',1,1,'1990-05-26',0);
+INSERT INTO personal_information(id,legal_name,area_id,capacity_id,registration_date,is_deleted) VALUES(2,'legalName',1,1,'1990-05-26',0);
+INSERT INTO personal_information(id,legal_name,area_id,capacity_id,registration_date,is_deleted) VALUES(3,'legalName',1,1,'1990-05-26',0);
+
 
 --Incident Type
-insert into incident_type (id, name, description) values (1, 'Critica', 'el trabajador se encuentra en peligro de muerte')
-insert into incident_type (id, name, description) values (2, 'Alta', 'el trabajdor tendra baja medica por un largo tiempo')
-insert into incident_type (id, name, description) values (3, 'Media', 'el trabajador faltara unos dias al trabajo')
-insert into incident_type (id, name, description) values (4, 'Baja', 'el trabajador sufrio contuciones y no puede trabajar el resto de dia')
-insert into incident_type (id, name, description) values (5, 'General', 'golpes y lesiones leves')
+insert into incident_type (id, name, description, is_deleted) values (1, 'Critica', 'el trabajador se encuentra en peligro de muerte', 0)
+insert into incident_type (id, name, description, is_deleted) values (2, 'Alta', 'el trabajdor tendra baja medica por un largo tiempo', 0)
+insert into incident_type (id, name, description, is_deleted) values (3, 'Media', 'el trabajador faltara unos dias al trabajo', 0)
+insert into incident_type (id, name, description, is_deleted) values (4, 'Baja', 'el trabajador sufrio contuciones y no puede trabajar el resto de dia', 0)
+insert into incident_type (id, name, description, is_deleted) values (5, 'General', 'golpes y lesiones leves', 0)
+
+--Insert lesion type
+insert into lesion_type (id, type, description, is_deleted) values (1, 'Quemadura','desc', 0)
+insert into lesion_type (id, type, description, is_deleted) values (2, 'Fractura','desc', 0)
+insert into lesion_type (id, type, description, is_deleted) values (3, 'Luxacion','desc', 0)
+insert into lesion_type (id, type, description, is_deleted) values (4, 'Torcedura,esguince,desgarre muscular','desc', 0)
+insert into lesion_type (id, type, description, is_deleted) values (5, 'Conmocion,Trauma interno',' desc', 0)
+insert into lesion_type (id, type, description, is_deleted) values (6, 'Amputacion,enucleacion(expulsion o perdida del ojo)','desc', 0)
+insert into lesion_type (id, type, description, is_deleted) values (7, 'Golpe contucion o aplastamiento',' desc', 0)
+insert into lesion_type (id, type, description, is_deleted) values (8, 'Envenenamiento,intoxicacion,alergia','desc', 0)
+insert into lesion_type (id, type, description, is_deleted) values (9, 'Efecto de la electricidad','desc', 0)
+
+--Insert Accident Agent
+insert into accident_agent (id, agent_name, is_deleted) values (1, 'Maquinaria y,o equipos', 0)
+insert into accident_agent (id, agent_name, is_deleted) values (2, 'Medios de transporte', 0)
+insert into accident_agent (id, agent_name, is_deleted) values (3, 'Aparatos (otros)', 0)
+insert into accident_agent (id, agent_name, is_deleted) values (4, 'Herramientas, implementos o utencilios', 0)
+insert into accident_agent (id, agent_name, is_deleted) values (5, 'Conmocion,Trauma interno', 0)
+insert into accident_agent (id, agent_name, is_deleted) values (6, 'Amputacion,enucleacion(expulsion o perdida del ojo)', 0)
+insert into accident_agent (id, agent_name, is_deleted) values (7, 'Golpe contucion o aplastamiento', 0)
+insert into accident_agent (id, agent_name, is_deleted) values (8, 'Envenenamiento,intoxicacion,alergia', 0)
+insert into accident_agent (id, agent_name, is_deleted) values (9, 'Efecto de la electricidad', 0)
+
+
+
+--Responsability
+insert into responsibility (id, name,description,is_deleted) values (1, 'name','Description',0)
+insert into responsibility (id, name,description,is_deleted) values (2, 'name2','Description2',0)
+insert into responsibility (id, name,description,is_deleted) values (3, 'name3','Description3',0)

@@ -15,6 +15,7 @@ public class CapacityResource {
     private String name;
     private String description;
     private List<Employee> employeeList;
+    private Boolean isDeleted;
 
 
     public CapacityResource(final Capacity capacity) {
@@ -23,7 +24,16 @@ public class CapacityResource {
         this.name = capacity.getName();
         this.description =capacity.getDescription();
         this.employeeList =capacity.getEmployeeList();
+        this.isDeleted = capacity.getDeleted();
 
+    }
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
     }
 
     public Long getId() {

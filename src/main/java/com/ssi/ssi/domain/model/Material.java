@@ -22,7 +22,7 @@ public class Material {
     private String matDescription;
 
     @ManyToOne
-    @JoinColumn(name = "material_id")
+    @JoinColumn(name = "material_type_id")
     private MaterialType materialType;
 
     public Long getId() {
