@@ -1,6 +1,7 @@
 package com.ssi.ssi.domain.model;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -12,6 +13,12 @@ public class PersonalInformation {
             strategy = GenerationType.IDENTITY
     )
     private Long id;
+
+    @Column(name = "registration_date")
+    private Date registrationDate;
+
+    @Column(name = "legal_name")
+    private String legalName;
 
     @ManyToOne
     private Area area;
@@ -68,5 +75,22 @@ public class PersonalInformation {
 
     public void setEmployeeType(List<EmployeeType> employeeType) {
         this.employeeType = employeeType;
+    }
+
+
+    public Date getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(Date registrationDate) {
+        this.registrationDate = registrationDate;
+    }
+
+    public String getLegalName() {
+        return legalName;
+    }
+
+    public void setLegalName(String legalName) {
+        this.legalName = legalName;
     }
 }

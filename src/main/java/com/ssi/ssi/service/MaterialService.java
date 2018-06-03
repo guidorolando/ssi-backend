@@ -19,7 +19,7 @@ public class MaterialService {
     @Autowired
     private MaterialTypeRepository materialTypeRepository;
 
-        public List<Material> getAllMaterial(){
+    public List<Material> getAllMaterial(){
             return (List<Material>) materialRepository.findAll();
         }
 
@@ -65,4 +65,6 @@ public class MaterialService {
         }
         return wasUpdated;
     }
+
+
 }

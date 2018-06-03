@@ -50,22 +50,17 @@ INSERT INTO area(id,name,description,codigo,is_deleted) VALUES(3,'Area C','Plant
 -- insert Role
 INSERT INTO role(id,name,role_name,description) VALUES(1,'Area A','STANDARD_USER' ,'Jefe de Operaciones');
 INSERT INTO role(id,name,role_name,description) VALUES(2,'Area B','STANDARD_USER' ,'Jefe de Operciones electricista');
-INSERT INTO role(id,name,role_name,description) VALUES(3,'Area C','STANDARD_USER','Jefe de Operciones Plomero');
+INSERT INTO role(id,name,role_name,description) VALUES(3,'Area C','STANDARD_USER','Jefe de Operciones Plomero')
 
--- Personal Information
--- insert PersonalInformation
-INSERT INTO personal_information(id,legal_name,area,capacity,employee_type,observations,registration_date,is_deleted) VALUES(1,'legalName','area3','capacity3','role3','observations3','1990-05-26',0);
-INSERT INTO personal_information(id,legal_name,area,capacity,employee_type,observations,registration_date,is_deleted) VALUES(2,'legalName','area3','capacity3','role3','observations3','1990-05-26',0);
-INSERT INTO personal_information(id,legal_name,area,capacity,employee_type,observations,registration_date,is_deleted) VALUES(3,'legalName','area3','capacity3','role3','observations3','1990-05-26',0);
-
--- Employee Type
-insert into employee_type (id, name, description) values (1, 'Capataz', 'Encargado de un Area especifio')
-insert into employee_type (id, name, description) values (2, 'Obrero', 'Personal de mano de obra');
-insert into employee_type (id, name, description) values (3, 'Contratista', 'Encargado de buscar nuevos obreros');
-insert into employee_type (id, name, description) values (4, 'Electricista', 'Encargado de la instalacion electrica');
-insert into employee_type (id, name, description) values (5, 'Supervisor', 'Encargado de supervisar un conjunto de obreros');
-insert into employee_type (id, name, description) values (6, 'Ejecutivo', 'Socio de la Empresa');
-
+-- Type Employee
+insert into employee_type (id, name, description) values (1, 'Obrero', 'pesronal de man de obra');
+insert into employee_type (id, name, description) values (2, 'Maestro Constructor', 'pesronal de man de obra');
+insert into employee_type (id, name, description) values (3, 'Contratista', 'pesronal de man de obra');
+insert into employee_type (id, name, description) values (4, 'Administrativo', 'pesronal de man de obra');
+insert into employee_type (id, name, description) values (5, 'Ejecutivo', 'pesronal de man de obra');
+insert into employee_type (id, name, description) values (6, 'Capataz', 'Encargado del Area A')
+insert into employee_type (id, name, description) values (7, 'Obrero', 'Trabajador del Area B')
+insert into employee_type (id, name, description) values (8, 'Electricista', 'Consultor del Area S')
 
 -- Employee
 insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary, is_deleted, employee_type) values (1, '7676764', 'carmen', 'guzman', '1990-05-26', 'FEMALE', 'carmen@guzman.com', 70304856, 'sacaba', 4000.00, 0, 1);
@@ -81,13 +76,19 @@ insert into material_type (id, name) values (2, 'seguridad')
 insert into material_type (id, name) values (3, 'Adicional')
 
 --Material
-insert into material (id, name, mat_description, material_type) values (1, 'casco', 'description01', '1')
-insert into material (id, name, mat_description, material_type) values (2, 'arnez', 'description02', '2')
+insert into material (id, name, material_description, material_type_id) values (1, 'casco', 'description01', 1)
+insert into material (id, name, material_description, material_type_id) values (2, 'arnez', 'description02', 2)
 
 -- capacity
 insert into capacity(id,name,description,is_deleted) values (1, 'descripcion Capacidad A', 'Capataz',0)
 insert into capacity(id,name,description,is_deleted) values (2, 'descripcion Capacidad B', 'Capataz',0)
 insert into capacity(id,name,description,is_deleted) values (3, 'descripcion Capacidad C', 'Capataz',0)
+
+-- Personal Information
+-- insert PersonalInformation
+INSERT INTO personal_information(id,legal_name,area_id,capacity_id,registration_date,is_deleted) VALUES(1,'legalName',1,1,'1990-05-26',0);
+INSERT INTO personal_information(id,legal_name,area_id,capacity_id,registration_date,is_deleted) VALUES(2,'legalName',1,1,'1990-05-26',0);
+INSERT INTO personal_information(id,legal_name,area_id,capacity_id,registration_date,is_deleted) VALUES(3,'legalName',1,1,'1990-05-26',0);
 
 --Incident Type
 insert into incident_type (id, name, description, is_deleted) values (1, 'Critica', 'el trabajador se encuentra en peligro de muerte', 0)
