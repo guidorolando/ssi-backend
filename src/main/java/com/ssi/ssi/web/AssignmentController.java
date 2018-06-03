@@ -5,6 +5,7 @@ import com.ssi.ssi.common.response.rest.SingleRestResponse;
 import com.ssi.ssi.resources.AssignmentResource;
 import com.ssi.ssi.service.AssignmentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,14 +21,21 @@ public class AssignmentController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ListRestResponse<AssignmentResource> getAll() {
-        final List<AssignmentResource> collection = assignmentService.getAssignmentAll().stream().map(AssignmentResource::new).collect(Collectors.toList());
-        return new ListRestResponse<>(collection);
+        /*final List<AssignmentResource> collection = assignmentService.getAssignmentAll().stream().map(AssignmentResource::new).collect(Collectors.toList());
+        return new ListRestResponse<>(collection);*/
+        return null;
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/{id}")
     public SingleRestResponse<AssignmentResource> getById(Long id) {
-        final AssignmentResource assignmentResource = assignmentService.getAssignmentById(id).map(AssignmentResource::new).get();
-        return new SingleRestResponse<>(assignmentResource);
+        /*final AssignmentResource assignmentResource = assignmentService.getAssignmentById(id).map(AssignmentResource::new).get();
+        return new SingleRestResponse<>(assignmentResource);*/
+        return null;
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public ListRestResponse<AssignmentResource> assignmentMaterial(@RequestBody AssignmentResource assignmentResource){
+        return null;
     }
 
 }

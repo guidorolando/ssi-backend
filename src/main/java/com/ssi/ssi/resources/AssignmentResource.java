@@ -6,19 +6,19 @@ import java.util.Date;
 
 public class AssignmentResource {
     private Long id;
-
+    private Long materialId;
+    private Long employeeId;
+    private Date assignmentDate;
     private Integer quantity;
-    private Date AssignmentDate;
-    private Assignment assignment;
 
 
-    public AssignmentResource (Assignment assignment){
+    /*public AssignmentResource (Assignment assignment){
         this.assignment = assignment;
         this.id = assignment.getId();
         this.quantity = assignment.getQuantity();
         this.AssignmentDate = assignment.getAssignmentDate();
 
-    }
+    }*/
 
     public Long getId() {
         return id;
@@ -26,6 +26,30 @@ public class AssignmentResource {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getMaterialId() {
+        return materialId;
+    }
+
+    public void setMaterialId(Long materialId) {
+        this.materialId = materialId;
+    }
+
+    public Long getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public Date getAssignmentDate() {
+        return assignmentDate;
+    }
+
+    public void setAssignmentDate(Date assignmentDate) {
+        this.assignmentDate = assignmentDate;
     }
 
     public Integer getQuantity() {
@@ -36,19 +60,5 @@ public class AssignmentResource {
         this.quantity = quantity;
     }
 
-    public Date getAssignmentDate() {
-        return AssignmentDate;
-    }
 
-    public void setAssignmentDate(Date assignmentDate) {
-        AssignmentDate = assignmentDate;
-    }
-
-    public Assignment getAssignment() {
-        return assignment;
-    }
-
-    public void setAssignment(Assignment assignment) {
-        this.assignment = assignment;
-    }
 }

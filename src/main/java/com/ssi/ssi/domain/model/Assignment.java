@@ -21,6 +21,9 @@ public class Assignment {
     @ManyToOne
     private Material material;
 
+    @ManyToOne
+    private Employee employee;
+
     public Long getId() {
         return id;
     }
@@ -51,5 +54,13 @@ public class Assignment {
 
     public void setMaterial(Material material) {
         this.material = material;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }
