@@ -1,6 +1,7 @@
 package com.ssi.ssi.web;
 
 
+import com.ssi.ssi.domain.model.Person;
 import com.ssi.ssi.resources.AutoCompleteResource;
 import com.ssi.ssi.service.AutoCompleteService;
 import io.swagger.annotations.Api;
@@ -33,9 +34,6 @@ public class AutoCompleteController {
         autoCompleteService.findAllEmployeeByParameter(search).forEach(
                 employee -> autoCompleteResources.add( new AutoCompleteResource(employee))
         );
-
         return autoCompleteResources;
     }
-
-
 }
