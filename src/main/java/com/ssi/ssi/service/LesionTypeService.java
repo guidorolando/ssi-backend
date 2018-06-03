@@ -14,7 +14,7 @@ public class LesionTypeService {
     @Autowired
     private LesionTypeRepository lesionTypeRepository;
 
-    public Optional<LesionType> findLesionTypeById(Long id){
+    public Optional<LesionType> findLesionTypeById(Long id) {
         return lesionTypeRepository.findById(id);
     }
 
@@ -41,5 +41,13 @@ public class LesionTypeService {
 
     public List<LesionType> getAllLesionTypes() {
         return lesionTypeRepository.findAll();
+    }
+
+    public void delete(Long id) {
+        Optional<LesionType> lesionTypeDb = findLesionTypeById(id);
+        if (lesionTypeDb.isPresent()) {
+            lesionTypeDb.get().setIsDeleted(Boolean.TRUE);
+            lesionTypeRepository.save(lesionTypeDb.get());
+        }
     }
 }

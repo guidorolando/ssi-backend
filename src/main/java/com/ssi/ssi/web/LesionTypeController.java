@@ -1,15 +1,14 @@
 package com.ssi.ssi.web;
 
+import com.ssi.ssi.common.response.rest.SuccessRestResponse;
 import com.ssi.ssi.domain.model.LesionType;
 import com.ssi.ssi.service.LesionTypeService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +55,27 @@ public class LesionTypeController {
         );
 
         return lesionTypeList;
+    }
 
+    @ApiOperation(value = "Delete Lesion type")
+    @RequestMapping(value = "/{id}",
+            method = RequestMethod.DELETE
+    )
+    public SuccessRestResponse remove(@PathVariable Long id) {
+        lesionTypeService.delete(id);
+        return new SuccessRestResponse();
+    }
+
+    @ApiOperation(value = "Get lesionType by Id")
+    @RequestMapping(value = "/{id}",
+            method = RequestMethod.GET
+    )
+    public ResponseEntity<LesionType> getById(@PathVariable Long id) {
+        Optional<LesionType> lesionTypeDb = lesionTypeService.findLesionTypeById(id);
+        if (lesionTypeDb.isPresent()) {
+            return new ResponseEntity<LesionType>(lesionTypeDb.get(), HttpStatus.OK);
+        }
+
+        return new ResponseEntity<LesionType>(HttpStatus.NOT_FOUND);
     }
 }

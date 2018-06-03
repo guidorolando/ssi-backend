@@ -41,4 +41,12 @@ public class AccidentAgentService {
     public List<AccidentAgent> getAllAccidentAgents() {
         return accidentAgentRepository.findAll();
     }
+
+    public void delete(Long id) {
+        Optional<AccidentAgent> accidentAgentDb = findAccidentAgentById(id);
+        if (accidentAgentDb.isPresent()) {
+            accidentAgentDb.get().setIsDeleted(Boolean.TRUE);
+            accidentAgentRepository.save(accidentAgentDb.get());
+        }
+    }
 }
