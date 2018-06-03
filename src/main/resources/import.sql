@@ -1,26 +1,9 @@
--- product items
---insert into product(id, description, name, price) values(1, 'Retornable', 'Coca-Cola', 10);
---insert into product(id, description, name, price) values(2, 'Etiqueta Negra', 'Casa Real', 75);
---insert into product(id, description, name, price) values(3, 'Etiqueta Roja', 'Casa Real', 75);
---insert into product(id, description, name, price) values(4, '620', 'Huari', 15);
---insert into product(id, description, name, price) values(5, 'Sin Alcohol', 'Huari', 10);
---insert into product(id, description, name, price) values(6, 'Cigarrillo LM Azul', 'LM Azul', 12);
---insert into product(id, description, name, price) values(7, 'Cigarrillo LM Rojo', 'LM Rojo', 12);
---insert into product(id, description, name, price) values(8, 'Cigarrillo Derby Antiguo', 'Derby Antiguo', 8.5);
-
-
--- customer items
---insert into customer(id, first_name, last_name, address, gender, image_url) values(1, 'garance', 'joly', 'Quillacollo', 'FEMALE', 'https://randomuser.me/api/portraits/thumb/women/51.jpg');
---insert into customer(id, first_name, last_name, address, gender, image_url) values(2, 'christian', 'lenz', 'Vinto', 'MALE', 'https://randomuser.me/api/portraits/thumb/men/86.jpg');
---insert into customer(id, first_name, last_name, address, gender, image_url) values(3, 'lauren', 'peterson', 'Punata', 'FEMALE', 'https://randomuser.me/api/portraits/thumb/women/9.jpg');
---insert into customer(id, first_name, last_name, address, gender, image_url) values(4, 'Dalmiro', 'Cuellar', 'Sipe-Sipe', 'MALE', 'https://randomuser.me/api/portraits/thumb/men/71.jpg');
---insert into customer(id, first_name, last_name, address, gender, image_url) values(5, 'Lia', 'Saldazo', 'Sacaba', 'FEMALE', 'https://randomuser.me/api/portraits/thumb/women/93.jpg');
-
-
 -- security
 INSERT INTO role (id, role_name, description) VALUES (1, 'STANDARD_USER', 'Standard User - Has no admin rights');
 INSERT INTO role (id, role_name, description) VALUES (2, 'ADMIN_USER', 'Admin User - Has permission to perform admin tasks');
-
+INSERT INTO role (id,role_name,description) VALUES(3,'STANDARD_USER' ,'Jefe de Operaciones');
+INSERT INTO role (id,role_name,description) VALUES(4,'STANDARD_USER' ,'Jefe de Operciones electricista');
+INSERT INTO role (id,role_name,description) VALUES(5,'STANDARD_USER','Jefe de Operciones Plomero')
 
 insert into person (id, first_name, last_name, birth_date, gender, ci) values (1, 'admin', 'admin', '2000-05-26', 'MALE','1111111');
 insert into person (id, first_name, last_name, birth_date, gender, ci) values (2, 'john', 'doe', '2000-05-26', 'MALE', '2222222');
@@ -46,11 +29,7 @@ INSERT INTO area(id,name,description,codigo,is_deleted) VALUES(2,'Area B','Plant
 INSERT INTO area(id,name,description,codigo,is_deleted) VALUES(3,'Area C','Planta Alta' ,'003',0);
 
 
--- ROLE
--- insert Role
-INSERT INTO role(id,name,role_name,description) VALUES(1,'Area A','STANDARD_USER' ,'Jefe de Operaciones');
-INSERT INTO role(id,name,role_name,description) VALUES(2,'Area B','STANDARD_USER' ,'Jefe de Operciones electricista');
-INSERT INTO role(id,name,role_name,description) VALUES(3,'Area C','STANDARD_USER','Jefe de Operciones Plomero')
+
 
 -- Type Employee
 insert into employee_type (id, name, description) values (1, 'Obrero', 'pesronal de man de obra');
