@@ -1,6 +1,7 @@
 package com.ssi.ssi.service;
 
 
+import com.ssi.ssi.domain.model.AccidentAgent;
 import com.ssi.ssi.domain.model.Area;
 import com.ssi.ssi.domain.repository.AreaRepository;
 import com.ssi.ssi.resources.AreaResource;
@@ -18,6 +19,13 @@ public class AreaService {
 
     @Autowired
     private  AreaRepository areaRepository;
+
+
+    public Area createArea(Area area) {
+        area.setDeleted(false);
+        return areaRepository.save(area);
+    }
+
 
     public  List<Area> getAll(){
         return (List<Area>) areaRepository.findAll();

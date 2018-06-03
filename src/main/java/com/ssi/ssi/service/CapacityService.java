@@ -16,6 +16,11 @@ public class CapacityService {
     @Autowired
     private CapacityRepository capacityRepository;
 
+    public Capacity createCapacity(Capacity capacity) {
+        capacity.setDeleted(false);
+        return capacityRepository.save(capacity);
+    }
+
     public List<Capacity> getAll(){
         return (List<Capacity>) capacityRepository.findAll();
     }

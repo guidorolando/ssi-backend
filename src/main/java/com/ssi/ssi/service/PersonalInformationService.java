@@ -44,6 +44,7 @@ public class PersonalInformationService {
             personalInformation.setArea(areaDb.get());
             personalInformation.setCapacity(capacityDb.get());
            // personalInformation.setEmployeeType((employeeTypeDb.get()));
+            personalInformation.setDeleted(Boolean.FALSE);
             return personalInformationRepository.save(personalInformation);
         }
 

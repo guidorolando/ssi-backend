@@ -20,6 +20,18 @@ public class Responsibility {
     @JoinColumn(name = "employee_type_id")
     private EmployeeType employeeType;
 
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
+
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
+    }
+
     public Long getId() {
         return id;
     }

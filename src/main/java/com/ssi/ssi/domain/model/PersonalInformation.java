@@ -26,6 +26,16 @@ public class PersonalInformation {
             inverseJoinColumns = {@JoinColumn(name = "employee_type_id")})
     private List<EmployeeType> employeeType;
 
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
+    }
 
     public Long getId() {
         return id;
@@ -50,14 +60,6 @@ public class PersonalInformation {
     public void setCapacity(Capacity capacity) {
         this.capacity = capacity;
     }
-
-//    public EmployeeType getEmployeeType() {
-//        return employeeType;
-//    }
-//
-//    public void setEmployeeType(EmployeeType employeeType) {
-//        this.employeeType = employeeType;
-//    }
 
 
     public List<EmployeeType> getEmployeeType() {

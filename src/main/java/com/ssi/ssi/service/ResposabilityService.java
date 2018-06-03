@@ -1,5 +1,6 @@
 package com.ssi.ssi.service;
 
+import com.ssi.ssi.domain.model.Capacity;
 import com.ssi.ssi.domain.model.Responsibility;
 import com.ssi.ssi.domain.repository.ResponsabilityRepository;
 import com.ssi.ssi.resources.ResponsabilityResource;
@@ -17,15 +18,20 @@ public class ResposabilityService {
     private ResponsabilityRepository responsabilityRepository;
 
 
+    public Responsibility createResponsabilit(Responsibility responsibility) {
+        responsibility.setDeleted(false);
+        return responsabilityRepository.save(responsibility);
+    }
+
     public Optional<Responsibility> findResponsabilityById(Long id){
 
         return responsabilityRepository.findById(id);
     }
 
-
     public Responsibility createResponsability(ResponsabilityResource responsabilityResource) {
         Responsibility responsibility = new Responsibility();
         responsibility.setName(responsibility.getName());
+        responsibility.setDeleted(false);
         responsibility.setDescription(responsibility.getDescription());
         return responsabilityRepository.save(responsibility);
     }

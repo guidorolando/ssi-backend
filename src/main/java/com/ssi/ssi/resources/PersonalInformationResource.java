@@ -11,10 +11,18 @@ public class PersonalInformationResource {
     private Long areaId;
     private Long capacityId;
     private Long employeeTypeId;
-
+    private Boolean isDeleted;
 
     public Long getAreaId() {
         return areaId;
+    }
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
     }
 
     public void setAreaId(Long areaId) {
