@@ -84,9 +84,15 @@ insert into material (id, name, mat_description, material_type) values (1, 'casc
 insert into material (id, name, mat_description, material_type) values (2, 'arnez', 'description02', '2')
 
 -- capacity
-insert into capacity(id,name,description,employeeList) values (1, 'proteccion personal', 'Capataz', '')
-insert into capacity(id,name,description,employeeList) values (2, 'proteccion personal', 'Capataz','')
-insert into capacity(id,name,description,employeeList) values (3, 'proteccion personal', 'Capataz', '')
+insert into capacity(id,name,description) values (1, 'descripcion Capacidad A', 'Capataz')
+insert into capacity(id,name,description) values (2, 'descripcion Capacidad B', 'Capataz')
+insert into capacity(id,name,description) values (3, 'descripcion Capacidad C', 'Capataz')
+
+-- employee_type
+insert into employee_type(id,name,description) values (1, 'Capataz', 'Encargado del Area A')
+insert into employee_type(id,name,description) values (2, 'Obrero', 'Trabajador del Area B')
+insert into employee_type(id,name,description) values (3, 'Electricista', 'Consultor del Area S')
+
 
 --Incident Type
 insert into incident_type (id, name, description, is_deleted) values (1, 'Critica', 'el trabajador se encuentra en peligro de muerte', 0)

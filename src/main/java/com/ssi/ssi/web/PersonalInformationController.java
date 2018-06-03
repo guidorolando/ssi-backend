@@ -1,8 +1,11 @@
 package com.ssi.ssi.web;
 
+import com.ssi.ssi.domain.model.Incident;
 import com.ssi.ssi.domain.model.PersonalInformation;
 import com.ssi.ssi.domain.repository.exception.MessageNotFountException;
+import com.ssi.ssi.resources.IncidentResource;
 import com.ssi.ssi.resources.PersonalInformationResource;
+import com.ssi.ssi.service.IncidentService;
 import com.ssi.ssi.service.PersonalInformationService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Api(value = "personalInformation" , description = "personalInformation")
@@ -20,6 +24,41 @@ public class PersonalInformationController {
     @Autowired
     PersonalInformationService personalInformationService;
 
+
+
+    @RequestMapping(
+            method = RequestMethod.POST,
+            value = "/createPersonalInformation"
+    )
+    public ResponseEntity<PersonalInformation> createPersonalInformation(@RequestBody PersonalInformationResource personalInformationResource) {
+        return new ResponseEntity<PersonalInformation>(personalInformationService.createPersonalInformation(personalInformationResource), HttpStatus.CREATED);
+    }
+
+    @RequestMapping(
+            method = RequestMethod.POST,
+            value = "/updatePersonalInformation"
+    )
+    public ResponseEntity<PersonalInformation> updatePersonalInformation(@RequestBody PersonalInformationResource personalInformationResource) {
+
+        //Boolean wasUpdated =  personalInformationService.updatePersonalInformation(personalInformationResource);
+        Boolean wasUpdated =  personalInformationService.updatePersonalInformation(personalInformationResource);
+        if(wasUpdated){
+            Optional<PersonalInformation> personalInformation = personalInformationService.findEmployeeById(personalInformationResource.getEmployeeTypeId());
+            return new ResponseEntity<PersonalInformation>(personalInformation.get(), HttpStatus.OK);
+        }
+
+        return new ResponseEntity<PersonalInformation>(HttpStatus.NOT_FOUND);
+    }
+
+
+
+
+
+
+
+
+
+    /*
 
     @GetMapping
     public ResponseEntity<List<PersonalInformationResource>> getAllPersonal() {
@@ -60,7 +99,7 @@ public class PersonalInformationController {
         }).orElseThrow(() -> new MessageNotFountException(id));
     }
 
-
+*/
 
 
 

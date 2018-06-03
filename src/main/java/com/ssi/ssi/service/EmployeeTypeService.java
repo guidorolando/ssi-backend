@@ -19,6 +19,7 @@ public class EmployeeTypeService {
     private EmployeeTypeRepository employeeTypeRepository;
 
     public List<EmployeeType> getAll(){
+
         return (List<EmployeeType>) employeeTypeRepository.findAll();
     }
 
