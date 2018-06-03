@@ -1,7 +1,6 @@
 package com.ssi.ssi.domain.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "material_type")
@@ -13,9 +12,6 @@ public class MaterialType {
 
     @Column(name = "name")
     private String name;
-
-    @OneToMany(mappedBy = "materialType")
-    private List<Material> materialList;
 
     public Long getId() {
         return id;
