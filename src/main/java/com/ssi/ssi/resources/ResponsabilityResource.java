@@ -1,6 +1,5 @@
 package com.ssi.ssi.resources;
 
-import com.ssi.ssi.domain.model.Capacity;
 import com.ssi.ssi.domain.model.EmployeeType;
 import com.ssi.ssi.domain.model.Responsibility;
 
@@ -19,7 +18,7 @@ public class ResponsabilityResource {
         this.id = responsibility.getId();
         this.name = responsibility.getName();
         this.description =responsibility.getDescription();
-        this.isDeleted = responsibility.getDeleted();
+        this.isDeleted = responsibility.getIsDeleted();
         this.employeeType = build(responsibility.getEmployeeType());
 
     }
