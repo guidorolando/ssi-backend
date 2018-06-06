@@ -53,6 +53,11 @@ insert into material_type (id, name) values (3, 'Adicional')
 --Material
 insert into material (id, name, material_description, material_type_id) values (1, 'casco', 'description01', 1)
 insert into material (id, name, material_description, material_type_id) values (2, 'arnez', 'description02', 2)
+insert into material (id, name, material_description, material_type_id) values (3, 'botas', 'description03', 1)
+
+--Assignment
+
+
 
 -- capacity
 insert into capacity(id,name,description,is_deleted) values (1, 'descripcion Capacidad A', 'Capataz',0)
