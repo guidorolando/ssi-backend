@@ -1,24 +1,28 @@
 package com.ssi.ssi.resources;
 
 import com.ssi.ssi.domain.model.Assignment;
+import com.ssi.ssi.domain.model.Employee;
+import com.ssi.ssi.domain.model.Material;
 
 import java.util.Date;
 
 public class AssignmentResource {
+
     private Long id;
-    private Long materialId;
-    private Long employeeId;
+    private final Assignment assignment;
+    private Material material;
+    private Employee employee;
     private Date assignmentDate;
     private Integer quantity;
 
-
-    /*public AssignmentResource (Assignment assignment){
+    public AssignmentResource (Assignment assignment){
         this.assignment = assignment;
         this.id = assignment.getId();
         this.quantity = assignment.getQuantity();
-        this.AssignmentDate = assignment.getAssignmentDate();
-
-    }*/
+        this.assignmentDate = assignment.getAssignmentDate();
+        this.material = assignment.getMaterial();
+        this.employee = assignment.getEmployee();
+    }
 
     public Long getId() {
         return id;
@@ -28,20 +32,20 @@ public class AssignmentResource {
         this.id = id;
     }
 
-    public Long getMaterialId() {
-        return materialId;
+    public Material getMaterial() {
+        return material;
     }
 
-    public void setMaterialId(Long materialId) {
-        this.materialId = materialId;
+    public void setMaterial(Material material) {
+        this.material = material;
     }
 
-    public Long getEmployeeId() {
-        return employeeId;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setEmployeeId(Long employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public Date getAssignmentDate() {
