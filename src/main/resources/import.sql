@@ -55,6 +55,10 @@ insert into material_type (id, name) values (3, 'Adicional')
 insert into material (id, name, material_description, material_type_id) values (1, 'casco', 'description01', 1)
 insert into material (id, name, material_description, material_type_id) values (2, 'arnez', 'description02', 2)
 
+--Assignment
+insert into assignment (id, quantity, assignment_date, employee_id, material_id) values (1, 2, '1990-05-26', 1, 1)
+insert into assignment (id, quantity, assignment_date, employee_id, material_id) values (2, 2, '1990-05-26', 3, 2)
+insert into assignment (id, quantity, assignment_date, employee_id, material_id) values (3, 1, '1990-05-26', 4, 1)
 -- capacity
 insert into capacity(id,name,description,is_deleted) values (1, 'descripcion Capacidad A', 'Capataz',0)
 insert into capacity(id,name,description,is_deleted) values (2, 'descripcion Capacidad B', 'Capataz',0)
