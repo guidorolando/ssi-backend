@@ -1,13 +1,14 @@
 package com.ssi.ssi.resources;
 
 import com.ssi.ssi.domain.model.Employee;
+import com.ssi.ssi.domain.model.Person;
 
 public class AutoCompleteResource {
 
     private String ci;
     private String firsName;
     private String lastName;
-
+  
     public AutoCompleteResource(Employee employee) {
         this.ci = employee.getCi();
         this.firsName = employee.getFirstName();

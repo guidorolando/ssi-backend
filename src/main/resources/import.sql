@@ -9,7 +9,6 @@ insert into person (id, first_name, last_name, birth_date, gender, ci) values (1
 insert into person (id, first_name, last_name, birth_date, gender, ci) values (2, 'john', 'doe', '2000-05-26', 'MALE', '2222222');
 insert into person (id, first_name, last_name, birth_date, gender, ci) values (3, 'nicol', 'admin', '2015-05-26', 'MALE', '333333');
 
-
 -- USER
 -- non-encrypted password: jwtpass
 INSERT INTO user (id, password, username, person_id) VALUES (1, '821f498d827d4edad2ed0960408a98edceb661d9f34287ceda2962417881231a', 'john.doe', 2);
@@ -54,6 +53,11 @@ insert into material_type (id, name) values (3, 'Adicional')
 --Material
 insert into material (id, name, material_description, material_type_id) values (1, 'casco', 'description01', 1)
 insert into material (id, name, material_description, material_type_id) values (2, 'arnez', 'description02', 2)
+insert into material (id, name, material_description, material_type_id) values (3, 'botas', 'description03', 1)
+
+--Assignment
+
+
 
 --Assignment
 insert into assignment (id, quantity, assignment_date, employee_id, material_id) values (1, 2, '1990-05-26', 1, 1)
@@ -104,7 +108,7 @@ insert into accident_agent (id, agent_name, is_deleted) values (9, 'Efecto de la
 --Responsability
 insert into responsibility (id, name,description,is_deleted, employee_type_id) values (1, 'name1','Description1',0, 4)
 insert into responsibility (id, name,description,is_deleted, employee_type_id) values (2, 'name2','Description2',0, 5)
-insert into responsibility (id, name,description,is_deleted, employee_type_id) values (3, 'name3','Description3',0, 3
+insert into responsibility (id, name,description,is_deleted, employee_type_id) values (3, 'name3','Description3',0, 3)
 
 --insert incident
 
