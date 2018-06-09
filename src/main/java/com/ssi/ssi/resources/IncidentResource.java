@@ -1,61 +1,43 @@
 package com.ssi.ssi.resources;
-
 import com.ssi.ssi.domain.model.WorkingTurn;
 
 import java.util.Date;
+import java.util.List;
 
 public class IncidentResource {
 
-    private Long incidentId;
-    private Long employeeId;
-    private Long incidentTypeId;
-    private Long accidentAgentId;
-    private Long lesionTypeId;
+    private Long id;
+
     private String accidentSite;
-    private WorkingTurn workingTurn;
+
     private Date accidentDate;
+
     private String accidentDay;
+
     private String accidentTime;
+
     private String affectedPart;
 
-    public Long getIncidentId() {
-        return incidentId;
+    private Boolean isDeleted;
+
+    private List<IncidentTagResource> incidentTagResourceList;
+
+    private WorkingTurn workingTurn;
+
+    private IncidentTypeResource incidentType;
+
+    private EmployeeResource employee;
+
+    private LesionTypeResource lesionType;
+
+    private AccidentAgentResource accidentAgent;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setIncidentId(Long incidentId) {
-        this.incidentId = incidentId;
-    }
-
-    public Long getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(Long employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    public Long getIncidentTypeId() {
-        return incidentTypeId;
-    }
-
-    public void setIncidentTypeId(Long incidentTypeId) {
-        this.incidentTypeId = incidentTypeId;
-    }
-
-    public Long getAccidentAgentId() {
-        return accidentAgentId;
-    }
-
-    public void setAccidentAgentId(Long accidentAgentId) {
-        this.accidentAgentId = accidentAgentId;
-    }
-
-    public Long getLesionTypeId() {
-        return lesionTypeId;
-    }
-
-    public void setLesionTypeId(Long lesionTypeId) {
-        this.lesionTypeId = lesionTypeId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getAccidentSite() {
@@ -64,14 +46,6 @@ public class IncidentResource {
 
     public void setAccidentSite(String accidentSite) {
         this.accidentSite = accidentSite;
-    }
-
-    public WorkingTurn getWorkingTurn() {
-        return workingTurn;
-    }
-
-    public void setWorkingTurn(WorkingTurn workingTurn) {
-        this.workingTurn = workingTurn;
     }
 
     public Date getAccidentDate() {
@@ -104,5 +78,61 @@ public class IncidentResource {
 
     public void setAffectedPart(String affectedPart) {
         this.affectedPart = affectedPart;
+    }
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
+    }
+
+    public List<IncidentTagResource> getIncidentTagResourceList() {
+        return incidentTagResourceList;
+    }
+
+    public void setIncidentTagResourceList(List<IncidentTagResource> incidentTagResourceList) {
+        this.incidentTagResourceList = incidentTagResourceList;
+    }
+
+    public WorkingTurn getWorkingTurn() {
+        return workingTurn;
+    }
+
+    public void setWorkingTurn(WorkingTurn workingTurn) {
+        this.workingTurn = workingTurn;
+    }
+
+    public IncidentTypeResource getIncidentType() {
+        return incidentType;
+    }
+
+    public void setIncidentType(IncidentTypeResource incidentType) {
+        this.incidentType = incidentType;
+    }
+
+    public EmployeeResource getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(EmployeeResource employee) {
+        this.employee = employee;
+    }
+
+    public LesionTypeResource getLesionType() {
+        return lesionType;
+    }
+
+    public void setLesionType(LesionTypeResource lesionType) {
+        this.lesionType = lesionType;
+    }
+
+    public AccidentAgentResource getAccidentAgent() {
+        return accidentAgent;
+    }
+
+    public void setAccidentAgent(AccidentAgentResource accidentAgent) {
+        this.accidentAgent = accidentAgent;
     }
 }

@@ -3,6 +3,7 @@ package com.ssi.ssi.web;
 import com.ssi.ssi.common.response.rest.SuccessRestResponse;
 import com.ssi.ssi.domain.model.Incident;
 import com.ssi.ssi.resources.IncidentResource;
+import com.ssi.ssi.resources.IncidentResourceCreate;
 import com.ssi.ssi.service.IncidentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -26,35 +27,27 @@ public class IncidentController {
     @RequestMapping(
             method = RequestMethod.GET
     )
-    public List<Incident> findAllIncident() {
-
-        List<Incident> incidentList = new ArrayList<>();
-
-        incidentService.getAllIncident().forEach(
-                incident -> incidentList.add(incident)
-        );
-
-        return incidentList;
-
+    public List<IncidentResource> findAllIncident() {
+        return incidentService.getIncidents();
     }
 
     @RequestMapping(
             method = RequestMethod.POST,
             value = "/createIncident"
     )
-    public ResponseEntity<Incident> createIncident(@RequestBody IncidentResource incidentResource) {
-        return new ResponseEntity<Incident>(incidentService.createIncident(incidentResource), HttpStatus.CREATED);
+    public ResponseEntity<Incident> createIncident(@RequestBody IncidentResourceCreate incidentResourceCreate) {
+        return new ResponseEntity<Incident>(incidentService.createIncident(incidentResourceCreate), HttpStatus.CREATED);
     }
 
     @RequestMapping(
             method = RequestMethod.POST,
             value = "/updateIncident"
     )
-    public ResponseEntity<Incident> updateIncident(@RequestBody IncidentResource incidentResource) {
+    public ResponseEntity<Incident> updateIncident(@RequestBody IncidentResourceCreate incidentResourceCreate) {
 
-        Boolean wasUpdated = incidentService.updateIncident(incidentResource);
+        Boolean wasUpdated = incidentService.updateIncident(incidentResourceCreate);
         if (wasUpdated) {
-            Optional<Incident> incident = incidentService.findIncidentById(incidentResource.getIncidentId());
+            Optional<Incident> incident = incidentService.findIncidentById(incidentResourceCreate.getIncidentId());
             return new ResponseEntity<Incident>(incident.get(), HttpStatus.OK);
         }
 
