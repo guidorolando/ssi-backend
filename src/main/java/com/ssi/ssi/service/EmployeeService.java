@@ -5,6 +5,7 @@ import com.ssi.ssi.domain.model.EmployeeType;
 import com.ssi.ssi.domain.repository.EmployeeRepository;
 import com.ssi.ssi.domain.repository.EmployeeTypeRepository;
 import com.ssi.ssi.request.EmployeeRequest;
+import com.ssi.ssi.resources.EmployeeResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -104,5 +105,11 @@ public class EmployeeService {
         {
             System.out.println("No exist the Employee with id '" + id + "' for delete.");
         }
+    }
+
+    public EmployeeResource builderEmployeeResource(Employee employee) {
+        EmployeeResource instance = new EmployeeResource(employee);
+        instance.setEmployeeType(instance.build(employee.getEmployeeType()));
+        return instance;
     }
 }
