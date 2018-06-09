@@ -46,17 +46,20 @@ insert into employee (id, ci, first_name, last_name, birth_date, gender, email, 
 insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary, is_deleted, employee_type) values (6, '7876534', 'Lidia', 'Cussi', '1986-05-26', 'FEMALE', 'lidia@cussi.com', 77234567, 'quillacollo', 5000.00, 0, 5);
 
 --MaterialType
-insert into material_type (id, name) values (1, 'proteccion personal')
-insert into material_type (id, name) values (2, 'seguridad')
-insert into material_type (id, name) values (3, 'Adicional')
+--ALTER TABLE material_type CHANGE name name_type VARCHAR (255)
+insert into material_type (id, name_type) values (1, 'proteccion personal')
+insert into material_type (id, name_type) values (2, 'seguridad')
+insert into material_type (id, name_type) values (3, 'proteccion para alto voltage')
+insert into material_type (id, name_type) values (4, 'Adicional')
 
 --Material
-insert into material (id, name, material_description, material_type_id) values (1, 'casco', 'description01', 1)
-insert into material (id, name, material_description, material_type_id) values (2, 'arnez', 'description02', 2)
-insert into material (id, name, material_description, material_type_id) values (3, 'botas', 'description03', 1)
+
+insert into material (id, name, material_description, material_type_id,vida_util) values (1, 'casco', 'description01', 1,12)
+insert into material (id, name, material_description, material_type_id,vida_util) values (2, 'arnez', 'description02', 2,13)
+insert into material (id, name, material_description, material_type_id,vida_util) values (3, 'botas', 'description03', 1,5)
 
 --Assignment
-
+INSERT INTO assignment(id,assignment_date,quantity,employee_id,material_id) values (1,'2018-06-05',1,2,1)
 
 
 -- capacity

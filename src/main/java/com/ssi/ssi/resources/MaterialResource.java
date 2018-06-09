@@ -13,6 +13,8 @@ public class MaterialResource {
 
     private String name;
 
+    private Long vidaUtil;
+
     private String description;
 
     private MaterialType matType;
@@ -22,8 +24,17 @@ public class MaterialResource {
         this.material = material;
         this.id = material.getId();
         this.name = material.getName();
+        this.vidaUtil = material.getVidaUtil();
         this.description = material.getMatDescription();
         this.matType = material.getMaterialType();
+    }
+
+    public Long getVidaUtil() {
+        return vidaUtil;
+    }
+
+    public void setVidaUtil(Long vidaUtil) {
+        this.vidaUtil = vidaUtil;
     }
 
     public Long getId() {
