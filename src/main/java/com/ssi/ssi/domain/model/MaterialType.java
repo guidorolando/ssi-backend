@@ -10,8 +10,8 @@ public class MaterialType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "name_type")
+    private String nameType;
 
     public Long getId() {
         return id;
@@ -21,11 +21,11 @@ public class MaterialType {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNameType() {
+        return nameType;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameType(String nameTyp) {
+        this.nameType = nameTyp;
     }
 }

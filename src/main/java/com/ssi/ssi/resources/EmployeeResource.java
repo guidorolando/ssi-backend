@@ -1,6 +1,7 @@
 package com.ssi.ssi.resources;
 
 import com.ssi.ssi.domain.model.Employee;
+import com.ssi.ssi.domain.model.EmployeeType;
 import com.ssi.ssi.domain.model.GenderType;
 
 import java.util.Date;
@@ -32,7 +33,8 @@ public class EmployeeResource {
 
     private Double salary;
 
-    private Long employeeTypeId;
+    //private Long employeeTypeId;
+    private EmployeeTypeResource employeeType;
 
     public EmployeeResource(final Employee employee) {
         this.employee = employee;
@@ -46,7 +48,7 @@ public class EmployeeResource {
         this.phone = employee.getPhone();
         this.address = employee.getAddress();
         this.salary = employee.getSalary();
-//        this.employeeTypeId = employee.getEmployeeType().getId();
+        this.employeeType = build(employee.getEmployeeType());
     }
 
     public Long getId() {
@@ -129,11 +131,16 @@ public class EmployeeResource {
         this.salary = salary;
     }
 
-    public Long getEmployeeTypeId() {
-        return employeeTypeId;
+    public EmployeeTypeResource getEmployeeType() {
+        return employeeType;
     }
 
-    public void setEmployeeTypeId(Long employeeTypeId) {
-        this.employeeTypeId = employeeTypeId;
+    public EmployeeTypeResource build(EmployeeType employeeType){
+        EmployeeTypeResource resource = new EmployeeTypeResource(employeeType);
+        return resource;
+    }
+
+    public void setEmployeeType(EmployeeTypeResource employeeType) {
+        this.employeeType = employeeType;
     }
 }

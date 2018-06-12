@@ -2,6 +2,7 @@ package com.ssi.ssi.service;
 
 import com.ssi.ssi.domain.model.AccidentAgent;
 import com.ssi.ssi.domain.repository.AccidentAgentRepository;
+import com.ssi.ssi.resources.AccidentAgentResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,5 +49,13 @@ public class AccidentAgentService {
             accidentAgentDb.get().setIsDeleted(Boolean.TRUE);
             accidentAgentRepository.save(accidentAgentDb.get());
         }
+    }
+
+    public AccidentAgentResource builderAccidentAgentResource (AccidentAgent accidentAgent) {
+        AccidentAgentResource instance = new AccidentAgentResource(accidentAgent);
+        instance.setId(accidentAgent.getId());
+        instance.setAgentName(accidentAgent.getAgentName());
+        instance.setDeleted(accidentAgent.getIsDeleted());
+        return instance;
     }
 }

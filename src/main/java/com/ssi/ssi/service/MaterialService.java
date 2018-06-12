@@ -19,7 +19,7 @@ public class MaterialService {
     @Autowired
     private MaterialTypeRepository materialTypeRepository;
 
-        public List<Material> getAllMaterial(){
+    public List<Material> getAllMaterial(){
             return (List<Material>) materialRepository.findAll();
         }
 
@@ -31,7 +31,7 @@ public class MaterialService {
         MaterialType materialType = materialTypeRepository.findById(material.getMaterialType().getId()).get();
         material.setMaterialType(materialType);
 
-        System.out.println("\n\n"+materialType.getName()+"\n\n");
+        System.out.println("\n\n"+materialType.getNameType()+"\n\n");
 
         return materialRepository.save(material);
     }
@@ -59,10 +59,13 @@ public class MaterialService {
         Optional<Material> material = getMaterialById(id);
         if(material.isPresent()){
             material.get().setName(updatedMaterial.getName());
+            material.get().setVidaUtil(updatedMaterial.getVidaUtil());
             material.get().setMatDescription(updatedMaterial.getMatDescription());
             materialRepository.save(material.get());
             wasUpdated = Boolean.TRUE;
         }
         return wasUpdated;
     }
+
+
 }

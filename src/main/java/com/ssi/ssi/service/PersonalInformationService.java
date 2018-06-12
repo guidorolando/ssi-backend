@@ -2,14 +2,10 @@ package com.ssi.ssi.service;
 
 import com.ssi.ssi.domain.model.*;
 import com.ssi.ssi.domain.repository.PersonalInformationRepository;
-import com.ssi.ssi.resources.AreaResource;
-import com.ssi.ssi.resources.IncidentResource;
-import com.ssi.ssi.resources.PersonResource;
 import com.ssi.ssi.resources.PersonalInformationResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service

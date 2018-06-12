@@ -1,8 +1,10 @@
 package com.ssi.ssi.service;
 
-import com.ssi.ssi.domain.model.Capacity;
+import com.ssi.ssi.domain.model.EmployeeType;
 import com.ssi.ssi.domain.model.Responsibility;
+import com.ssi.ssi.domain.repository.EmployeeTypeRepository;
 import com.ssi.ssi.domain.repository.ResponsabilityRepository;
+import com.ssi.ssi.request.ResponsibilityRequest;
 import com.ssi.ssi.resources.ResponsabilityResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,10 +19,20 @@ public class ResposabilityService {
     @Autowired
     private ResponsabilityRepository responsabilityRepository;
 
+    @Autowired
+    private EmployeeTypeRepository employeeTypeRepository;
 
-    public Responsibility createResponsabilit(Responsibility responsibility) {
-        responsibility.setDeleted(false);
-        return responsabilityRepository.save(responsibility);
+    public void createResponsabilit(ResponsibilityRequest responsibilityRequest) {
+        if(employeeTypeRepository.existsById(responsibilityRequest.getEmployeeTypeId())) {
+
+            Optional<EmployeeType> employeeType = employeeTypeRepository.findById(responsibilityRequest.getEmployeeTypeId());
+            Responsibility responsibility = new Responsibility();
+            responsibility.setName(responsibilityRequest.getName());
+            responsibility.setIsDeleted(false);
+            responsibility.setDescription(responsibilityRequest.getDescription());
+            responsibility.setEmployeeType(employeeType.get());
+            responsabilityRepository.save(responsibility);
+        }
     }
 
     public Optional<Responsibility> findResponsabilityById(Long id){
@@ -31,7 +43,7 @@ public class ResposabilityService {
     public Responsibility createResponsability(ResponsabilityResource responsabilityResource) {
         Responsibility responsibility = new Responsibility();
         responsibility.setName(responsibility.getName());
-        responsibility.setDeleted(false);
+        responsibility.setIsDeleted(false);
         responsibility.setDescription(responsibility.getDescription());
         return responsabilityRepository.save(responsibility);
     }
