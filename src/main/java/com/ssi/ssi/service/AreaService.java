@@ -3,6 +3,7 @@ package com.ssi.ssi.service;
 
 import com.ssi.ssi.domain.model.AccidentAgent;
 import com.ssi.ssi.domain.model.Area;
+import com.ssi.ssi.domain.model.Incident;
 import com.ssi.ssi.domain.repository.AreaRepository;
 import com.ssi.ssi.resources.AreaResource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class AreaService {
         return areaRepository.save(area);
     }
 
+    public Optional<Area> findAreaById(Long id) {
+        return areaRepository.findById(id);
+    }
 
     public  List<Area> getAll(){
         return (List<Area>) areaRepository.findAll();
@@ -36,6 +40,7 @@ public class AreaService {
     }
 
 
+
     public Area save(Area area){
         return  areaRepository.save(area);
     }
@@ -43,8 +48,17 @@ public class AreaService {
     public  void delete(Area area){
         areaRepository.delete(area);
     }
+
     public void  deleteById(Long id){
-        areaRepository.deleteById(id);
+        //areaRepository.deleteById(id);
+
+        Optional<Area> areaDb = findAreaById(id);
+        if (areaDb.isPresent()) {
+            areaDb.get().setDeleted(Boolean.TRUE);
+            areaRepository.save(areaDb.get());
+        }
+
+
     }
 
 
