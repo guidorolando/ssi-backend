@@ -2,6 +2,7 @@ package com.ssi.ssi.domain.repository;
 
 import com.ssi.ssi.domain.model.Employee;
 
+import com.ssi.ssi.domain.model.Incident;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -26,4 +27,10 @@ public interface EmployeeRepository extends CrudRepository<Employee, Long> {
 
     @Query("SELECT employee FROM Employee employee WHERE employee.firstName like CONCAT('%',:search,'%') OR employee.lastName like CONCAT('%',:search,'%') OR employee.ci like CONCAT('%',:search,'%')")
     List<Employee> findEmployee(@Param("search") String search);
+
+    @Query("select incident " +
+            "from Employee employee, Incident incident " +
+            "where incident.employee.id = employee.id and employee.id = 1")
+    List<Incident> getAlle();
+
 }

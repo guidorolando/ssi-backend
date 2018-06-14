@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface AreaRepository  extends CrudRepository <Area,Long>{
 
-    @Query("SELECT area FROM Area area WHERE area.isDeleted=0 ")
+    @Query("SELECT area FROM Area area WHERE area.isDeleted='false' ")
     List<Area> getAll();
 
 }

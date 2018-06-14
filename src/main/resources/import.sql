@@ -38,26 +38,37 @@ insert into employee_type (id, name, description) values (7, 'Obrero', 'Trabajad
 insert into employee_type (id, name, description) values (8, 'Electricista', 'Consultor del Area S')
 
 -- Employee
-insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary, is_deleted, employee_type) values (1, '7676764', 'carmen', 'guzman', '1990-05-26', 'FEMALE', 'carmen@guzman.com', 70304856, 'sacaba', 4000.00, 0, 1);
-insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary, is_deleted, employee_type) values (2, '5454345', 'Carlos', 'Cori', '1980-05-26', 'MALE', 'carlos@cori.com', 70304800, 'tiquepaya', 4000.00, 0, 1);
-insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary, is_deleted, employee_type) values (3, '1234567', 'Maximilian', 'Toro', '1985-05-26', 'MALE', 'maxi@toro.com', 60574635, 'quillacollo', 5000.00, 0, 2);
-insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary, is_deleted, employee_type) values (4, '1234567', 'Marco', 'Herrera', '1986-05-26', 'MALE', 'marco@herrera.com', 67453634, 'sebastian pagador', 5000.00, 0, 3);
-insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary, is_deleted, employee_type) values (5, '5666778', 'Guido', 'Llanos', '1986-05-26', 'MALE', 'guido@llanos.com', 60584736, 'zona norte', 4000.00, 0, 6);
-insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary, is_deleted, employee_type) values (6, '7876534', 'Lidia', 'Cussi', '1986-05-26', 'FEMALE', 'lidia@cussi.com', 77234567, 'quillacollo', 5000.00, 0, 5);
+insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary, is_deleted, employee_type_id) values (1, '7676764', 'carmen', 'guzman', '1990-05-26', 'FEMALE', 'carmen@guzman.com', 70304856, 'sacaba', 4000.00, 0, 1);
+insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary, is_deleted, employee_type_id) values (2, '5454345', 'Carlos', 'Cori', '1980-05-26', 'MALE', 'carlos@cori.com', 70304800, 'tiquepaya', 4000.00, 0, 1);
+insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary, is_deleted, employee_type_id) values (3, '1234567', 'Maximilian', 'Toro', '1985-05-26', 'MALE', 'maxi@toro.com', 60574635, 'quillacollo', 5000.00, 0, 2);
+insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary, is_deleted, employee_type_id) values (4, '1234567', 'Marco', 'Herrera', '1986-05-26', 'MALE', 'marco@herrera.com', 67453634, 'sebastian pagador', 5000.00, 0, 3);
+insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary, is_deleted, employee_type_id) values (5, '5666778', 'Guido', 'Llanos', '1986-05-26', 'MALE', 'guido@llanos.com', 60584736, 'zona norte', 4000.00, 0, 6);
+insert into employee (id, ci, first_name, last_name, birth_date, gender, email, phone, address, salary, is_deleted, employee_type_id) values (6, '7876534', 'Lidia', 'Cussi', '1986-05-26', 'FEMALE', 'lidia@cussi.com', 77234567, 'quillacollo', 5000.00, 0, 5);
 
 --MaterialType
-insert into material_type (id, name) values (1, 'proteccion personal')
-insert into material_type (id, name) values (2, 'seguridad')
-insert into material_type (id, name) values (3, 'Adicional')
+--ALTER TABLE material_type CHANGE name name_type VARCHAR (255)
+insert into material_type (id, name_type) values (1, 'proteccion personal')
+insert into material_type (id, name_type) values (2, 'seguridad')
+insert into material_type (id, name_type) values (3, 'proteccion para alto voltage')
+insert into material_type (id, name_type) values (4, 'Adicional')
 
 --Material
-insert into material (id, name, material_description, material_type_id) values (1, 'casco', 'description01', 1)
-insert into material (id, name, material_description, material_type_id) values (2, 'arnez', 'description02', 2)
+insert into material (id, name, material_description, material_type_id,vida_util) values (1, 'casco', 'description01', 1,12)
+insert into material (id, name, material_description, material_type_id,vida_util) values (2, 'arnez', 'description02', 2,13)
+insert into material (id, name, material_description, material_type_id,vida_util) values (3, 'botas', 'description03', 1,5)
+
+--Assignment
+insert into assignment(id,assignment_date,quantity,employee_id,material_id) values (1,'2018-06-05',1,2,1)
 
 -- capacity
-insert into capacity(id,name,description,is_deleted) values (1, 'descripcion Capacidad A', 'Capataz',0)
-insert into capacity(id,name,description,is_deleted) values (2, 'descripcion Capacidad B', 'Capataz',0)
-insert into capacity(id,name,description,is_deleted) values (3, 'descripcion Capacidad C', 'Capataz',0)
+insert into capacity(id,name,description,is_deleted) values (1, 'Pintor', 'descripcion Capacidad A', 0)
+insert into capacity(id,name,description,is_deleted) values (2, 'Encofrador', 'descripcion Capacidad B', 0)
+insert into capacity(id,name,description,is_deleted) values (3, 'Maquinista', 'descripcion Capacidad C', 0)
+
+--Employee_capacities
+insert into employee_capacities (employee_id, capacities_id) values (2, 1);
+insert into employee_capacities (employee_id, capacities_id) values (2, 2);
+insert into employee_capacities (employee_id, capacities_id) values (1, 3);
 
 -- Personal Information
 -- insert PersonalInformation
@@ -95,14 +106,12 @@ insert into accident_agent (id, agent_name, is_deleted) values (8, 'Envenenamien
 insert into accident_agent (id, agent_name, is_deleted) values (9, 'Efecto de la electricidad', 0)
 
 
-
 --Responsability
 insert into responsibility (id, name,description,is_deleted, employee_type_id) values (1, 'name1','Description1',0, 4)
 insert into responsibility (id, name,description,is_deleted, employee_type_id) values (2, 'name2','Description2',0, 5)
-insert into responsibility (id, name,description,is_deleted, employee_type_id) values (3, 'name3','Description3',0, 3
+insert into responsibility (id, name,description,is_deleted, employee_type_id) values (3, 'name3','Description3',0, 3)
 
 --insert incident
-
 insert into incident (id, accident_date, accident_day, accident_site, accident_time, affected_part, is_deleted, working_turn, accident_agent_id, employee_id, incident_type_id, lesion_type_id) VALUES (1,	'2017-06-01 21:36:54.567',	'Martes',	'parqueo',	'12:50',	'piernas',	0,	'EXTRA_HOURS',	1,	1,	1,	1)
 insert into incident (id, accident_date, accident_day, accident_site, accident_time, affected_part, is_deleted, working_turn, accident_agent_id, employee_id, incident_type_id, lesion_type_id) VALUES (2,	'2017-06-01 21:36:54.567',	'Martes',	'parqueo',	'12:50',	'piernas',	0,	'EXTRA_HOURS',	1,	1,	1,	1)
 insert into incident (id, accident_date, accident_day, accident_site, accident_time, affected_part, is_deleted, working_turn, accident_agent_id, employee_id, incident_type_id, lesion_type_id) VALUES (3,	'2015-06-02 23:36:54.567',	'Jueves',	'almacén',	'08:50',	'cabeza, manos',	0,	'EXTRA_HOURS',	1,	2,	2,	2)
