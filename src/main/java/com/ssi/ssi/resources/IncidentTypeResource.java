@@ -4,7 +4,7 @@ import com.ssi.ssi.domain.model.IncidentType;
 
 public class IncidentTypeResource {
 
-    private final IncidentType incidentType;
+    private IncidentType incidentType = null;
 
     private Long id;
 
@@ -12,6 +12,9 @@ public class IncidentTypeResource {
 
     private String description;
 
+    public IncidentTypeResource() {
+        super();
+    }
     public IncidentTypeResource (final IncidentType incidentType) {
         this.incidentType = incidentType;
         this.id = incidentType.getId();
