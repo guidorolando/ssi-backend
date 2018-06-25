@@ -6,6 +6,7 @@ import com.ssi.ssi.resources.IncidentTypeResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,11 +22,8 @@ public class IncidentTypeService {
 
 
     public IncidentType createIncidentType(IncidentTypeResource incidentTypeResource) {
-        IncidentType incidentType = new IncidentType();
-        incidentType.setName(incidentTypeResource.getName());
-        incidentType.setDescription(incidentTypeResource.getDescription());
-        incidentType.setIsDeleted(false);
-        return incidentTypeRepository.save(incidentType);
+        Long incidentTypeId = incidentTypeRepository.createIncidentType(incidentTypeResource.getName(), incidentTypeResource.getDescription());
+        return incidentTypeRepository.getIncidentType(incidentTypeId);
     }
 
     public Boolean updateIncidentType(IncidentType incidentType) {
@@ -44,7 +42,7 @@ public class IncidentTypeService {
     }
 
     public List<IncidentType> getAllIncidentType() {
-        return incidentTypeRepository.findAll();
+        return incidentTypeRepository.getAllIncidentType();
     }
 
     public void delete(Long id) {
