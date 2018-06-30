@@ -275,7 +275,6 @@ GO
 PRINT 'Procedure create_incident_incident_tag was created successfully'
 GO
 
-
 /*
 *******************************************************************************
 **                            Change History
@@ -319,7 +318,6 @@ AS
 SET XACT_ABORT ON;
 SET NOCOUNT ON;
 BEGIN
-
 	INSERT INTO [dbo].[Capacity](name
 								,description
 								,is_deleted
@@ -335,8 +333,6 @@ END
 GO
 PRINT 'Procedure [dbo].[Capacity] created'
 GO
-
-
 /****
 ************************************************************************
 ************    CREATE PROCEDURE  UPDATE    ****************************
@@ -372,15 +368,11 @@ CREATE PROCEDURE [dbo].[update_capacity]
 	,@name VARCHAR(50)
 	,@description VARCHAR(50)
 	,@is_deleted  bit NULL
-
-
-
 )
 AS
 SET XACT_ABORT ON;
 SET NOCOUNT ON;
 BEGIN
-
 	UPDATE [dbo].[capacity] SET  name = @name
 								,description = @description
 								,is_deleted = @is_deleted
@@ -417,7 +409,6 @@ GO
 ==
 ***/
 
-
 CREATE PROCEDURE [dbo].[get_all_Capacity]
 AS
 SET XACT_ABORT ON;
@@ -429,8 +420,6 @@ GO
 
 PRINT 'Procedure get_all_capcity was created successfully  complete'
 GO
-
-
 
 /****
 **************************************************************************
@@ -472,7 +461,6 @@ BEGIN
 	WHERE id = @id;
 END
 GO
-
 PRINT 'Procedure delete_capacity was created successfully complete'
 GO
 
@@ -527,7 +515,6 @@ AS
 SET XACT_ABORT ON;
 SET NOCOUNT ON;
 BEGIN
-
 	INSERT INTO [dbo].[personal_information](
 	 legal_name
 	,area_id
@@ -544,7 +531,7 @@ BEGIN
 	,@is_deleted
 	,@id
 	);
-
+  
 	SELECT @id = @@IDENTITY;
 	PRINT @id;
 END
@@ -596,7 +583,6 @@ AS
 SET XACT_ABORT ON;
 SET NOCOUNT ON;
 BEGIN
-
 	UPDATE [dbo].[update_personal_information] SET
 	                           legal_name = @legal_name
 	                           ,area_id  = @area_id
@@ -696,6 +682,184 @@ END
 GO
 
 PRINT 'Procedure delete_personal_information was created successfully complete'
+GO
+
+/****
+*********************************************************************************
+*/
+/*procedure to create material*/
+IF EXISTS (SELECT * FROM sys.objects
+		WHERE object_id = OBJECT_ID(N'[dbo].[CreateMaterial]')
+		AND type in (N'P', N'PC'))
+BEGIN
+	DROP PROCEDURE [dbo].[CreateMaterial]
+END
+GO
+CREATE PROCEDURE [dbo].[CreateMaterial]
+(
+	@name VARCHAR(50),
+	@vidaUtil INT,
+	@materialDescription VARCHAR(100),
+	@materialTypeID INT,
+	@materialID INT OUTPUT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+
+	INSERT INTO [dbo].[material](name
+								,vida_util
+								,material_description
+								,material_type_id)
+	VALUES (@name
+			,@vidaUtil
+			,@materialDescription
+			,@materialTypeID);
+
+	SELECT @materialID = @@IDENTITY;
+	PRINT @materialID;
+END
+GO
+PRINT 'Procedure [dbo].[CreateMaterial] created'
+GO
+
+/*procedure to update material*/
+IF EXISTS (SELECT * FROM sys.objects
+		WHERE object_id = OBJECT_ID(N'[dbo].[UpdateMaterial]')
+		AND type in (N'P', N'PC'))
+BEGIN
+	DROP PROCEDURE [dbo].[UpdateMaterial]
+END
+GO
+PRINT 'Procedure [dbo].[UpdateMaterial] created'
+GO
+CREATE PROCEDURE [dbo].[UpdateMaterial]
+(
+	@id INT,
+	@name VARCHAR(50),
+	@vidaUtil INT,
+	@materialDescription VARCHAR(100),
+	@materialTypeID INT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+
+	UPDATE [dbo].[material] SET name = @name
+								,vida_util = @vidaUtil
+								,material_description = @materialDescription
+								,material_type_id = @materialTypeID
+							WHERE id = @id;
+END
+GO
+PRINT 'Procedure [dbo].[UpdateMaterial] created'
+GO
+
+/*procedure to get all material*/
+FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[get_all_material]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[get_all_material];
+END
+GO
+CREATE PROCEDURE [dbo].[get_all_material]
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+	SELECT * FROM [dbo].[material]
+END
+GO
+
+PRINT 'Procedure get_all_materials was created successfully'
+GO
+
+/*procedure to delete material by id*/
+IF EXISTS (SELECT *
+FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[delete_material]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[delete_material];
+END
+GO
+CREATE PROCEDURE [dbo].[delete_material]
+(
+	@id INT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+    DELETE FROM [dbo].[material]
+	WHERE id = @id;
+END
+GO
+
+PRINT 'Procedure delete_material was created successfully'
+GO
+
+/*procedure to create assignment*/
+IF EXISTS (SELECT * FROM sys.objects
+		WHERE object_id = OBJECT_ID(N'[dbo].[CreateAssignment]')
+		AND type in (N'P', N'PC'))
+BEGIN
+	DROP PROCEDURE [dbo].[CreateAssignment]
+END
+GO
+CREATE PROCEDURE [dbo].[CreateAssignment]
+(
+	@id INT OUTPUT,
+	@assignment_date DATETIME = GETDATE,
+	@quantity INT,
+	@employee_id INT,
+	@material_id INT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+
+	INSERT INTO [dbo].[assignment](assignment_date
+								,quantity
+								,employee
+								,material)
+	VALUES (@assignment_date
+			,@quantity
+			,@employeID
+			,@materialID);
+
+	SELECT @id = @@IDENTITY;
+	PRINT @id;
+END
+GO
+PRINT 'Procedure [dbo].[CreateAssignment] created successfully'
+GO
+
+
+/*procedure to get all assignment*/
+
+IF EXISTS (SELECT * FROM sys.objects
+		WHERE object_id = OBJECT_ID(N'[dbo].[GetAllAssignment]')
+		AND type in (N'P', N'PC'))
+BEGIN
+	DROP PROCEDURE [dbo].[GetAllAssignment]
+END
+GO
+
+CREATE PROCEDURE [dbo].[GetAllAssignment]
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+
+	SELECT * FROM [dbo].[assignment]
+END
+GO
+PRINT 'Procedure [dbo].[GetAllAssignment] created successfully'
 GO
 
 

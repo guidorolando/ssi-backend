@@ -20,7 +20,7 @@ public class MaterialService {
     private MaterialTypeRepository materialTypeRepository;
 
     public List<Material> getAllMaterial(){
-            return (List<Material>) materialRepository.findAll();
+            return materialRepository.getAllMaterial();
         }
 
     public Optional<Material> getMaterialById(Long id){
