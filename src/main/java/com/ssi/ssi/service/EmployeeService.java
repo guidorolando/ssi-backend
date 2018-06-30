@@ -31,9 +31,9 @@ public class EmployeeService {
         return (List<Employee>) employeeRepository.getAll();
     }
 
-    public Optional<Employee> findById(Long id) {
-        Optional<Employee> employee = employeeRepository.findById(id);
-        if(employee.isPresent() && employee.get().getDeleted().equals(Boolean.FALSE)){
+    public Employee findById(Long id) {
+        Employee employee = employeeRepository.getEmployee(id);
+        if(employee != null){
             return employee;
         }else {
             return null;
@@ -61,31 +61,31 @@ public class EmployeeService {
             employee.setEmail(employeeRequest.getEmail());
             employee.setEmployeeType(employeeType.get());
             employee.setDeleted(false);
-            employeeRepository.save(employee);
+            employeeRepository.createEmployee(employee.getAddress(),employee.getBirthDate(),employee.getCi(),employee.getEmail(),employee.getFirstName(),employee.getGender().toString(),employee.getLastName(),employee.getPhone(),employee.getSalary(),employee.getEmployeeType().getId());
         }else{
             System.out.println("The Employe Type Id, not exist for a valid registry.");
         }
     }
 
     public void upDateEmployee(EmployeeRequest employeeRequest, Long id){
-        Optional<Employee> employee = findById(id);
-        if (employeeRepository.existsById(id) && employee.get().getDeleted().equals(false)) {
+        Employee employee = findById(id);
+        if (employeeRepository.existsById(id) && employee.getDeleted().equals(false)) {
             if(employeeTypeRepository.existsById(employeeRequest.getEmployeeTypeId())) {
                 Optional<EmployeeType> employeeType = employeeTypeRepository.findById(employeeRequest.getEmployeeTypeId());
 
                 //Optional<Employee> employee = findById(id);
 
-                employee.get().setFirstName(employeeRequest.getFirstName());
-                employee.get().setLastName(employeeRequest.getLastName());
-                employee.get().setCi(employeeRequest.getCi());
-                employee.get().setGender(employeeRequest.getGender());
-                employee.get().setAddress(employeeRequest.getAddress());
-                employee.get().setPhone(employeeRequest.getPhone());
-                employee.get().setBirthDate(employeeRequest.getBirthDate());
-                employee.get().setSalary(employeeRequest.getSalary());
-                employee.get().setEmail(employeeRequest.getEmail());
-                employee.get().setEmployeeType(employeeType.get());
-                employeeRepository.save(employee.get());
+                employee.setFirstName(employeeRequest.getFirstName());
+                employee.setLastName(employeeRequest.getLastName());
+                employee.setCi(employeeRequest.getCi());
+                employee.setGender(employeeRequest.getGender());
+                employee.setAddress(employeeRequest.getAddress());
+                employee.setPhone(employeeRequest.getPhone());
+                employee.setBirthDate(employeeRequest.getBirthDate());
+                employee.setSalary(employeeRequest.getSalary());
+                employee.setEmail(employeeRequest.getEmail());
+                employee.setEmployeeType(employeeType.get());
+                employeeRepository.save(employee);
             } else {
                 System.out.println("The Employe Type Id, not exist for a valid registry.");
             }
@@ -96,9 +96,9 @@ public class EmployeeService {
 
     public void deleteEmployeeById(Long id){
         if(employeeRepository.existsById(id)) {
-            Optional<Employee> employee = findById(id);
-            employee.get().setDeleted(Boolean.TRUE);
-            employeeRepository.save(employee.get());
+            Employee employee = findById(id);
+            employee.setDeleted(Boolean.TRUE);
+            employeeRepository.save(employee);
             System.out.println("The Employee with id '" + id + "' is deleted.");
         }
         else

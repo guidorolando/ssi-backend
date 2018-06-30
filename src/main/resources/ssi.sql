@@ -138,6 +138,382 @@ GO
 PRINT 'Procedure get_all_incident_type was created successfully'
 GO
 
+/*procedure to create incident*/
+IF EXISTS (SELECT *
+FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[create_incident]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[create_incident];
+END
+GO
+CREATE PROCEDURE [dbo].[create_incident]
+(
+    @accident_date DATE,
+    @accident_day VARCHAR(255),
+    @accident_site VARCHAR(255),
+    @accident_time VARCHAR(255),
+    @affected_part VARCHAR(255),
+    @working_turn VARCHAR(255),
+    @employee_id INT,
+    @incident_agent_id INT,
+    @incident_type_id INT,
+    @lesion_type_id INT,
+    @incident_id INT OUTPUT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+    INSERT INTO [dbo].[incident](accident_date, accident_day, accident_site, accident_time, affected_part, is_deleted, working_turn, employee_id, incident_agent_id, incident_type_id, lesion_type_id)
+    VALUES(@accident_date, @accident_day, @accident_site, @accident_time, @affected_part, 0, @working_turn, @employee_id, @incident_agent_id, @incident_type_id, @lesion_type_id);
+    SELECT @incident_id = @@IDENTITY;
+END
+GO
+
+PRINT 'Procedure create_incident was created successfully'
+GO
+
+
+/*procedure to update incident*/
+IF EXISTS (SELECT *
+FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[update_incident]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[update_incident];
+END
+GO
+CREATE PROCEDURE [dbo].[update_incident]
+(
+	@id INT,
+    @accident_date DATE,
+    @accident_day VARCHAR(255),
+    @accident_site VARCHAR(255),
+    @accident_time VARCHAR(255),
+    @affected_part VARCHAR(255),
+    @working_turn VARCHAR(255),
+    @employee_id INT,
+    @incident_agent_id INT,
+    @incident_type_id INT,
+    @lesion_type_id INT,
+	@is_deleted BIT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+    UPDATE [dbo].[incident]
+	SET accident_date = @accident_date,
+	accident_day = @accident_day,
+	accident_site = @accident_site,
+	accident_time = @accident_time,
+	affected_part = @affected_part,
+	working_turn = @working_turn,
+	employee_id = @employee_id,
+	incident_agent_id = @incident_agent_id,
+	incident_type_id = @incident_type_id,
+	lesion_type_id = @lesion_type_id,
+	is_deleted = @is_deleted
+	WHERE id = @id;
+END
+GO
+
+PRINT 'Procedure update_incident was created successfully'
+GO
+
+
+/*procedure to delete incident*/
+IF EXISTS (SELECT *
+FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[delete_incident]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[delete_incident];
+END
+GO
+CREATE PROCEDURE [dbo].[delete_incident]
+(
+	@id INT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+    UPDATE [dbo].[incident]
+	SET is_deleted = 1
+	WHERE id = @id;
+END
+GO
+
+PRINT 'Procedure delete_incident was created successfully'
+GO
+
+
+/*procedure to get incident*/
+IF EXISTS (SELECT *
+FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[get_incident]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[get_incident];
+END
+GO
+CREATE PROCEDURE [dbo].[get_incident]
+(
+	@id INT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+	SELECT * FROM [dbo].[incident]
+	WHERE id = @id;
+END
+GO
+
+PRINT 'Procedure get_incident was created successfully'
+GO
+
+
+/*procedure to get all incident*/
+IF EXISTS (SELECT *
+FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[get_all_incident]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[get_all_incident];
+END
+GO
+CREATE PROCEDURE [dbo].[get_all_incident]
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+	SELECT * FROM [dbo].[incident]
+END
+GO
+
+PRINT 'Procedure get_all_incident was created successfully'
+GO
+
+
+/*procedure to create employee_type*/
+IF EXISTS (SELECT *
+FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[create_employee_type]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[create_employee_type];
+END
+GO
+CREATE PROCEDURE [dbo].[create_employee_type]
+(
+    @description VARCHAR(255),
+    @name VARCHAR(255),
+    @employee_type_id INT OUTPUT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+    INSERT INTO [dbo].[employee_type](description, name)
+    VALUES(@description, @name);
+    SELECT @employee_type_id = @@IDENTITY;
+END
+GO
+
+PRINT 'Procedure create_employee_type was created successfully'
+GO
+
+
+/*procedure to update employee_type*/
+IF EXISTS (SELECT *
+FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[update_employee_type]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[update_employee_type];
+END
+GO
+CREATE PROCEDURE [dbo].[update_employee_type]
+(
+	@id INT,
+    @description VARCHAR(255),
+    @name VARCHAR(255)
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+    UPDATE [dbo].[employee_type]
+	SET description = @description,
+	name = @name
+	WHERE id = @id;
+END
+GO
+
+PRINT 'Procedure update_employee_type was created successfully'
+GO
+
+
+/*procedure to get employee_type*/
+IF EXISTS (SELECT *
+FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[get_employee_type]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[get_employee_type];
+END
+GO
+CREATE PROCEDURE [dbo].[get_employee_type]
+(
+	@id INT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+	SELECT * FROM [dbo].[employee_type]
+	WHERE id = @id;
+END
+GO
+
+PRINT 'Procedure get_employee_type was created successfully'
+GO
+
+
+/*procedure to get all employee_type*/
+IF EXISTS (SELECT *
+FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[get_all_employee_type]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[get_all_employee_type];
+END
+GO
+CREATE PROCEDURE [dbo].[get_all_employee_type]
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+	SELECT * FROM [dbo].[employee_type]
+END
+GO
+
+PRINT 'Procedure get_all_employee_type was created successfully'
+GO
+
+
+/*procedure to create area*/
+IF EXISTS (SELECT *
+FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[create_area]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[create_area];
+END
+GO
+CREATE PROCEDURE [dbo].[create_area]
+(
+    @codigo VARCHAR(255),
+    @description VARCHAR(255),
+	@name VARCHAR(255),
+    @area_id INT OUTPUT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+    INSERT INTO [dbo].[area](codigo, is_deleted, description, name)
+    VALUES(@codigo, 0, @description, @name);
+    SELECT @area_id = @@IDENTITY;
+END
+GO
+
+PRINT 'Procedure create_area was created successfully'
+GO
+
+
+/*procedure to update area*/
+IF EXISTS (SELECT *
+FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[update_area]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[update_area];
+END
+GO
+CREATE PROCEDURE [dbo].[update_area]
+(
+	@id INT,
+    @description VARCHAR(255),
+    @name VARCHAR(255),
+	@codigo VARCHAR(255)
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+    UPDATE [dbo].[area]
+	SET description = @description,
+	name = @name,
+	codigo = @codigo
+	WHERE id = @id;
+END
+GO
+
+PRINT 'Procedure update_area was created successfully'
+GO
+
+
+/*procedure to get area*/
+IF EXISTS (SELECT *
+FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[get_area]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[get_area];
+END
+GO
+CREATE PROCEDURE [dbo].[get_area]
+(
+	@id INT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+	SELECT * FROM [dbo].[area]
+	WHERE id = @id;
+END
+GO
+
+PRINT 'Procedure get_area was created successfully'
+GO
+
+
+/*procedure to get all area*/
+IF EXISTS (SELECT *
+FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[get_all_area]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[get_all_area];
+END
+GO
+CREATE PROCEDURE [dbo].[get_all_area]
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+	SELECT * FROM [dbo].[area]
+END
+GO
+
+PRINT 'Procedure get_all_area was created successfully'
+GO
+
 
 /*procedure to create incident_tag*/
 IF EXISTS (SELECT *
@@ -505,8 +881,8 @@ GO
 CREATE PROCEDURE [dbo].[create_personal_information]
 (
 	 @legal_name VARCHAR(50)
-	,@area_id VARCHAR(50)
-	,@capacity_id VARCHAR(50)
+	,@area_id INT
+	,@employee_id INT
 	,@registration_date VARCHAR(50)
 	,@is_deleted  bit NULL
 	,@id INT OUTPUT
@@ -518,7 +894,7 @@ BEGIN
 	INSERT INTO [dbo].[personal_information](
 	 legal_name
 	,area_id
-	,capacity_id
+	,employee_id
 	,registration_date
 	,is_deleted
 	,id
@@ -526,7 +902,7 @@ BEGIN
 	VALUES (
 	 @legal_name
 	,@area_id
-	,@capacity_id
+	,@employee_id
 	,@registration_date
 	,@is_deleted
 	,@id
@@ -572,8 +948,8 @@ CREATE PROCEDURE [dbo].[update_personal_information]
 (
 	 @id INT
 	,@legal_name VARCHAR(50)
-	,@area_id VARCHAR(50)
-	,@capacity_id VARCHAR(50)
+	,@area_id INT
+	,@employee_id INT
 	,@registration_date VARCHAR(50)
 	,@is_deleted  bit NULL
 
@@ -586,7 +962,7 @@ BEGIN
 	UPDATE [dbo].[update_personal_information] SET
 	                           legal_name = @legal_name
 	                           ,area_id  = @area_id
-	                           ,capacity_id = @capacity_id
+	                           ,employee_id = @employee_id
 	                           ,registration_date = @registration_date
 	                           ,registration_date = @is_deleted
 	                            WHERE id = @id;
@@ -862,7 +1238,161 @@ GO
 PRINT 'Procedure [dbo].[GetAllAssignment] created successfully'
 GO
 
+/*procedure to create employee*/
+IF EXISTS (SELECT *
+FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[create_employee]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[create_employee];
+END
+GO
+CREATE PROCEDURE [dbo].[create_employee]
+(
+    @adress VARCHAR(255),
+    @birth_date DATE,
+	@ci VARCHAR(255),
+	@email VARCHAR(255),
+	@first_name VARCHAR(255),
+	@gender VARCHAR(255),
+	@last_name VARCHAR(255),
+	@phone INT,
+	@salary FLOAT,
+	@employee_type_id INT,
+    @id INT OUTPUT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+    INSERT INTO [dbo].[employee](address, birth_date, ci, email, first_name, gender, is_deleted, last_name, phone, salary, employee_type_id)
+    VALUES(@adress, @birth_date, @ci, @email, @first_name, @gender, 0, @last_name, @phone, @salary, @employee_type_id);
+    SELECT @id = @@IDENTITY;
+END
+GO
 
+PRINT 'Procedure create_employee was created successfully'
+GO
+
+
+/*procedure to update employee*/
+IF EXISTS (SELECT *
+FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[update_employee]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[update_employee];
+END
+GO
+CREATE PROCEDURE [dbo].[update_employee]
+(
+	@id INT,
+    @adress VARCHAR(255),
+    @birth_date DATE,
+	@ci VARCHAR(255),
+	@email VARCHAR(255),
+	@first_name VARCHAR(255),
+	@gender VARCHAR(255),
+	@last_name VARCHAR(255),
+	@phone INT,
+	@salary FLOAT,
+	@employee_type_id INT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+    UPDATE [dbo].[employee]
+	SET address = @adress,
+	birth_date = @birth_date,
+	ci = @ci,
+	email = @email,
+	first_name = @first_name,
+	gender = @gender,
+	last_name = @last_name,
+	phone = @phone,
+	salary = @salary,
+	employee_type_id = @employee_type_id
+	WHERE id = @id;
+END
+GO
+
+PRINT 'Procedure update_employee was created successfully'
+GO
+
+
+/*procedure to delete employee*/
+IF EXISTS (SELECT *
+FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[delete_employee]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[delete_employee];
+END
+GO
+CREATE PROCEDURE [dbo].[delete_employee]
+(
+	@id INT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+    UPDATE [dbo].[employee]
+	SET is_deleted = 1
+	WHERE id = @id;
+END
+GO
+
+PRINT 'Procedure delete_employee was created successfully'
+GO
+
+/*procedure to get employee*/
+IF EXISTS (SELECT *
+FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[get_employee]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[get_employee];
+END
+GO
+CREATE PROCEDURE [dbo].[get_employee]
+(
+	@id INT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+	SELECT * FROM [dbo].[employee]
+	WHERE id = @id;
+END
+GO
+
+PRINT 'Procedure get_employee was created successfully'
+GO
+
+
+/*procedure to get all employee*/
+IF EXISTS (SELECT *
+FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[get_all_employee]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[get_all_employee];
+END
+GO
+CREATE PROCEDURE [dbo].[get_all_employee]
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+	SELECT * FROM [dbo].[employee]
+END
+GO
+
+PRINT 'Procedure get_all_employee was created successfully'
+GO
 
 
 
