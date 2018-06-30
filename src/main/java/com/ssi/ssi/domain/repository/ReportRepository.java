@@ -1,7 +1,5 @@
 package com.ssi.ssi.domain.repository;
-
 import com.ssi.ssi.domain.model.Employee;
-
 import com.ssi.ssi.domain.model.Incident;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -9,18 +7,15 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-        import java.util.Optional;
 
 /**
- * @autor Marco Herrera.
+ * @autor Edwin rojas Claros.
  */
 @Repository
-public interface EmployeeRepository extends CrudRepository<Employee, Long> {
-    @Query("SELECT employee FROM Employee employee WHERE employee.isDeleted=0 ")
+public interface ReportRepository extends CrudRepository<Employee, Long> {
+  /**  @Query("SELECT employee FROM Employee employee WHERE employee.isDeleted=0 ")
     List<Employee> getAll();
-
-    /*@Query("SELECT employee FROM Employee employee WHERE employee.id = :id and employee.isDeleted=0 ")
-    Optional<Employee> findById(@Param("id") Long id);*/
+*/
 
     @Query("select employee from Employee employee where employee.firstName like CONCAT('%',:name,'%') or employee.email like CONCAT('%',:name,'%')")
     List<Employee> searchByText(@Param("name") String name);
@@ -31,6 +26,6 @@ public interface EmployeeRepository extends CrudRepository<Employee, Long> {
     @Query("select incident " +
             "from Employee employee, Incident incident " +
             "where incident.employee.id = employee.id and employee.id = 1")
-    List<Incident> getAlle();
+    List<Incident> getAll();
 
 }
