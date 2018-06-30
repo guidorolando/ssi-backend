@@ -1,15 +1,10 @@
 package com.ssi.ssi.service;
 
 
-import com.ssi.ssi.domain.model.AccidentAgent;
 import com.ssi.ssi.domain.model.Area;
-import com.ssi.ssi.domain.model.Incident;
 import com.ssi.ssi.domain.repository.AreaRepository;
-import com.ssi.ssi.resources.AreaResource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
-import com.ssi.ssi.domain.repository.PersonRepository;
 
 import java.util.List;
 import java.util.Optional;

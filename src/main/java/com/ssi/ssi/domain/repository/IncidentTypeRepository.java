@@ -15,7 +15,7 @@ public interface IncidentTypeRepository extends CrudRepository<IncidentType, Lon
     List<IncidentType> findAll();*/
 
 
-    @Procedure(procedureName = "create_incident_type")
+    @Procedure(procedureName = "create_incident_type", outputParameterName = "incident_type_id")
     Long createIncidentType(String name, String description);
 
     @Query(nativeQuery = true, value = "exec get_incident_type :id")
