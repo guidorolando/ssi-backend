@@ -275,7 +275,6 @@ GO
 PRINT 'Procedure create_incident_incident_tag was created successfully'
 GO
 
-
 /******************************************************************************
 **  ****  Created
 *******************************************************************************
@@ -347,9 +346,7 @@ GO
 
 /*******************************************************************************
 ** Procedure : Delete data on Table role  
-** 
 ******************************************************************************/
-
 IF EXISTS (SELECT * 
 FROM sys.objects 
 WHERE object_id = OBJECT_ID(N'[dbo].[delete_role]')
