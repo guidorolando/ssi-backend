@@ -2,6 +2,7 @@ package com.ssi.ssi.service;
 
 import com.ssi.ssi.domain.model.LesionType;
 import com.ssi.ssi.domain.repository.LesionTypeRepository;
+import com.ssi.ssi.resources.LesionTypeResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,5 +50,9 @@ public class LesionTypeService {
             lesionTypeDb.get().setIsDeleted(Boolean.TRUE);
             lesionTypeRepository.save(lesionTypeDb.get());
         }
+    }
+
+    public LesionTypeResource builderLesionTypeResource(LesionType lesionType) {
+        return new LesionTypeResource(lesionType);
     }
 }

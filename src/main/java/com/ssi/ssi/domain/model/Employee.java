@@ -52,7 +52,6 @@ public class Employee {
     private Boolean isDeleted;
 
     @ManyToOne
-    @JoinColumn(name = "employee_type")
     private EmployeeType employeeType;
 
     @ManyToMany(cascade = CascadeType.ALL)

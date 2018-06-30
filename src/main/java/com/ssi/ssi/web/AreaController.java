@@ -1,13 +1,13 @@
 package com.ssi.ssi.web;
 
+import com.ssi.ssi.common.response.rest.SuccessRestResponse;
 import com.ssi.ssi.domain.model.AccidentAgent;
 import com.ssi.ssi.domain.model.Area;
-import com.ssi.ssi.domain.model.Incident;
 import com.ssi.ssi.domain.repository.exception.MessageNotFountException;
 import com.ssi.ssi.resources.AreaResource;
-import com.ssi.ssi.resources.IncidentResource;
 import com.ssi.ssi.service.AreaService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,13 +31,6 @@ public class AreaController {
         return ResponseEntity.ok(collection);
     }
 
-//    @RequestMapping(
-//            method = RequestMethod.POST
-//    )
-//    private ResponseEntity<Area> createArea(@RequestBody Area area) {
-//        return new ResponseEntity<Area>(areaService.createArea(area), HttpStatus.CREATED);
-//    }
-
 
     @GetMapping("/{id}")
     public ResponseEntity<AreaResource> get(@PathVariable final long id) {
@@ -45,6 +38,7 @@ public class AreaController {
     }
 
     @PostMapping
+    //@RequestMapping("/insertarArea")
     public ResponseEntity<AreaResource> post(@RequestBody final Area areaFromRequest) {
         final Area area = areaService.save(areaFromRequest);
         return ResponseEntity.ok(new AreaResource(area));
@@ -65,13 +59,19 @@ public class AreaController {
         return new ResponseEntity(area,HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping("/{id}")
+
+
+
+
+   @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") final long id) {
         return areaService.getId(id).map(p -> {
             areaService.deleteById(id);
             return ResponseEntity.noContent().build();
         }).orElseThrow(() -> new MessageNotFountException(id));
     }
+
+
 
 
 }
