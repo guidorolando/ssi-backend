@@ -274,3 +274,431 @@ GO
 
 PRINT 'Procedure create_incident_incident_tag was created successfully'
 GO
+
+
+/*
+*******************************************************************************
+**                            Change History
+*******************************************************************************
+**  table  capacity
+**   Date:     Author:                            Description:
+** --------   --------        ---------------------------------------------------
+** 25/06/2018 Henry  J . Calani A.   Initial version
+*******************************************************************************/
+
+
+----------------    Procedimientos almacenados Capacity  ------------------
+PRINT 'Start of Script Execution....';
+GO
+
+-- Create InsertMaterial stored procedure.
+IF EXISTS (SELECT * FROM sys.objects
+		WHERE object_id = OBJECT_ID(N'[dbo].[create_capacity]')
+		AND type in (N'P', N'PC'))
+BEGIN
+	DROP PROCEDURE [dbo].[create_capacity]
+END
+GO
+
+/****
+************************************************************************
+************    CREATE PROCEDURE  CREATE    ****************************
+************                                ****************************
+************         FOR CAPACITY           ****************************
+************************************************************************
+****/
+
+CREATE PROCEDURE [dbo].[create_capacity]
+(
+	 @name VARCHAR(50)
+	,@description VARCHAR(50)
+	,@is_deleted  bit NULL
+	,@id INT OUTPUT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+
+	INSERT INTO [dbo].[Capacity](name
+								,description
+								,is_deleted
+								,id)
+	VALUES (@name
+			,@description
+			,@is_deleted
+			,@id);
+
+	SELECT @id = @@IDENTITY;
+	PRINT @id;
+END
+GO
+PRINT 'Procedure [dbo].[Capacity] created'
+GO
+
+
+/****
+************************************************************************
+************    CREATE PROCEDURE  UPDATE    ****************************
+************                                ****************************
+************         FOR CAPACITY           ****************************
+************************************************************************
+****/
+
+-- Update Calacity  procedure.
+IF EXISTS (SELECT * FROM sys.objects
+		WHERE object_id = OBJECT_ID(N'[dbo].[update_capacity]')
+		AND type in (N'P', N'PC'))
+BEGIN
+	DROP PROCEDURE [dbo].[update_capacity]
+END
+GO
+PRINT 'Procedure [dbo].[update_capacity] created complete'
+GO
+
+/****
+************************************************************************
+************    CREATE PROCEDURE  UPDATE    ****************************
+************                                ****************************
+************         FOR CAPACITY           ****************************
+************************************************************************
+****/
+
+
+CREATE PROCEDURE [dbo].[update_capacity]
+(
+
+	 @id INT
+	,@name VARCHAR(50)
+	,@description VARCHAR(50)
+	,@is_deleted  bit NULL
+
+
+
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+
+	UPDATE [dbo].[capacity] SET  name = @name
+								,description = @description
+								,is_deleted = @is_deleted
+						     	WHERE id = @id;
+END
+GO
+PRINT 'Procedure [dbo].[update_capacity] update complete'
+GO
+
+
+/****
+**************************************************************************
+************     PROCEDURE  GET ALL CAPACITY  ****************************
+************                                  ****************************
+************         FOR CAPACITY             ****************************
+**************************************************************************
+****/
+
+
+
+IF EXISTS (SELECT *
+FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[get_all_capacity]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[get_all_capacity];
+END
+GO
+
+
+/****
+==
+== PROCEDURE GET ALL CAPACITY FOR PERSONAL
+==
+***/
+
+
+CREATE PROCEDURE [dbo].[get_all_Capacity]
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+	SELECT * FROM [dbo].[capacity]
+END
+GO
+
+PRINT 'Procedure get_all_capcity was created successfully  complete'
+GO
+
+
+
+/****
+**************************************************************************
+************     PROCEDURE  DELETE            ****************************
+************                                  ****************************
+************         FOR CAPACITY             ****************************
+**************************************************************************
+****/
+
+
+IF EXISTS (SELECT *
+FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[delete_capacity]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[delete_capacity];
+END
+GO
+
+
+/****
+**************************************************************************
+************     PROCEDURE  DELETE            ****************************
+************                                  ****************************
+************         FOR CAPACITY             ****************************
+**************************************************************************
+****/
+
+
+CREATE PROCEDURE [dbo].[delete_capacity]
+(
+	@id INT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+    DELETE FROM [dbo].[capacity]
+	WHERE id = @id;
+END
+GO
+
+PRINT 'Procedure delete_capacity was created successfully complete'
+GO
+
+
+/*
+*******************************************************************************
+**
+*******************************************************************************
+** Table Personal_Information
+**                            Change History
+*******************************************************************************
+**   Date:     Author:                            Description:
+** --------   --------        ---------------------------------------------------
+** 25/06/2018 Henry  J . Calani A.   Initial version
+*******************************************************************************/
+
+
+----------------    Procedimientos almacenados Capacity  ------------------
+PRINT 'Start of Script Execution....';
+GO
+
+-- Create InsertMaterial stored procedure.
+IF EXISTS (SELECT * FROM sys.objects
+		WHERE object_id = OBJECT_ID(N'[dbo].[create_personal_information]')
+		AND type in (N'P', N'PC'))
+BEGIN
+	DROP PROCEDURE [dbo].[create_personal_information]
+END
+GO
+
+/****
+************************************************************************
+************       PROCEDURE  CREATE        ****************************
+************                                ****************************
+************   FOR PERSONAL INFORMATION     ****************************
+************************************************************************
+****/
+
+
+
+
+CREATE PROCEDURE [dbo].[create_personal_information]
+(
+	 @legal_name VARCHAR(50)
+	,@area_id VARCHAR(50)
+	,@capacity_id VARCHAR(50)
+	,@registration_date VARCHAR(50)
+	,@is_deleted  bit NULL
+	,@id INT OUTPUT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+
+	INSERT INTO [dbo].[personal_information](
+	 legal_name
+	,area_id
+	,capacity_id
+	,registration_date
+	,is_deleted
+	,id
+								)
+	VALUES (
+	 @legal_name
+	,@area_id
+	,@capacity_id
+	,@registration_date
+	,@is_deleted
+	,@id
+	);
+
+	SELECT @id = @@IDENTITY;
+	PRINT @id;
+END
+GO
+PRINT 'Procedure [dbo].[personal_information] created Final'
+GO
+
+
+/****
+***************************************************************************
+************    CREATE PROCEDURE  UPDATE       ****************************
+************                                   ****************************
+************     FOR PERSONAL INFORMATION      ****************************
+***************************************************************************
+****/
+
+-- Update PersonalInformation  procedure.
+IF EXISTS (SELECT * FROM sys.objects
+		WHERE object_id = OBJECT_ID(N'[dbo].[update_personal_information]')
+		AND type in (N'P', N'PC'))
+BEGIN
+	DROP PROCEDURE [dbo].[update_personal_information]
+END
+GO
+PRINT 'Procedure [dbo].[personal_information] created complete'
+GO
+
+/****
+************************************************************************
+************    CREATE PROCEDURE  UPDATE    ****************************
+************                                ****************************
+************         FOR PERSONAL INFORMATION           ****************************
+************************************************************************
+****/
+
+
+CREATE PROCEDURE [dbo].[update_personal_information]
+(
+	 @id INT
+	,@legal_name VARCHAR(50)
+	,@area_id VARCHAR(50)
+	,@capacity_id VARCHAR(50)
+	,@registration_date VARCHAR(50)
+	,@is_deleted  bit NULL
+
+
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+
+	UPDATE [dbo].[update_personal_information] SET
+	                           legal_name = @legal_name
+	                           ,area_id  = @area_id
+	                           ,capacity_id = @capacity_id
+	                           ,registration_date = @registration_date
+	                           ,registration_date = @is_deleted
+	                            WHERE id = @id;
+
+
+
+END
+GO
+PRINT 'Procedure [dbo].[personal_information] update complete'
+GO
+
+
+/****
+***************************************************************************
+************     PROCEDURE  GET ALL CAPACITY   ****************************
+************                                   ****************************
+************         FOR PERSONAL INFORMATION  ****************************
+***************************************************************************
+****/
+
+
+
+IF EXISTS (SELECT *
+FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[get_all_personal_information]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[get_all_personal_information];
+END
+GO
+
+
+/****
+==
+== PROCEDURE GET ALL CAPACITY FOR PERSONAL
+==
+***/
+
+
+CREATE PROCEDURE [dbo].[get_all_personal_information]
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+	SELECT * FROM [dbo].[personal_information]
+END
+GO
+
+PRINT 'Procedure get_all_personal_information was created successfully  complete'
+GO
+
+
+
+/****
+***************************************************************************
+************     PROCEDURE  DELETE             ****************************
+************                                   ****************************
+************         FOR PERSONAL INFORMATION  ****************************
+***************************************************************************
+****/
+
+
+IF EXISTS (SELECT *
+FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[delete_personal_information]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[delete_personal_information];
+END
+GO
+
+
+/****
+**************************************************************************
+************     PROCEDURE  DELETE             ****************************
+************                                   ****************************
+************         FOR PERSONAL INFORMATION  ****************************
+***************************************************************************
+****/
+
+
+CREATE PROCEDURE [dbo].[delete_personal_information]
+(
+	@id INT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+    DELETE FROM [dbo].[personal_information]
+	WHERE id = @id;
+END
+GO
+
+PRINT 'Procedure delete_personal_information was created successfully complete'
+GO
+
+
+
+
+
