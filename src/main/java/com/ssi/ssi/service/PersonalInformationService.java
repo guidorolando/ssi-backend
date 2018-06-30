@@ -37,8 +37,8 @@ public class PersonalInformationService {
 
         if(areaDb.isPresent() && capacityDb.isPresent() && employeeTypeDb.isPresent()){
             PersonalInformation personalInformation = new PersonalInformation();
-            personalInformation.setArea(areaDb.get());
-            personalInformation.setCapacity(capacityDb.get());
+            // personalInformation.setArea(areaDb.get());
+            //personalInformation.setCapacity(capacityDb.get());
            // personalInformation.setEmployeeType((employeeTypeDb.get()));
             personalInformation.setDeleted(Boolean.FALSE);
             return personalInformationRepository.save(personalInformation);
