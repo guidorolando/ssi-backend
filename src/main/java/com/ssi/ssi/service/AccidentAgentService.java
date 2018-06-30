@@ -1,7 +1,7 @@
 package com.ssi.ssi.service;
 
-import com.ssi.ssi.domain.model.AccidentAgent;
-import com.ssi.ssi.domain.repository.AccidentAgentRepository;
+import com.ssi.ssi.domain.model.IncidentAgent;
+import com.ssi.ssi.domain.repository.IncidentAgentRepository;
 import com.ssi.ssi.resources.AccidentAgentResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,49 +13,49 @@ import java.util.Optional;
 public class AccidentAgentService {
 
     @Autowired
-    private AccidentAgentRepository accidentAgentRepository;
+    private IncidentAgentRepository incidentAgentRepository;
 
-    public Optional<AccidentAgent> findAccidentAgentById(Long id) {
-        return accidentAgentRepository.findById(id);
+    public Optional<IncidentAgent> findAccidentAgentById(Long id) {
+        return incidentAgentRepository.findById(id);
     }
 
 
-    public AccidentAgent createAccidentAgent(AccidentAgent accidentAgent) {
-        accidentAgent.setIsDeleted(false);
-        return accidentAgentRepository.save(accidentAgent);
+    public IncidentAgent createAccidentAgent(IncidentAgent incidentAgent) {
+        incidentAgent.setIsDeleted(false);
+        return incidentAgentRepository.save(incidentAgent);
     }
 
-    public Boolean updateAccidentAgent(AccidentAgent accidentAgent) {
+    public Boolean updateAccidentAgent(IncidentAgent incidentAgent) {
 
         Boolean wasUpdated = Boolean.FALSE;
 
-        Optional<AccidentAgent> accidentAgentDb = findAccidentAgentById(accidentAgent.getId());
+        Optional<IncidentAgent> accidentAgentDb = findAccidentAgentById(incidentAgent.getId());
         if (accidentAgentDb.isPresent()) {
-            accidentAgentDb.get().setAgentName(accidentAgent.getAgentName());
-            accidentAgentRepository.save(accidentAgentDb.get());
+            accidentAgentDb.get().setName(incidentAgent.getName());
+            incidentAgentRepository.save(accidentAgentDb.get());
             wasUpdated = Boolean.TRUE;
         }
 
         return wasUpdated;
     }
 
-    public List<AccidentAgent> getAllAccidentAgents() {
-        return accidentAgentRepository.findAll();
+    public List<IncidentAgent> getAllAccidentAgents() {
+        return incidentAgentRepository.findAll();
     }
 
     public void delete(Long id) {
-        Optional<AccidentAgent> accidentAgentDb = findAccidentAgentById(id);
+        Optional<IncidentAgent> accidentAgentDb = findAccidentAgentById(id);
         if (accidentAgentDb.isPresent()) {
             accidentAgentDb.get().setIsDeleted(Boolean.TRUE);
-            accidentAgentRepository.save(accidentAgentDb.get());
+            incidentAgentRepository.save(accidentAgentDb.get());
         }
     }
 
-    public AccidentAgentResource builderAccidentAgentResource (AccidentAgent accidentAgent) {
-        AccidentAgentResource instance = new AccidentAgentResource(accidentAgent);
-        instance.setId(accidentAgent.getId());
-        instance.setAgentName(accidentAgent.getAgentName());
-        instance.setDeleted(accidentAgent.getIsDeleted());
+    public AccidentAgentResource builderAccidentAgentResource (IncidentAgent incidentAgent) {
+        AccidentAgentResource instance = new AccidentAgentResource(incidentAgent);
+        instance.setId(incidentAgent.getId());
+        instance.setName(incidentAgent.getName());
+        instance.setDeleted(incidentAgent.getIsDeleted());
         return instance;
     }
 }

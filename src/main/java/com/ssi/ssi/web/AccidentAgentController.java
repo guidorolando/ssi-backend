@@ -1,7 +1,7 @@
 package com.ssi.ssi.web;
 
 import com.ssi.ssi.common.response.rest.SuccessRestResponse;
-import com.ssi.ssi.domain.model.AccidentAgent;
+import com.ssi.ssi.domain.model.IncidentAgent;
 import com.ssi.ssi.service.AccidentAgentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/accidentAgent")
-@Api(value = "AccidentAgent", description = "create a accident agent")
+@Api(value = "IncidentAgent", description = "create a accident agent")
 public class AccidentAgentController {
 
     @Autowired
@@ -25,36 +25,36 @@ public class AccidentAgentController {
     @RequestMapping(
             method = RequestMethod.POST
     )
-    private ResponseEntity<AccidentAgent> createAccidentAgent(@RequestBody AccidentAgent accidentAgent) {
-        return new ResponseEntity<AccidentAgent>(accidentAgentService.createAccidentAgent(accidentAgent), HttpStatus.CREATED);
+    private ResponseEntity<IncidentAgent> createAccidentAgent(@RequestBody IncidentAgent incidentAgent) {
+        return new ResponseEntity<IncidentAgent>(accidentAgentService.createAccidentAgent(incidentAgent), HttpStatus.CREATED);
     }
 
     @RequestMapping(
             method = RequestMethod.PUT
     )
-    public ResponseEntity<AccidentAgent> updateAccidentAgent(@RequestBody AccidentAgent accidentAgent) {
+    public ResponseEntity<IncidentAgent> updateAccidentAgent(@RequestBody IncidentAgent incidentAgent) {
 
-        Boolean wasUpdated = accidentAgentService.updateAccidentAgent(accidentAgent);
+        Boolean wasUpdated = accidentAgentService.updateAccidentAgent(incidentAgent);
         if (wasUpdated) {
-            Optional<AccidentAgent> accidentAgentDb = accidentAgentService.findAccidentAgentById(accidentAgent.getId());
-            return new ResponseEntity<AccidentAgent>(accidentAgentDb.get(), HttpStatus.OK);
+            Optional<IncidentAgent> accidentAgentDb = accidentAgentService.findAccidentAgentById(incidentAgent.getId());
+            return new ResponseEntity<IncidentAgent>(accidentAgentDb.get(), HttpStatus.OK);
         }
 
-        return new ResponseEntity<AccidentAgent>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<IncidentAgent>(HttpStatus.NOT_FOUND);
     }
 
     @RequestMapping(
             method = RequestMethod.GET
     )
-    public List<AccidentAgent> getAllAccidentAgents() {
+    public List<IncidentAgent> getAllAccidentAgents() {
 
-        List<AccidentAgent> accidentAgents = new ArrayList<>();
+        List<IncidentAgent> incidentAgents = new ArrayList<>();
 
         accidentAgentService.getAllAccidentAgents().forEach(
-                accidentAgent -> accidentAgents.add(accidentAgent)
+                accidentAgent -> incidentAgents.add(accidentAgent)
         );
 
-        return accidentAgents;
+        return incidentAgents;
 
     }
 
@@ -71,12 +71,12 @@ public class AccidentAgentController {
     @RequestMapping(value = "/{id}",
             method = RequestMethod.GET
     )
-    public ResponseEntity<AccidentAgent> getById(@PathVariable Long id) {
-        Optional<AccidentAgent> accidentAgent = accidentAgentService.findAccidentAgentById(id);
+    public ResponseEntity<IncidentAgent> getById(@PathVariable Long id) {
+        Optional<IncidentAgent> accidentAgent = accidentAgentService.findAccidentAgentById(id);
         if (accidentAgent.isPresent()) {
-            return new ResponseEntity<AccidentAgent>(accidentAgent.get(), HttpStatus.OK);
+            return new ResponseEntity<IncidentAgent>(accidentAgent.get(), HttpStatus.OK);
         }
 
-        return new ResponseEntity<AccidentAgent>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<IncidentAgent>(HttpStatus.NOT_FOUND);
     }
 }

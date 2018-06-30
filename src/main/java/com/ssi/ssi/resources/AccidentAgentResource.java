@@ -1,22 +1,22 @@
 package com.ssi.ssi.resources;
 
-import com.ssi.ssi.domain.model.AccidentAgent;
+import com.ssi.ssi.domain.model.IncidentAgent;
 
 public class AccidentAgentResource {
 
-    private final AccidentAgent accidentAgent;
+    private final IncidentAgent incidentAgent;
 
     private Long id;
 
-    private String agentName;
+    private String name;
 
     private Boolean isDeleted;
 
-    public AccidentAgentResource(final AccidentAgent accidentAgent) {
-        this.accidentAgent = accidentAgent;
-        this.id = accidentAgent.getId();
-        this.agentName = accidentAgent.getAgentName();
-        this.isDeleted = accidentAgent.getIsDeleted();
+    public AccidentAgentResource(final IncidentAgent incidentAgent) {
+        this.incidentAgent = incidentAgent;
+        this.id = incidentAgent.getId();
+        this.name = incidentAgent.getName();
+        this.isDeleted = incidentAgent.getIsDeleted();
 
     }
 
@@ -28,12 +28,12 @@ public class AccidentAgentResource {
         this.id = id;
     }
 
-    public String getAgentName() {
-        return agentName;
+    public String getName() {
+        return name;
     }
 
-    public void setAgentName(String agentName) {
-        this.agentName = agentName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Boolean getDeleted() {
