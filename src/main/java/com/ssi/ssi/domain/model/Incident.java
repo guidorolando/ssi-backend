@@ -35,7 +35,7 @@ public class Incident {
 
     @ManyToMany
     @JoinTable(name = "incident_incident_tag",
-            joinColumns = {@JoinColumn(name = "indicent_id")},
+            joinColumns = {@JoinColumn(name = "incident_id")},
             inverseJoinColumns = {@JoinColumn(name = "incident_tags_id")})
     private List<IncidentTag> incidentTags;
 
