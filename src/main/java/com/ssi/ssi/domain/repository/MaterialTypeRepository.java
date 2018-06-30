@@ -11,6 +11,6 @@ import java.util.List;
 
 @Repository
 public interface MaterialTypeRepository extends CrudRepository<MaterialType, Long> {
-    @Query("select empType from MaterialType matType where lower(empType.name) like CONCAT('%',:name,'%')")
-    List<EmployeeType> searchById(@Param("name") String name);
+    /*@Query("select empType from MaterialType matType where lower(empType.name) like CONCAT('%',:name,'%')")
+    List<MaterialType> searchById(@Param("name") String name);*/
 }
