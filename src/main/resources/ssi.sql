@@ -299,9 +299,9 @@ SET NOCOUNT ON;
 BEGIN
 
 	INSERT INTO [dbo].[material](name
-								,vidaUtil
-								,materialDescription
-								,materialTypeID)
+								,vida_util
+								,material_description
+								,material_type_id)
 	VALUES (@name
 			,@vidaUtil
 			,@materialDescription
@@ -338,9 +338,9 @@ SET NOCOUNT ON;
 BEGIN
 
 	UPDATE [dbo].[material] SET name = @name
-								,vidaUtil = @vidaUtil
-								,materialDescription = @materialDescription
-								,materialTypeID = @materialTypeID
+								,vida_util = @vidaUtil
+								,material_description = @materialDescription
+								,material_type_id = @materialTypeID
 							WHERE id = @id;
 END
 GO
@@ -367,7 +367,7 @@ GO
 PRINT 'Procedure get_all_materials was created successfully'
 GO
 
-/*procedure to delete material*/
+/*procedure to delete material by id*/
 IF EXISTS (SELECT *
 FROM sys.objects
 WHERE object_id = OBJECT_ID(N'[dbo].[delete_material]')
@@ -405,8 +405,8 @@ CREATE PROCEDURE [dbo].[CreateAssignment]
 	@id INT OUTPUT,
 	@assignment_date DATETIME = GETDATE,
 	@quantity INT,
-	@employeID INT,
-	@materialID INT
+	@employee_id INT,
+	@material_id INT
 )
 AS
 SET XACT_ABORT ON;
@@ -415,9 +415,9 @@ BEGIN
 
 	INSERT INTO [dbo].[assignment](assignment_date
 								,quantity
-								,employeeID
-								,materialID)
-	VALUES ( @assignment_date
+								,employee
+								,material)
+	VALUES (@assignment_date
 			,@quantity
 			,@employeID
 			,@materialID);
