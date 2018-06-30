@@ -63,7 +63,6 @@ public class AssignmentService {
     public Assignment saveAssignment(Assignment assignment) {
         Material material = materialRepository.findById(assignment.getMaterial().getId()).get();
         assignment.setMaterial(material);
-
         Employee employee = employeeRepository.findById(assignment.getEmployee().getId()).get();
         assignment.setEmployee(employee);
 
@@ -71,6 +70,6 @@ public class AssignmentService {
     }
 
     public List<Assignment> getAllAssignment(){
-        return (List<Assignment>) assignmentRepository.findAll();
+        return assignmentRepository.getAllAssignment();
     }
 }

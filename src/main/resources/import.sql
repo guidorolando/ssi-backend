@@ -1,3 +1,4 @@
+
 -- security
 INSERT INTO role (id, role_name, description) VALUES (1, 'STANDARD_USER', 'Standard User - Has no admin rights');
 INSERT INTO role (id, role_name, description) VALUES (2, 'ADMIN_USER', 'Admin User - Has permission to perform admin tasks');
@@ -58,7 +59,11 @@ insert into material (id, name, material_description, material_type_id,vida_util
 insert into material (id, name, material_description, material_type_id,vida_util) values (3, 'botas', 'description03', 1,5)
 
 --Assignment
-insert into assignment(id,assignment_date,quantity,employee_id,material_id) values (1,'2018-06-05',1,2,1)
+insert into assignment(id,assignment_date,quantity,employee_id,material_id) values (1,'1990-05-06',2,1,1)
+insert into assignment(id,assignment_date,quantity,employee_id,material_id) values (2,'2018-06-05',1,2,1)
+--insert into assignment(id,assignment_date,quantity,employee_id,material_id) values (3,'1990-05-26',2,3,2)
+--insert into assignment(id,assignment_date,quantity,employee_id,material_id) values (4,'1990-05-26',2,4,1)
+
 
 -- capacity
 insert into capacity(id,name,description,is_deleted) values (1, 'Pintor', 'descripcion Capacidad A', 0)

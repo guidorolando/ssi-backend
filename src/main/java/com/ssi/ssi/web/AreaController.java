@@ -1,13 +1,10 @@
 package com.ssi.ssi.web;
 
-import com.ssi.ssi.common.response.rest.SuccessRestResponse;
-import com.ssi.ssi.domain.model.AccidentAgent;
 import com.ssi.ssi.domain.model.Area;
 import com.ssi.ssi.domain.repository.exception.MessageNotFountException;
 import com.ssi.ssi.resources.AreaResource;
 import com.ssi.ssi.service.AreaService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
