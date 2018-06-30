@@ -8,12 +8,12 @@ public class MaterialTypeResource {
 
     private Long id;
 
-    private String name;
+    private String nameType;
 
     public MaterialTypeResource(final MaterialType materialType) {
         this.materialType = materialType;
         this.id = materialType.getId();
-        this.name = materialType.getName();
+        this.nameType = materialType.getNameType();
     }
 
     public Long getId() {
@@ -24,11 +24,11 @@ public class MaterialTypeResource {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNameType() {
+        return nameType;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameType(String nameTyp) {
+        this.nameType = nameTyp;
     }
 }

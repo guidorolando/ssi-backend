@@ -54,4 +54,8 @@ public class IncidentTypeService {
             incidentTypeRepository.save(incidentTypeDb.get());
         }
     }
+
+    public IncidentTypeResource builderIncidentTypeResource(IncidentType incidentType) {
+        return new IncidentTypeResource(incidentType);
+    }
 }

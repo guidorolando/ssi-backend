@@ -1,11 +1,7 @@
 package com.ssi.ssi.web;
 
-import com.ssi.ssi.domain.model.Incident;
 import com.ssi.ssi.domain.model.PersonalInformation;
-import com.ssi.ssi.domain.repository.exception.MessageNotFountException;
-import com.ssi.ssi.resources.IncidentResource;
 import com.ssi.ssi.resources.PersonalInformationResource;
-import com.ssi.ssi.service.IncidentService;
 import com.ssi.ssi.service.PersonalInformationService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Api(value = "personalInformation" , description = "personalInformation")
 @RestController
