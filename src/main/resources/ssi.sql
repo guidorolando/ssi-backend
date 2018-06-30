@@ -274,3 +274,309 @@ GO
 
 PRINT 'Procedure create_incident_incident_tag was created successfully'
 GO
+
+
+/******************************************************************************
+**  ****  Created
+*******************************************************************************
+** Procedure : Insert data on Table role  
+** Uso de la Base de Datos Creada
+******************************************************************************/
+
+IF EXISTS (SELECT * 
+FROM sys.objects 
+WHERE object_id = OBJECT_ID(N'[dbo].[creat_role]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[creat_role];
+END
+GO
+CREATE PROCEDURE [dbo].[creat_role]
+(
+	@role_id INT OUTPUT,
+	@name VARCHAR(50),
+    @description VARCHAR(150)
+    
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+    INSERT INTO [dbo].[role] (role_name, Description)
+    VALUES(@name, @description);
+    SELECT @role_id = @@IDENTITY;
+    PRINT @role_id;
+END
+GO
+
+PRINT 'Procedure insert on table created successfully'
+GO
+
+/*******************************************************************************
+** Procedure : Update data on Table role  
+** Uso de la Base de Datos Creada
+******************************************************************************/
+IF EXISTS (SELECT * 
+FROM sys.objects 
+WHERE object_id = OBJECT_ID(N'[dbo].[update_role]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[update_role];
+END
+GO
+CREATE PROCEDURE [dbo].[update_role]
+(
+	@id INT ,
+	@name VARCHAR(50),
+    @description VARCHAR(150),
+	@is_deleted BIT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+    UPDATE [dbo].[role] 
+	SET role_name = @name,
+	description = @description
+	WHERE id = @id;
+END
+GO
+
+PRINT 'Procedure update_role created successfully'
+GO
+
+/*******************************************************************************
+** Procedure : Delete data on Table role  
+** 
+******************************************************************************/
+
+IF EXISTS (SELECT * 
+FROM sys.objects 
+WHERE object_id = OBJECT_ID(N'[dbo].[delete_role]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[delete_role];
+END
+GO
+CREATE PROCEDURE [dbo].[delete_role]
+(
+	@id INT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+    DELETE FROM [dbo].[role] 
+	
+	WHERE id = @id;
+END
+GO
+
+PRINT 'Procedure delete_role created successfully'
+GO
+
+/*******************************************************************************
+** Procedure : Get data on Table role , for ID
+** 
+******************************************************************************/
+
+IF EXISTS (SELECT * 
+FROM sys.objects 
+WHERE object_id = OBJECT_ID(N'[dbo].[get_role]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[get_role];
+END
+GO
+CREATE PROCEDURE [dbo].[get_role]
+(
+	@id INT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+	SELECT * FROM [dbo].[role]
+	WHERE id = @id;
+END
+GO
+
+PRINT 'Procedure get_role was created successfully'
+GO
+
+
+/*******************************************************************************
+** Procedure : Get all data on Table role , 
+******************************************************************************/
+
+IF EXISTS (SELECT * 
+FROM sys.objects 
+WHERE object_id = OBJECT_ID(N'[dbo].[get_all_role]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[get_all_role];
+END
+GO
+CREATE PROCEDURE [dbo].[get_all_role]
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+	SELECT * FROM [dbo].[role]
+END
+GO
+
+PRINT 'Procedure get_all_role'
+GO
+
+/*******************************************************************************
+Procedure : Insert data on Table user_role  
+** Uso de la Base de Datos Creada
+******************************************************************************/
+
+IF EXISTS (SELECT * 
+FROM sys.objects 
+WHERE object_id = OBJECT_ID(N'[dbo].[creat_user_role]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[creat_user_role];
+END
+GO
+CREATE PROCEDURE [dbo].[creat_user_role]
+(
+	@r_id INT OUTPUT,
+	@u_id int
+       
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+    INSERT INTO [dbo].[user_role] (role_id,user_id)
+    VALUES(@r_id, @u_id);
+    SELECT @r_id = @@IDENTITY;
+    PRINT @r_id;
+END
+GO
+
+PRINT 'Procedure insert on table created successfully'
+GO
+
+/*******************************************************************************
+** Procedure : Update data on Table user_role  
+** Uso de la Base de Datos Creada
+******************************************************************************/
+IF EXISTS (SELECT * 
+FROM sys.objects 
+WHERE object_id = OBJECT_ID(N'[dbo].[update_user_role]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[update_user_role];
+END
+GO
+CREATE PROCEDURE [dbo].[update_user_role]
+(
+	@r_id INT ,
+	@u_id INT,
+	@is_deleted BIT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+    UPDATE [dbo].[user_role] 
+	SET role_id = @r_id,
+	user_id = @u_id
+
+	WHERE user_id = @u_id;
+END
+GO
+
+PRINT 'Procedure update_user_role created successfully'
+GO
+
+/*******************************************************************************
+** Procedure : Delete data on Table user_role  
+** 
+******************************************************************************/
+
+IF EXISTS (SELECT * 
+FROM sys.objects 
+WHERE object_id = OBJECT_ID(N'[dbo].[delete_user_role]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[delete_user_role];
+END
+GO
+CREATE PROCEDURE [dbo].[delete_user_role]
+(
+	@id INT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+    DELETE FROM [dbo].[user_role] 
+	WHERE user_id = @id;
+END
+GO
+
+PRINT 'Procedure delete_role created successfully'
+GO
+
+/*******************************************************************************
+** Procedure : Get data on Table role , for ID user
+** 
+******************************************************************************/
+
+IF EXISTS (SELECT * 
+FROM sys.objects 
+WHERE object_id = OBJECT_ID(N'[dbo].[get_user_role]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[get_user_role];
+END
+GO
+CREATE PROCEDURE [dbo].[get_user_role]
+(
+	@id INT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+	SELECT * FROM [dbo].[user_role]
+	WHERE user_id = @id;
+END
+GO
+
+PRINT 'Procedure get_role was created successfully'
+GO
+
+
+/*******************************************************************************
+** Procedure : Get all data on Table role , 
+******************************************************************************/
+
+IF EXISTS (SELECT * 
+FROM sys.objects 
+WHERE object_id = OBJECT_ID(N'[dbo].[get_all_user_role]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[get_all_user_role];
+END
+GO
+CREATE PROCEDURE [dbo].[get_all_user_role]
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+	SELECT * FROM [dbo].[user_role]
+END
+GO
+
+PRINT 'Procedure get_all_user_role'
+GO
+
+/*******************************************************************************
+*****************************************************************************/
