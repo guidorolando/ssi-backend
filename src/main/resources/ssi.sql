@@ -1134,7 +1134,7 @@ PRINT 'Procedure [dbo].[UpdateMaterial] created'
 GO
 
 /*procedure to get all material*/
-FROM sys.objects
+IF EXISTS (SELECT * FROM sys.objects
 WHERE object_id = OBJECT_ID(N'[dbo].[get_all_material]')
 AND type IN (N'P', N'PC'))
 BEGIN
@@ -1201,12 +1201,12 @@ BEGIN
 
 	INSERT INTO [dbo].[assignment](assignment_date
 								,quantity
-								,employee
-								,material)
+								,employee_id
+								,material_id)
 	VALUES (@assignment_date
 			,@quantity
-			,@employeID
-			,@materialID);
+			,@employee_id
+			,@material_id);
 
 	SELECT @id = @@IDENTITY;
 	PRINT @id;
