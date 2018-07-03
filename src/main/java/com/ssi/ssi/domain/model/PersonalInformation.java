@@ -24,14 +24,7 @@ public class PersonalInformation {
     private Area area;
 
     @ManyToOne
-    private Capacity capacity;
-
-
-    @ManyToMany
-    @JoinTable(name = "personal_information_employee_type",
-            joinColumns = {@JoinColumn(name = "personal_information_id")},
-            inverseJoinColumns = {@JoinColumn(name = "employee_type_id")})
-    private List<EmployeeType> employeeType;
+    private Employee employee;
 
     @Column(name = "is_deleted")
     private Boolean isDeleted;
@@ -60,23 +53,13 @@ public class PersonalInformation {
         this.area = area;
     }
 
-    public Capacity getCapacity() {
-        return capacity;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setCapacity(Capacity capacity) {
-        this.capacity = capacity;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
-
-
-    public List<EmployeeType> getEmployeeType() {
-        return employeeType;
-    }
-
-    public void setEmployeeType(List<EmployeeType> employeeType) {
-        this.employeeType = employeeType;
-    }
-
 
     public Date getRegistrationDate() {
         return registrationDate;

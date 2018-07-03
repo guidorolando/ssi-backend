@@ -35,17 +35,17 @@ public class IncidentService {
 
 
     public Incident createIncident(IncidentResourceCreate incidentResourceCreate) {
-
-        Optional<Employee> employeeDb = employeeService.findById(incidentResourceCreate.getEmployeeId());
+        //guido
+        /*Optional<Employee> employeeDb = employeeService.findById(incidentResourceCreate.getEmployeeId());
         Optional<IncidentType> incidentTypeDb = incidentTypeService.findIncidentTypeById(incidentResourceCreate.getIncidentTypeId());
         Optional<LesionType> lesionTypeDb = lesionTypeService.findLesionTypeById(incidentResourceCreate.getLesionTypeId());
-        Optional<AccidentAgent> accidentAgentDb = accidentAgentService.findAccidentAgentById(incidentResourceCreate.getAccidentAgentId());
+        Optional<IncidentAgent> accidentAgentDb = accidentAgentService.findAccidentAgentById(incidentResourceCreate.getAccidentAgentId());
         if (employeeDb.isPresent() && incidentTypeDb.isPresent() && lesionTypeDb.isPresent() && accidentAgentDb.isPresent()) {
             Incident incident = new Incident();
             incident.setIncidentType(incidentTypeDb.get());
             incident.setEmployee(employeeDb.get());
             incident.setLesionType(lesionTypeDb.get());
-            incident.setAccidentAgent(accidentAgentDb.get());
+            incident.setIncidentAgent(accidentAgentDb.get());
             incident.setAccidentDate(incidentResourceCreate.getAccidentDate());
             incident.setAccidentDay(incidentResourceCreate.getAccidentDay());
             incident.setAccidentTime(incidentResourceCreate.getAccidentTime());
@@ -54,7 +54,7 @@ public class IncidentService {
             incident.setAffectedPart(incidentResourceCreate.getAffectedPart());
             incident.setIsDeleted(Boolean.FALSE);
             return incidentRepository.save(incident);
-        }
+        }*/
 
         return new Incident();
 
@@ -66,7 +66,7 @@ public class IncidentService {
 
         Optional<Incident> incidentDb = findIncidentById(incidentResourceCreate.getIncidentId());
         Optional<IncidentType> incidentTypeDb = incidentTypeService.findIncidentTypeById(incidentResourceCreate.getIncidentTypeId());
-        Optional<AccidentAgent> accidentAgentDb = accidentAgentService.findAccidentAgentById(incidentResourceCreate.getAccidentAgentId());
+        Optional<IncidentAgent> accidentAgentDb = accidentAgentService.findAccidentAgentById(incidentResourceCreate.getAccidentAgentId());
         Optional<LesionType> lesionTypeDb = lesionTypeService.findLesionTypeById(incidentResourceCreate.getLesionTypeId());
         if (incidentDb.isPresent() && incidentTypeDb.isPresent() && accidentAgentDb.isPresent() && lesionTypeDb.isPresent()) {
             incidentDb.get().setIncidentType(incidentTypeDb.get());
@@ -112,7 +112,7 @@ public class IncidentService {
         instance.setAccidentTime(incident.getAccidentTime());
         instance.setAffectedPart(incident.getAffectedPart());
         instance.setWorkingTurn(incident.getWorkingTurn());
-        instance.setAccidentAgent(accidentAgentService.builderAccidentAgentResource(incident.getAccidentAgent()));
+        instance.setAccidentAgent(accidentAgentService.builderAccidentAgentResource(incident.getIncidentAgent()));
         instance.setDeleted(incident.getIsDeleted());
         instance.setEmployee(employeeService.builderEmployeeResource(incident.getEmployee()));
         instance.setIncidentType(incidentTypeService.builderIncidentTypeResource(incident.getIncidentType()));
