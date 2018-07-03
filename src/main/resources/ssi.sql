@@ -1394,5 +1394,282 @@ GO
 PRINT 'Procedure get_all_employee was created successfully'
 GO
 
+/*procedure to create incident_agent*/
+IF EXISTS (SELECT * 
+FROM sys.objects 
+WHERE object_id = OBJECT_ID(N'[dbo].[create_incident_agent]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[create_incident_agent];
+END
+GO
+CREATE PROCEDURE [dbo].[create_incident_agent]
+(
+    @name VARCHAR(50),
+    @id INT OUTPUT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+    INSERT INTO [dbo].[incident_agent](name, is_deleted)
+    VALUES(@name, 0);
+    SELECT @id = @@IDENTITY;
+END
+GO
+
+PRINT 'Procedure create_incident_agent was created successfully'
+GO
 
 
+/*procedure to update incident_agent*/
+IF EXISTS (SELECT * 
+FROM sys.objects 
+WHERE object_id = OBJECT_ID(N'[dbo].[update_incident_agent]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[update_incident_agent];
+END
+GO
+
+
+CREATE PROCEDURE [dbo].[update_incident_agent]
+(
+	@id INT,
+    @name VARCHAR(255),
+ 	@is_deleted BIT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+    UPDATE [dbo].[incident_agent] 
+	SET name = @name,
+	is_deleted = @is_deleted
+	WHERE id = @id;
+END
+GO
+
+PRINT 'Procedure update_incident_agent was created successfully'
+GO
+
+
+/*procedure to delete incident_agent*/
+IF EXISTS (SELECT * 
+FROM sys.objects 
+WHERE object_id = OBJECT_ID(N'[dbo].[delete_incident_agent]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[delete_incident_agent];
+END
+GO
+CREATE PROCEDURE [dbo].[delete_incident_agent]
+(
+	@id INT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+    UPDATE [dbo].[incident_agent] 
+	SET is_deleted = 1
+	WHERE id = @id;
+END
+GO
+
+PRINT 'Procedure delete_incident_agent was created successfully'
+GO
+
+
+/*procedure to get incident_type*/
+IF EXISTS (SELECT * 
+FROM sys.objects 
+WHERE object_id = OBJECT_ID(N'[dbo].[get_incident_agent]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[get_incident_agent];
+END
+GO
+CREATE PROCEDURE [dbo].[get_incident_agent]
+(
+	@id INT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+	SELECT * FROM [dbo].[incident_agent]
+	WHERE id = @id;
+END
+GO
+
+PRINT 'Procedure get_incident_agent was created successfully'
+GO
+
+
+/*procedure to get all incident_agent*/
+IF EXISTS (SELECT * 
+FROM sys.objects 
+WHERE object_id = OBJECT_ID(N'[dbo].[get_all_incident_agent]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[get_all_incident_agent];
+END
+GO
+
+
+CREATE PROCEDURE [dbo].[get_all_incident_agent]
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+	SELECT * FROM [dbo].[incident_agent]
+END
+GO
+
+PRINT 'Procedure get_all_incident_agent was created successfully'
+GO
+
+/*procedure to create lesion_type*/
+
+IF EXISTS (SELECT * 
+FROM sys.objects 
+WHERE object_id = OBJECT_ID(N'[dbo].[create_lesion_type]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[create_lesion_type];
+END
+GO
+
+
+CREATE PROCEDURE [dbo].[create_lesion_type]
+(
+    @type VARCHAR(50),
+    @description VARCHAR(100),
+    @lesion_type_id INT OUTPUT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+    INSERT INTO [dbo].[lesion_type](type, description, is_deleted)
+    VALUES(@type, @description, 0);
+    SELECT @lesion_type_id = @@IDENTITY;
+END
+GO
+
+PRINT 'Procedure create_lesion_type was created successfully'
+GO
+
+
+/*procedure to update lesion_type*/
+IF EXISTS (SELECT * 
+FROM sys.objects 
+WHERE object_id = OBJECT_ID(N'[dbo].[update_lesion_type]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[update_lesion_type];
+END
+GO
+
+
+CREATE PROCEDURE [dbo].[update_lesion_type]
+(
+	@id INT,
+    @type VARCHAR(50),
+    @description VARCHAR(100),
+	@is_deleted BIT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+    UPDATE [dbo].[lesion_type] 
+	SET type = @type,
+	description = @description,
+	is_deleted = @is_deleted
+	WHERE id = @id;
+END
+GO
+
+PRINT 'Procedure update_lesion_type was created successfully'
+GO
+
+
+
+/*procedure to delete lesion_type*/
+IF EXISTS (SELECT * 
+FROM sys.objects 
+WHERE object_id = OBJECT_ID(N'[dbo].[delete_lesion_type]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[delete_lesion_type];
+END
+GO
+CREATE PROCEDURE [dbo].[delete_lesion_type]
+(
+	@id INT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+    UPDATE [dbo].[lesion_type] 
+	SET is_deleted = 1
+	WHERE id = @id;
+END
+GO
+
+PRINT 'Procedure delete_lesion_type was created successfully'
+GO
+
+
+
+/*procedure to get lesion_type*/
+IF EXISTS (SELECT * 
+FROM sys.objects 
+WHERE object_id = OBJECT_ID(N'[dbo].[get_lesion_type]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[get_lesion_type];
+END
+GO
+
+
+CREATE PROCEDURE [dbo].[get_lesion_type]
+(
+	@id INT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+	SELECT * FROM [dbo].[lesion_type]
+	WHERE id = @id;
+END
+GO
+
+PRINT 'Procedure get_lesion_type was created successfully'
+GO
+
+
+/*procedure to get all lesion_type*/
+IF EXISTS (SELECT * 
+FROM sys.objects 
+WHERE object_id = OBJECT_ID(N'[dbo].[get_all_lesion_type]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[get_all_lesion_type];
+END
+GO
+CREATE PROCEDURE [dbo].[get_all_lesion_type]
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+	SELECT * FROM [dbo].[lesion_type]
+END
+GO
+
+PRINT 'Procedure get_all_lesion_type was created successfully'
+GO
