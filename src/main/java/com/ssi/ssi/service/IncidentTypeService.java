@@ -23,7 +23,7 @@ public class IncidentTypeService {
 
     public IncidentType createIncidentType(IncidentTypeResource incidentTypeResource) {
         Long incidentTypeId = incidentTypeRepository.createIncidentType(incidentTypeResource.getName(), incidentTypeResource.getDescription());
-        return incidentTypeRepository.getIncidentType(incidentTypeId);
+        return incidentTypeRepository.getIncidentType(incidentTypeId).get();
     }
 
     public Boolean updateIncidentType(IncidentType incidentType) {
