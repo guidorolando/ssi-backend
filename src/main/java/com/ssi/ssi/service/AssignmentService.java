@@ -7,6 +7,7 @@ import com.ssi.ssi.domain.model.Material;
 import com.ssi.ssi.domain.repository.AssignmentRepository;
 import com.ssi.ssi.domain.repository.EmployeeRepository;
 import com.ssi.ssi.domain.repository.MaterialRepository;
+import com.ssi.ssi.request.AssignmentRequest;
 import com.ssi.ssi.resources.AssignmentResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,9 +30,9 @@ public class AssignmentService {
     @Autowired
     private StoreService storeService;
 
-    public List<Assignment> getAssignmentAll(){
+    /*public List<Assignment> getAssignmentAll(){
         return (List<Assignment>) assignmentRepository.findAll();
-    }
+    }*/
     public Optional<Assignment> getAssignmentById(Long id){
         return assignmentRepository.findById(id);
     }
@@ -44,21 +45,21 @@ public class AssignmentService {
         }
         //storeService.getById(id).get().getStock()>=quantity
         return checkStock;
-    }
-    public Assignment createAssignment( AssignmentResource assignmentResource, Integer quantity){
-        //Optional<Material> materialId = materialService.getMaterialById(assignmentResource.getMaterialId());
-        //Optional<Employee> employeeId = employeeService.findById(assignmentResource.getEmployeeId());
+    }/*
+    public Assignment createAssignment( AssignmentResource assignmentReq){
+        Optional<Material> materialId = materialService.getMaterialById(assignmentReq.getMaterial().getId());
+        Optional<Employee> employeeId = employeeService.findById(assignmentReq.getEmployee().getId());
 
-        /*if(materialId.isPresent() && employeeId.isPresent() && stockCheck(materialId.get(),quantity)){
+        if(materialId.isPresent()){
             Assignment assignment = new Assignment();
             assignment.setMaterial(materialId.get());
             assignment.setEmployee(employeeId.get());
             assignment.setQuantity(assignmentResource.getQuantity());
             assignment.setAssignmentDate(assignmentResource.getAssignmentDate());
 
-        }*/
-        return null;
-    }
+        }
+    }*/
+
 
     public Assignment saveAssignment(Assignment assignment) {
         Material material = materialRepository.findById(assignment.getMaterial().getId()).get();
