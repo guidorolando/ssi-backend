@@ -12,6 +12,7 @@ import com.ssi.ssi.resources.AssignmentResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,9 +31,6 @@ public class AssignmentService {
     @Autowired
     private StoreService storeService;
 
-    /*public List<Assignment> getAssignmentAll(){
-        return (List<Assignment>) assignmentRepository.findAll();
-    }*/
     public Optional<Assignment> getAssignmentById(Long id){
         return assignmentRepository.findById(id);
     }
@@ -45,22 +43,58 @@ public class AssignmentService {
         }
         //storeService.getById(id).get().getStock()>=quantity
         return checkStock;
-    }/*
-    public Assignment createAssignment( AssignmentResource assignmentReq){
-        Optional<Material> materialId = materialService.getMaterialById(assignmentReq.getMaterial().getId());
-        Optional<Employee> employeeId = employeeService.findById(assignmentReq.getEmployee().getId());
+    }
+    public Assignment createAssignment(AssignmentRequest assignmentReq){
+        Optional<Material> materialId = materialService.getMaterialById(assignmentReq.getMaterialId());
+        Optional<Employee> employeeId = employeeService.findById(assignmentReq.getEmployeeId());
 
-        if(materialId.isPresent()){
+        if(materialId.isPresent()&& employeeId.isPresent()){
             Assignment assignment = new Assignment();
-            assignment.setMaterial(materialId.get());
             assignment.setEmployee(employeeId.get());
-            assignment.setQuantity(assignmentResource.getQuantity());
-            assignment.setAssignmentDate(assignmentResource.getAssignmentDate());
-
+            assignment.setMaterial(materialId.get());
+            assignment.setAssignmentDate(assignmentReq.getAssignmentDate());
+            assignment.setQuantity(assignmentReq.getQuantity());
+            return assignmentRepository.save(assignment);
         }
-    }*/
+        return new Assignment();
+    }
 
+    public Boolean updateAssignment(Long id, AssignmentRequest updatedAssign){
 
+        Boolean wasUpdated = Boolean.FALSE;
+        Optional<Assignment> assignment = getAssignmentById(id);
+        Optional<Employee> employeeId = employeeService.findById(updatedAssign.getEmployeeId());
+        Optional<Material> materialId = materialService.getMaterialById(updatedAssign.getMaterialId());
+        if(materialId.isPresent() && employeeId.isPresent()){
+            assignment.get().setEmployee(employeeId.get());
+            assignment.get().setMaterial(materialId.get());
+            assignment.get().setAssignmentDate(updatedAssign.getAssignmentDate());
+            assignment.get().setQuantity(updatedAssign.getQuantity());
+            assignmentRepository.save(assignment.get());
+            wasUpdated = Boolean.TRUE;
+        }
+        return wasUpdated;
+    }
+
+    public void delete(Assignment assignment) {
+        assignmentRepository.delete(assignment);
+    }
+
+    public Boolean deleteById(Long id) {
+        Boolean wasDeleted = Boolean.FALSE;
+        Optional<Assignment> assignment = getAssignmentById(id);
+        if (assignment.isPresent()) {
+            assignmentRepository.delete(assignment.get());
+            wasDeleted = Boolean.TRUE;
+        }
+        return wasDeleted;
+    }
+
+    public List<Assignment> getAllAssignment(){
+        return assignmentRepository.getAllAssignment();
+    }
+
+    /*
     public Assignment saveAssignment(Assignment assignment) {
         Material material = materialRepository.findById(assignment.getMaterial().getId()).get();
         assignment.setMaterial(material);
@@ -68,9 +102,5 @@ public class AssignmentService {
         assignment.setEmployee(employee);
 
         return assignmentRepository.save(assignment);
-    }
-
-    public List<Assignment> getAllAssignment(){
-        return assignmentRepository.getAllAssignment();
-    }
+    }*/
 }

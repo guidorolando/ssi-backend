@@ -32,10 +32,8 @@ public class MaterialController {
     }
     @RequestMapping(method = RequestMethod.POST)
     private SuccessRestResponse createMaterial(@RequestBody MaterialRequest materialNew){
-        //return new ResponseEntity<Material>(materialService.saveMaterial(materialNew),HttpStatus.CREATED);
         materialService.saveMaterial(materialNew);
         return new SuccessRestResponse();
-       // return ResponseEntity.ok(new MaterialResource(material));
     }
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public ResponseEntity<Material> findMaterialById(@PathVariable Long id){
@@ -55,15 +53,12 @@ public class MaterialController {
     }
 
     @RequestMapping( value = "/{id}", method = RequestMethod.PUT)
-    public SuccessRestResponse updateMaterial(@PathVariable Long id, @RequestBody MaterialRequest updatedMaterial){
-
-        materialService.saveMaterial(updatedMaterial);
-        return new SuccessRestResponse();
-        /*Boolean wasUpdated =  materialService.updateMaterial(id, updatedMaterial);
-        if(wasUpdated){
-            return findMaterialById(id);
+    public ResponseEntity<Material> updateMaterial(@PathVariable Long id, @RequestBody MaterialRequest materialNew){
+        Boolean wasUpdated = materialService.updateMaterial(materialNew.getId(), materialNew);
+        if (wasUpdated) {
+            Optional<Material> materialUp = materialService.getMaterialById(materialNew.getId());
+            return new ResponseEntity<Material>(materialUp.get(), HttpStatus.OK);
         }
-        return new ResponseEntity<Material>(HttpStatus.NOT_FOUND);*/
+        return new ResponseEntity<Material>(HttpStatus.NOT_FOUND);
     }
-
 }
