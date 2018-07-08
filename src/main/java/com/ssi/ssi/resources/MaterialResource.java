@@ -10,14 +10,10 @@ public class MaterialResource {
     private final Material material;
 
     private Long id;
-
     private String name;
-
     private Long vidaUtil;
-
     private String description;
-
-    private MaterialType matType;
+    private MaterialTypeResource matType;
 
 
     public MaterialResource(final Material material) {
@@ -26,7 +22,7 @@ public class MaterialResource {
         this.name = material.getName();
         this.vidaUtil = material.getVidaUtil();
         this.description = material.getMatDescription();
-        this.matType = material.getMaterialType();
+        this.matType = build(material.getMaterialType());
     }
 
     public Long getVidaUtil() {
@@ -61,11 +57,24 @@ public class MaterialResource {
         this.description = description;
     }
 
-    public MaterialType getMatType() {
+    /*public MaterialType getMatType() {
         return matType;
     }
 
     public void setMatType(MaterialType matType) {
+        this.matType = matType;
+    }*/
+
+    public MaterialTypeResource build(MaterialType materialType){
+        MaterialTypeResource resource = new MaterialTypeResource(materialType);
+        return resource;
+    }
+
+    public MaterialTypeResource getMatType() {
+        return matType;
+    }
+
+    public void setMatType(MaterialTypeResource matType) {
         this.matType = matType;
     }
 }
