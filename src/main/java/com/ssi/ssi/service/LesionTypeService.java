@@ -13,7 +13,7 @@ import java.util.Optional;
 public class LesionTypeService {
 
     @Autowired
-    private LesionTypeRepository lesionTypeRepository;
+private LesionTypeRepository lesionTypeRepository;
 
     public Optional<LesionType> findLesionTypeById(Long id) {
         return lesionTypeRepository.findById(id);

@@ -35,8 +35,7 @@ public class IncidentService {
 
 
     public Incident createIncident(IncidentResourceCreate incidentResourceCreate) {
-        //guido
-        /*Optional<Employee> employeeDb = employeeService.findById(incidentResourceCreate.getEmployeeId());
+        Optional<Employee> employeeDb = employeeService.findById(incidentResourceCreate.getEmployeeId());
         Optional<IncidentType> incidentTypeDb = incidentTypeService.findIncidentTypeById(incidentResourceCreate.getIncidentTypeId());
         Optional<LesionType> lesionTypeDb = lesionTypeService.findLesionTypeById(incidentResourceCreate.getLesionTypeId());
         Optional<IncidentAgent> accidentAgentDb = accidentAgentService.findAccidentAgentById(incidentResourceCreate.getAccidentAgentId());
@@ -54,7 +53,7 @@ public class IncidentService {
             incident.setAffectedPart(incidentResourceCreate.getAffectedPart());
             incident.setIsDeleted(Boolean.FALSE);
             return incidentRepository.save(incident);
-        }*/
+        }
 
         return new Incident();
 

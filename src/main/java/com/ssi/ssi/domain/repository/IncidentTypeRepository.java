@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public interface IncidentTypeRepository extends CrudRepository<IncidentType, Long> {
 
@@ -19,7 +20,7 @@ public interface IncidentTypeRepository extends CrudRepository<IncidentType, Lon
     Long createIncidentType(String name, String description);
 
     @Query(nativeQuery = true, value = "exec get_incident_type :id")
-    IncidentType getIncidentType(@Param("id") Long id);
+    Optional<IncidentType> getIncidentType(@Param("id") Long id);
 
     @Query(nativeQuery = true, value = "exec get_all_incident_type")
     List<IncidentType> getAllIncidentType();
