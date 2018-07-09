@@ -1,6 +1,8 @@
 package com.ssi.ssi.web;
 
+import com.ssi.ssi.common.response.rest.SuccessRestResponse;
 import com.ssi.ssi.domain.model.Material;
+import com.ssi.ssi.request.MaterialRequest;
 import com.ssi.ssi.resources.MaterialResource;
 import com.ssi.ssi.service.MaterialService;
 import io.swagger.annotations.Api;
@@ -29,9 +31,9 @@ public class MaterialController {
         return materialResources;
     }
     @RequestMapping(method = RequestMethod.POST)
-    private ResponseEntity<MaterialResource> createMaterial(@RequestBody Material materialNew){
-        Material material = materialService.saveMaterial(materialNew);
-        return ResponseEntity.ok(new MaterialResource(material));
+    private SuccessRestResponse createMaterial(@RequestBody MaterialRequest materialNew){
+        materialService.saveMaterial(materialNew);
+        return new SuccessRestResponse();
     }
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public ResponseEntity<Material> findMaterialById(@PathVariable Long id){
@@ -51,13 +53,12 @@ public class MaterialController {
     }
 
     @RequestMapping( value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Material> updateMaterial(@PathVariable Long id, @RequestBody Material updatedMaterial){
-
-        Boolean wasUpdated =  materialService.updateMaterial(id, updatedMaterial);
-        if(wasUpdated){
-            return findMaterialById(id);
+    public ResponseEntity<Material> updateMaterial(@PathVariable Long id, @RequestBody MaterialRequest materialNew){
+        Boolean wasUpdated = materialService.updateMaterial(materialNew.getId(), materialNew);
+        if (wasUpdated) {
+            Optional<Material> materialUp = materialService.getMaterialById(materialNew.getId());
+            return new ResponseEntity<Material>(materialUp.get(), HttpStatus.OK);
         }
         return new ResponseEntity<Material>(HttpStatus.NOT_FOUND);
     }
-
 }

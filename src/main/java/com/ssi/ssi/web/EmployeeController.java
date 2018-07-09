@@ -42,7 +42,7 @@ public class EmployeeController extends AbstractEmployeeController {
             method = RequestMethod.GET
     )
     public SingleRestResponse<EmployeeResource> getById(@PathVariable Long id){
-        final EmployeeResource resource = new EmployeeResource(service.findById(id));
+        final EmployeeResource resource = service.findById(id).map(EmployeeResource::new).get();
         return new SingleRestResponse<>(resource);
     }
 
