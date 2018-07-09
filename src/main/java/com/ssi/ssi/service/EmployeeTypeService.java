@@ -20,11 +20,11 @@ public class EmployeeTypeService {
 
     public List<EmployeeType> getAll(){
 
-        return (List<EmployeeType>) employeeTypeRepository.findAll();
+        return (List<EmployeeType>) employeeTypeRepository.getAll();
     }
 
     public Optional<EmployeeType> findById(Long id){
-        return employeeTypeRepository.findById(id);
+        return employeeTypeRepository.getEmployeeType(id);
     }
 
     public List<EmployeeType> finByName(String name){
@@ -35,7 +35,7 @@ public class EmployeeTypeService {
         EmployeeType employeeType = new EmployeeType();
         employeeType.setName(request.getTypeName());
         employeeType.setDescription(request.getDescription());
-        employeeTypeRepository.save(employeeType);
+        employeeTypeRepository.createEmployeeType(employeeType.getName(), employeeType.getDescription());
     }
 
     public void updateEmployeType (EmployeeTypeRequest request, Long id){

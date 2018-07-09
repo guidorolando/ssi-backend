@@ -2,10 +2,11 @@ package com.ssi.ssi.service;
 
 import com.ssi.ssi.domain.model.*;
 import com.ssi.ssi.domain.repository.PersonalInformationRepository;
-import com.ssi.ssi.resources.PersonalInformationResource;
+import com.ssi.ssi.request.PersonalInformationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,7 +15,7 @@ public class PersonalInformationService {
     PersonalInformationRepository personalInformationRepository;
 
     @Autowired
-    EmployeeTypeService employeeTypeService;
+    EmployeeService employeeService;
 
     @Autowired
     AreaService areaService;
@@ -22,83 +23,77 @@ public class PersonalInformationService {
     @Autowired
     CapacityService capacityService;
 
+    public List<PersonalInformation> findAll() {
 
-    public Optional<PersonalInformation> findEmployeeById(Long id) {
+        return (List<PersonalInformation>) personalInformationRepository.findAll();
+    }
+
+    public Optional<PersonalInformation> findPersonalById(Long id) {
 
         return personalInformationRepository.findById(id);
     }
 
-    public PersonalInformation createPersonalInformation(PersonalInformationResource personalInformationResource) {
+    public void createPersonalInformation(PersonalInformationRequest personalInformationRequest) {
 
-        Optional<Area> areaDb = areaService.getId(personalInformationResource.getAreaId());
-        Optional<Capacity> capacityDb = capacityService.getId(personalInformationResource.getCapacityId());
-        Optional<EmployeeType> employeeTypeDb = employeeTypeService.findById(personalInformationResource.getEmployeeTypeId());
+        Optional<Area> areaDb = areaService.getId(personalInformationRequest.getAreaId());
+        Optional<Employee> employeeDb = employeeService.findById(personalInformationRequest.getEmployeeId());
 
 
-        if(areaDb.isPresent() && capacityDb.isPresent() && employeeTypeDb.isPresent()){
+        if(areaDb.isPresent() && employeeDb.isPresent()){
             PersonalInformation personalInformation = new PersonalInformation();
-            // personalInformation.setArea(areaDb.get());
-            //personalInformation.setCapacity(capacityDb.get());
-           // personalInformation.setEmployeeType((employeeTypeDb.get()));
+            personalInformation.setArea(areaDb.get());
+            personalInformation.setEmployee(employeeDb.get());
+            personalInformation.setLegalName(personalInformationRequest.getLegalName());
+            personalInformation.setRegistrationDate(personalInformationRequest.getRegistrationDate());
             personalInformation.setDeleted(Boolean.FALSE);
-            return personalInformationRepository.save(personalInformation);
+            personalInformationRepository.save(personalInformation);
         }
-
-        return new PersonalInformation();
+        else{
+            System.out.println("The Employee with id " + personalInformationRequest.getEmployeeId() +
+                    " and  Area with id " + personalInformationRequest.getAreaId() +" not exist.");
+        }
 
     }
 
 
-    public Boolean updatePersonalInformation(PersonalInformationResource personResource) {
+    public void updatePersonalInformation(PersonalInformationRequest personalInformationRequest, Long id) {
 
-        Boolean wasUpdated = Boolean.FALSE;
-
-        Optional<PersonalInformation> personalInformationDb = findEmployeeById(personResource.getEmployeeTypeId());
-       // List<EmployeeType> employeeTypeDb = employeeTypeService.findById(personResource.getEmployeeTypeId());
+        Optional<PersonalInformation> personalInformationDb = findPersonalById(id);
+        Optional<Employee> employeeDb = employeeService.findById(personalInformationRequest.getEmployeeId());
+        Optional<Area> areaDb = areaService.findAreaById(personalInformationRequest.getAreaId());
 
          if (personalInformationDb.isPresent()) {
-            // personalInformationDb.get().setEmployeeType(employeeTypeDb.);
-             personalInformationRepository.save(personalInformationDb.get());
-            wasUpdated = Boolean.TRUE;
+             if(areaDb.isPresent() && employeeDb.isPresent()){
+                 personalInformationDb.get().setArea(areaDb.get());
+                 personalInformationDb.get().setEmployee(employeeDb.get());
+                 personalInformationDb.get().setLegalName(personalInformationRequest.getLegalName());
+                 personalInformationDb.get().setRegistrationDate(personalInformationRequest.getRegistrationDate());
+                 personalInformationDb.get().setDeleted(Boolean.FALSE);
+                 personalInformationRepository.save(personalInformationDb.get());
+             }
+             else{
+                 System.out.println("The Employee with id " + personalInformationRequest.getEmployeeId() +
+                         " and  Area with id " + personalInformationRequest.getAreaId() +" not exist.");
+             }
+
+        }else{
+             System.out.println("The PersonalInformation with id '" + id + "' not exist.");
+         }
+    }
+
+    public void deletePersonalInformation (Long id){
+        if(personalInformationRepository.existsById(id)) {
+            Optional<PersonalInformation> personalInformation = findPersonalById(id);
+            personalInformation.get().setDeleted(Boolean.TRUE);
+            personalInformationRepository.save(personalInformation.get());
+            System.out.println("The PersonalInformation with id '" + id + "' is deleted.");
         }
-
-        return wasUpdated;
+        else
+        {
+            System.out.println("No exist the PersonalInformation with id '" + id + "' for delete.");
+        }
     }
 
-    public Iterable<PersonalInformation> getAllPersonalInformation() {
-        return personalInformationRepository.findAll();
-    }
-
-
-
-
-
-
-
-
-
-
-/*
-    public List<PersonalInformation> getAllPersonal(){
-        return (List<PersonalInformation>) personalInformationRepository.findAll();
-    }
-
-    public Optional<PersonalInformation> getId(Long id){
-        return  personalInformationRepository.findById(id);
-    }
-
-    public PersonalInformation save(PersonalInformation personalInformation){
-        return  personalInformationRepository.save(personalInformation);
-    }
-
-    public  void delete(PersonalInformation personalInformation){
-        personalInformationRepository.delete(personalInformation);
-    }
-    public void  deleteById(Long id){
-        personalInformationRepository.deleteById(id);
-    }
-
-*/
 
 
 }

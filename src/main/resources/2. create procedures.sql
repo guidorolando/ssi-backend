@@ -404,6 +404,31 @@ GO
 PRINT 'Procedure get_all_employee_type was created successfully'
 GO
 
+/*procedure to delete employeeType*/
+IF EXISTS (SELECT *
+FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[delete_employee_Type]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[delete_employee_Type];
+END
+GO
+CREATE PROCEDURE [dbo].[delete_employee_Type]
+(
+	@id INT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+    UPDATE [dbo].[employee_type]
+	SET is_deleted = 1
+	WHERE id = @id;
+END
+GO
+
+PRINT 'Procedure delete_employee_type was created successfully'
+GO
 
 /*procedure to create area*/
 IF EXISTS (SELECT *

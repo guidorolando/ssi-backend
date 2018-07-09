@@ -23,9 +23,9 @@ public class EmployeeService {
     @Autowired
     private EmployeeTypeRepository employeeTypeRepository;
 
-    public List<Employee> findAll() {
+    /*public List<Employee> findAll() {
         return (List<Employee>) employeeRepository.findAll();
-    }
+    }*/
 
     public List<Employee> getAll() {
         return (List<Employee>) employeeRepository.getAll();
