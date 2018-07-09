@@ -2,10 +2,13 @@ package com.ssi.ssi.service;
 
 import com.ssi.ssi.domain.model.*;
 import com.ssi.ssi.domain.repository.PersonalInformationRepository;
+import com.ssi.ssi.request.PersonalInformationRequest;
 import com.ssi.ssi.resources.PersonalInformationResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -72,6 +75,34 @@ public class PersonalInformationService {
 
 
 
+    public Optional<PersonalInformation> findById(Long id) {
+        Optional<PersonalInformation> personalInformation = personalInformationRepository.getPersonalInformation(id);
+        if(personalInformation.isPresent() && personalInformation.get().getDeleted().equals(Boolean.FALSE)){
+            return personalInformation;
+        }else {
+            return null;
+        }
+    }
+
+
+    public List<PersonalInformation> getPersonalInformationFull(){
+        return personalInformationRepository.getPersonalInformationFull();
+    }
+     public void addPersonalInformation(PersonalInformationRequest personalInformationRequest){
+        if(personalInformationRepository.existsById(personalInformationRequest.getId())) {
+            Optional<PersonalInformation> employeeType = personalInformationRepository.findById(personalInformationRequest.getId());
+            PersonalInformation personalInformation = new PersonalInformation();
+            personalInformation.setLegalName(personalInformation.getLegalName());
+            personalInformation.setArea(personalInformation.getArea());
+            personalInformation.setEmployee(personalInformation.getEmployee());
+            personalInformation.setRegistrationDate(personalInformation.getRegistrationDate());
+            personalInformation.setDeleted(Boolean.FALSE);
+
+         //   personalInformationRepository.createPersonalInformation(personalInformation.getLegalName(), personalInformation.getArea() ,personalInformation.getDeleted(),personalInformation.getEmployee(),personalInformation.getId());
+        }else{
+            System.out.println("The Area Type Id, not exist for a valid registry.");
+        }
+    }
 
 
 

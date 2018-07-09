@@ -3,6 +3,7 @@ package com.ssi.ssi.service;
 
 import com.ssi.ssi.domain.model.Area;
 import com.ssi.ssi.domain.repository.AreaRepository;
+import com.ssi.ssi.request.AreaRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -66,6 +67,34 @@ public class AreaService {
 
     }
 
+    public Optional<Area> findById(Long id) {
+        Optional<Area> area = areaRepository.getArea(id);
+        if(area.isPresent() && area.get().getDeleted().equals(Boolean.FALSE)){
+            return area;
+        }else {
+            return null;
+        }
+    }
+
+
+    public List<Area> getAllAreas(){
+        return areaRepository.getAllAreas();
+    }
+
+    public void addArea(AreaRequest areaRequest){
+        if(areaRepository.existsById(areaRequest.getId())) {
+            Optional<Area> employeeType = areaRepository.findById(areaRequest.getId());
+            Area area = new Area();
+            area.setCodigo(area.getCodigo());
+            area.setDescription(area.getDescription());
+            area.setName(area.getName());
+            area.setDeleted(false);
+            areaRepository.createArea(area.getCodigo(),area.getDescription(),area.getName(),area.getDeleted(),area.getId());
+
+        }else{
+            System.out.println("The Area Type Id, not exist for a valid registry.");
+        }
+    }
 
 
 }

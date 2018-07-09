@@ -728,6 +728,35 @@ GO
 PRINT 'Procedure [dbo].[update_capacity] created complete'
 GO
 
+/****
+************************************************************************
+************    CREATE PROCEDURE  UPDATE    ****************************
+************                                ****************************
+************         FOR CAPACITY           ****************************
+************************************************************************
+****/
+
+
+CREATE PROCEDURE [dbo].[update_capacity]
+(
+
+	 @id INT
+	,@name VARCHAR(50)
+	,@description VARCHAR(50)
+	,@is_deleted  bit NULL
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+	UPDATE [dbo].[capacity] SET  name = @name
+								,description = @description
+								,is_deleted = @is_deleted
+						     	WHERE id = @id;
+END
+GO
+PRINT 'Procedure [dbo].[update_capacity] update complete'
+GO
 
 /****
 **************************************************************************
@@ -764,35 +793,9 @@ PRINT 'Procedure get_capacity was created successfully'
 GO
 
 
-/****
-************************************************************************
-************    CREATE PROCEDURE  UPDATE    ****************************
-************                                ****************************
-************         FOR CAPACITY           ****************************
-************************************************************************
-****/
 
 
-CREATE PROCEDURE [dbo].[update_capacity]
-(
 
-	 @id INT
-	,@name VARCHAR(50)
-	,@description VARCHAR(50)
-	,@is_deleted  bit NULL
-)
-AS
-SET XACT_ABORT ON;
-SET NOCOUNT ON;
-BEGIN
-	UPDATE [dbo].[capacity] SET  name = @name
-								,description = @description
-								,is_deleted = @is_deleted
-						     	WHERE id = @id;
-END
-GO
-PRINT 'Procedure [dbo].[update_capacity] update complete'
-GO
 
 
 /****
@@ -1071,6 +1074,31 @@ END
 GO
 
 
+/****
+**************************************************************************
+************     PROCEDURE  DELETE             ****************************
+************                                   ****************************
+************         FOR PERSONAL INFORMATION  ****************************
+***************************************************************************
+****/
+
+
+CREATE PROCEDURE [dbo].[delete_personal_information]
+(
+	@id INT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+    DELETE FROM [dbo].[personal_information]
+	WHERE id = @id;
+END
+GO
+
+PRINT 'Procedure delete_personal_information was created successfully complete'
+GO
+
 
 
 /****
@@ -1107,30 +1135,12 @@ GO
 PRINT 'Procedure get_personal_information was created successfully'
 GO
 
-/****
-**************************************************************************
-************     PROCEDURE  DELETE             ****************************
-************                                   ****************************
-************         FOR PERSONAL INFORMATION  ****************************
-***************************************************************************
-****/
 
 
-CREATE PROCEDURE [dbo].[delete_personal_information]
-(
-	@id INT
-)
-AS
-SET XACT_ABORT ON;
-SET NOCOUNT ON;
-BEGIN
-    DELETE FROM [dbo].[personal_information]
-	WHERE id = @id;
-END
-GO
 
-PRINT 'Procedure delete_personal_information was created successfully complete'
-GO
+
+
+
 
 /****
 *********************************************************************************
