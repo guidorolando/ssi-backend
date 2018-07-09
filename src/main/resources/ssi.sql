@@ -758,6 +758,45 @@ GO
 PRINT 'Procedure [dbo].[update_capacity] update complete'
 GO
 
+/****
+**************************************************************************
+************     PROCEDURE  GET  CAPACITY  ****************************
+************                                  ****************************
+************         FOR CAPACITY  ID             ****************************
+**************************************************************************
+****/
+
+
+/*procedure to get area*/
+IF EXISTS (SELECT *
+FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[get_capacity]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[get_capacity];
+END
+GO
+CREATE PROCEDURE [dbo].[get_capacity]
+(
+	@id INT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+	SELECT * FROM [dbo].[capacity]
+	WHERE id = @id;
+END
+GO
+
+PRINT 'Procedure get_capacity was created successfully'
+GO
+
+
+
+
+
+
 
 /****
 **************************************************************************
@@ -1059,6 +1098,49 @@ GO
 
 PRINT 'Procedure delete_personal_information was created successfully complete'
 GO
+
+
+
+/****
+**************************************************************************
+************     PROCEDURE  GET  CAPACITY  ****************************
+************                                  ****************************
+************         FOR CAPACITY  ID             ****************************
+**************************************************************************
+****/
+
+
+/*procedure to get area*/
+IF EXISTS (SELECT *
+FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[get_personal_information]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[get_get_personal_information];
+END
+GO
+CREATE PROCEDURE [dbo].[get_get_personal_information]
+(
+	@id INT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+	SELECT * FROM [dbo].[get_personal_information]
+	WHERE id = @id;
+END
+GO
+
+PRINT 'Procedure get_personal_information was created successfully'
+GO
+
+
+
+
+
+
+
 
 /****
 *********************************************************************************
