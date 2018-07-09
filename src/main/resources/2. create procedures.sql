@@ -687,7 +687,7 @@ CREATE PROCEDURE [dbo].[create_capacity]
 (
 	 @name VARCHAR(50)
 	,@description VARCHAR(50)
-	,@is_deleted  bit NULL
+	,@is_deleted  bit
 	,@id INT OUTPUT
 )
 AS
@@ -784,7 +784,7 @@ CREATE PROCEDURE [dbo].[update_capacity]
 	 @id INT
 	,@name VARCHAR(50)
 	,@description VARCHAR(50)
-	,@is_deleted  bit NULL
+	,@is_deleted  bit
 )
 AS
 SET XACT_ABORT ON;
@@ -925,7 +925,7 @@ CREATE PROCEDURE [dbo].[create_personal_information]
 	,@area_id INT
 	,@employee_id INT
 	,@registration_date VARCHAR(50)
-	,@is_deleted  bit NULL
+	,@is_deleted  bit
 	,@id INT OUTPUT
 )
 AS
@@ -992,7 +992,7 @@ CREATE PROCEDURE [dbo].[update_personal_information]
 	,@area_id INT
 	,@employee_id INT
 	,@registration_date VARCHAR(50)
-	,@is_deleted  bit NULL
+	,@is_deleted  bit
 
 
 )
@@ -1070,10 +1070,10 @@ FROM sys.objects
 WHERE object_id = OBJECT_ID(N'[dbo].[get_personal_information]')
 AND type IN (N'P', N'PC'))
 BEGIN
-    DROP PROCEDURE [dbo].[get_get_personal_information];
+    DROP PROCEDURE [dbo].[get_personal_information];
 END
 GO
-CREATE PROCEDURE [dbo].[get_get_personal_information]
+CREATE PROCEDURE [dbo].[get_personal_information]
 (
 	@id INT
 )
