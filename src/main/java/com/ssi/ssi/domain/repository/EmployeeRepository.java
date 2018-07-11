@@ -36,7 +36,8 @@ public interface EmployeeRepository extends CrudRepository<Employee, Long> {
             "where incident.employee.id = employee.id and employee.id = 1")
     List<Incident> getAlle();
 
-    @Procedure(procedureName = "create_employee", outputParameterName = "id")
+    // @Procedure(procedureName = "create_employee", outputParameterName = "id")
+    @Procedure(procedureName = "create_employee")
     Long createEmployee(String address, Date birth_date, String ci, String email, String first_name, String gender, String last_name, Long phone, Double salary, Long employee_type_id);
 
     @Query(nativeQuery = true, value = "exec get_employee :id")
@@ -45,4 +46,9 @@ public interface EmployeeRepository extends CrudRepository<Employee, Long> {
     @Query(nativeQuery = true, value = "exec get_all_employee")
     List<Employee> getAll();
 
+    @Procedure(procedureName = "delete_employee", outputParameterName = "id")
+    Long deleteEmployee(Boolean isDeleted);
+
+    /*@Query(nativeQuery = true, value = "exec delete_employee_Type")
+    List<Employee> deleteEmployee();*/
 }

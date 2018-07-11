@@ -97,9 +97,9 @@ BEGIN TRANSACTION;
 
     -- Personal Information
     -- insert PersonalInformation
-    --INSERT INTO personal_information(id,legal_name,area_id,capacity_id,registration_date,is_deleted) VALUES(1,'legalName',1,1,'1990-05-26',0);
-    --INSERT INTO personal_information(id,legal_name,area_id,capacity_id,registration_date,is_deleted) VALUES(2,'legalName',1,1,'1990-05-26',0);
-    --INSERT INTO personal_information(id,legal_name,area_id,capacity_id,registration_date,is_deleted) VALUES(3,'legalName',1,1,'1990-05-26',0);
+    INSERT INTO personal_information(legal_name,employee_id,area_id,registration_date,is_deleted) VALUES('legalName',4,1,'1990-05-26',0);
+    INSERT INTO personal_information(legal_name,employee_id,area_id,registration_date,is_deleted) VALUES('legalName',6,3,'1990-05-26',0);
+    INSERT INTO personal_information(legal_name,employee_id,area_id,registration_date,is_deleted) VALUES('legalName',1,2,'1990-05-26',0);
 
     --Incident Type
     SET IDENTITY_INSERT [dbo].[incident_type] ON

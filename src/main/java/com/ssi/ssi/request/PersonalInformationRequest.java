@@ -2,32 +2,30 @@ package com.ssi.ssi.request;
 
 import java.util.Date;
 
+/**
+ * @autor Marco Herrera.
+ */
 public class PersonalInformationRequest {
-    private Long id;
-    private Date registrationDate;
+
+    private Long areaId;
+    private Long employeeId;
     private String legalName;
-    private Long area_id;
-    private Long employee_id;
-    private Boolean isDeleted;
+    private Date registrationDate;
 
-
-
-
-    public Long getId() {
-        return id;
+    public Long getAreaId() {
+        return areaId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setAreaId(Long areaId) {
+        this.areaId = areaId;
     }
 
-
-    public Date getRegistrationDate() {
-        return registrationDate;
+    public Long getEmployeeId() {
+        return employeeId;
     }
 
-    public void setRegistrationDate(Date registrationDate) {
-        this.registrationDate = registrationDate;
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getLegalName() {
@@ -38,27 +36,11 @@ public class PersonalInformationRequest {
         this.legalName = legalName;
     }
 
-    public Long getArea_id() {
-        return area_id;
+    public Date getRegistrationDate() {
+        return registrationDate;
     }
 
-    public void setArea_id(Long area_id) {
-        this.area_id = area_id;
-    }
-
-    public Long getEmployee_id() {
-        return employee_id;
-    }
-
-    public void setEmployee_id(Long employee_id) {
-        this.employee_id = employee_id;
-    }
-
-    public Boolean getDeleted() {
-        return isDeleted;
-    }
-
-    public void setDeleted(Boolean deleted) {
-        isDeleted = deleted;
+    public void setRegistrationDate(Date registrationDate) {
+        this.registrationDate = registrationDate;
     }
 }

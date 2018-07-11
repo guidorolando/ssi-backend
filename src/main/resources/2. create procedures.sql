@@ -404,6 +404,31 @@ GO
 PRINT 'Procedure get_all_employee_type was created successfully'
 GO
 
+/*procedure to delete employeeType*/
+IF EXISTS (SELECT *
+FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[delete_employee_Type]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[delete_employee_Type];
+END
+GO
+CREATE PROCEDURE [dbo].[delete_employee_Type]
+(
+	@id INT
+)
+AS
+SET XACT_ABORT ON;
+SET NOCOUNT ON;
+BEGIN
+    UPDATE [dbo].[employee_type]
+	SET is_deleted = 1
+	WHERE id = @id;
+END
+GO
+
+PRINT 'Procedure delete_employee_type was created successfully'
+GO
 
 /*procedure to create area*/
 IF EXISTS (SELECT *
@@ -666,7 +691,7 @@ GO
 PRINT 'Start of Script Execution....';
 GO
 
--- Create InsertMaterial stored procedure.
+-- procedure to create capacity.
 IF EXISTS (SELECT * FROM sys.objects
 		WHERE object_id = OBJECT_ID(N'[dbo].[create_capacity]')
 		AND type in (N'P', N'PC'))
@@ -766,18 +791,6 @@ GO
 PRINT 'Procedure [dbo].[update_capacity] created complete'
 GO
 
-
-
-
-/****
-************************************************************************
-************    CREATE PROCEDURE  UPDATE    ****************************
-************                                ****************************
-************         FOR CAPACITY           ****************************
-************************************************************************
-****/
-
-
 CREATE PROCEDURE [dbo].[update_capacity]
 (
 
@@ -808,8 +821,6 @@ GO
 **************************************************************************
 ****/
 
-
-
 IF EXISTS (SELECT *
 FROM sys.objects
 WHERE object_id = OBJECT_ID(N'[dbo].[get_all_capacity]')
@@ -818,13 +829,6 @@ BEGIN
     DROP PROCEDURE [dbo].[get_all_capacity];
 END
 GO
-
-
-/****
-==
-== PROCEDURE GET ALL CAPACITY FOR PERSONAL
-==
-***/
 
 CREATE PROCEDURE [dbo].[get_all_Capacity]
 AS
@@ -855,16 +859,6 @@ BEGIN
     DROP PROCEDURE [dbo].[delete_capacity];
 END
 GO
-
-
-/****
-**************************************************************************
-************     PROCEDURE  DELETE            ****************************
-************                                  ****************************
-************         FOR CAPACITY             ****************************
-**************************************************************************
-****/
-
 
 CREATE PROCEDURE [dbo].[delete_capacity]
 (
@@ -976,14 +970,6 @@ GO
 PRINT 'Procedure [dbo].[personal_information] created complete'
 GO
 
-/****
-************************************************************************
-************    CREATE PROCEDURE  UPDATE    ****************************
-************                                ****************************
-************         FOR PERSONAL INFORMATION           ****************************
-************************************************************************
-****/
-
 
 CREATE PROCEDURE [dbo].[update_personal_information]
 (
@@ -1025,7 +1011,6 @@ GO
 ****/
 
 
-
 IF EXISTS (SELECT *
 FROM sys.objects
 WHERE object_id = OBJECT_ID(N'[dbo].[get_all_personal_information]')
@@ -1034,13 +1019,6 @@ BEGIN
     DROP PROCEDURE [dbo].[get_all_personal_information];
 END
 GO
-
-
-/****
-==
-== PROCEDURE GET ALL CAPACITY FOR PERSONAL
-==
-***/
 
 
 CREATE PROCEDURE [dbo].[get_all_personal_information]
@@ -1053,6 +1031,26 @@ END
 GO
 
 PRINT 'Procedure get_all_personal_information was created successfully  complete'
+GO
+
+
+
+/****
+***************************************************************************
+************     PROCEDURE  DELETE             ****************************
+************                                   ****************************
+************         FOR PERSONAL INFORMATION  ****************************
+***************************************************************************
+****/
+
+
+IF EXISTS (SELECT *
+FROM sys.objects
+WHERE object_id = OBJECT_ID(N'[dbo].[delete_personal_information]')
+AND type IN (N'P', N'PC'))
+BEGIN
+    DROP PROCEDURE [dbo].[delete_personal_information];
+END
 GO
 
 /****
