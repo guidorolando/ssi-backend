@@ -39,7 +39,7 @@ public class CapacityController {
         return new ListRestResponse<>(collection);
     }
 
-    @RequestMapping(
+    /*@RequestMapping(
             method = RequestMethod.POST
     )
     private ResponseEntity<Capacity> createArea(@RequestBody Capacity capacity) {
@@ -52,6 +52,6 @@ public class CapacityController {
     public SuccessRestResponse createCapacity(@RequestBody CapacityRequest capacityRequest){
         capacityService.addCapacity(capacityRequest);
         return new SuccessRestResponse();
-    }
+    }*/
 
 }

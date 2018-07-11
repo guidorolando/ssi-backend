@@ -70,13 +70,13 @@ public class AreaController {
 
 
 
-    @ApiOperation(value = "Create new Area")
+/*    @ApiOperation(value = "Create new Area")
     @RequestMapping(
             method = RequestMethod.POST)
     public SuccessRestResponse createArea(@RequestBody AreaRequest areaRequest){
         areaService.addArea(areaRequest);
         return new SuccessRestResponse();
-    }
+    }*/
 
 }
 
