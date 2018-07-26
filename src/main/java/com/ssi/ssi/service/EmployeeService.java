@@ -23,15 +23,16 @@ public class EmployeeService {
     @Autowired
     private EmployeeTypeRepository employeeTypeRepository;
 
-    public List<Employee> findAll() {
+    /*public List<Employee> findAll() {
         return (List<Employee>) employeeRepository.findAll();
-    }
+    }*/
 
     public List<Employee> getAll() {
         return (List<Employee>) employeeRepository.getAll();
     }
 
     public Optional<Employee> findById(Long id) {
+        /*Optional<Employee> employee = employeeRepository.getEmployee(id);*/
         Optional<Employee> employee = employeeRepository.findById(id);
         if(employee.isPresent() && employee.get().getDeleted().equals(Boolean.FALSE)){
             return employee;
@@ -61,6 +62,7 @@ public class EmployeeService {
             employee.setEmail(employeeRequest.getEmail());
             employee.setEmployeeType(employeeType.get());
             employee.setDeleted(false);
+            /*employeeRepository.createEmployee(employee.getAddress(),employee.getBirthDate(),employee.getCi(),employee.getEmail(),employee.getFirstName(),employee.getGender().toString(),employee.getLastName(),employee.getPhone(),employee.getSalary(),employee.getEmployeeType().getId());*/
             employeeRepository.save(employee);
         }else{
             System.out.println("The Employe Type Id, not exist for a valid registry.");

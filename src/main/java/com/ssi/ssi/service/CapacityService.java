@@ -4,6 +4,8 @@ import com.ssi.ssi.domain.model.Area;
 import com.ssi.ssi.domain.model.Capacity;
 import com.ssi.ssi.domain.repository.AreaRepository;
 import com.ssi.ssi.domain.repository.CapacityRepository;
+import com.ssi.ssi.request.AreaRequest;
+import com.ssi.ssi.request.CapacityRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,6 +51,35 @@ public class CapacityService {
         }
         return isValidate;
 
+    }
+
+    public List<Capacity> getAllCapacity(){
+        /*return capacityRepository.getAllCapacity();*/
+        return (List)capacityRepository.findAll();
+    }
+
+    public void addCapacity(CapacityRequest capacityRequest){
+
+        if(capacityRepository.existsById(capacityRequest.getId())) {
+            Capacity capacity = new Capacity();
+            capacity.setDescription(capacity.getDescription());
+            capacity.setName(capacity.getName());
+            capacity.setDeleted(false);
+            /*capacityRepository.createCapacity(capacity.getDescription(),capacity.getName(),capacity.getDeleted(),capacity.getId());*/
+            capacityRepository.save(capacity);
+
+        }else{
+            System.out.println("The Capacity Type Id, not exist for a valid registry.");
+        }
+    }
+    public Optional<Capacity> findById(Long id) {
+        /*Optional<Capacity> capacity =  capacityRepository.getCapacity(id);*/
+        Optional<Capacity> capacity =  capacityRepository.findById(id);
+        if(capacity.isPresent() && capacity.get().getDeleted().equals(Boolean.FALSE)){
+            return capacity;
+        }else {
+            return null;
+        }
     }
 
 

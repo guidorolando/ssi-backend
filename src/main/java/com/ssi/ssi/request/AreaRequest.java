@@ -1,24 +1,13 @@
-package com.ssi.ssi.resources;
+package com.ssi.ssi.request;
 
-import com.ssi.ssi.domain.model.IncidentAgent;
-
-public class AccidentAgentResource {
-
-    private final IncidentAgent incidentAgent;
+public class AreaRequest {
 
     private Long id;
-
     private String name;
-
+    private String description;
+    private String codigo;
     private Boolean isDeleted;
 
-    public AccidentAgentResource(final IncidentAgent incidentAgent) {
-        this.incidentAgent = incidentAgent;
-        this.id = incidentAgent.getId();
-        this.name = incidentAgent.getName();
-        this.isDeleted = incidentAgent.getIsDeleted();
-
-    }
 
     public Long getId() {
         return id;
@@ -34,6 +23,22 @@ public class AccidentAgentResource {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public Boolean getDeleted() {

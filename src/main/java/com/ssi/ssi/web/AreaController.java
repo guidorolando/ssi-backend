@@ -1,9 +1,10 @@
 package com.ssi.ssi.web;
 
 import com.ssi.ssi.common.response.rest.SuccessRestResponse;
-import com.ssi.ssi.domain.model.AccidentAgent;
 import com.ssi.ssi.domain.model.Area;
 import com.ssi.ssi.domain.repository.exception.MessageNotFountException;
+import com.ssi.ssi.request.AreaRequest;
+import com.ssi.ssi.request.EmployeeRequest;
 import com.ssi.ssi.resources.AreaResource;
 import com.ssi.ssi.service.AreaService;
 import io.swagger.annotations.Api;
@@ -59,10 +60,6 @@ public class AreaController {
         return new ResponseEntity(area,HttpStatus.NOT_FOUND);
     }
 
-
-
-
-
    @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") final long id) {
         return areaService.getId(id).map(p -> {
@@ -73,6 +70,13 @@ public class AreaController {
 
 
 
+/*    @ApiOperation(value = "Create new Area")
+    @RequestMapping(
+            method = RequestMethod.POST)
+    public SuccessRestResponse createArea(@RequestBody AreaRequest areaRequest){
+        areaService.addArea(areaRequest);
+        return new SuccessRestResponse();
+    }*/
 
 }
 

@@ -3,15 +3,15 @@ package com.ssi.ssi.domain.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "accident_agent")
-public class AccidentAgent {
+@Table(name = "incident_agent")
+public class IncidentAgent {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "agent_name")
-    private String agentName;
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "is_deleted")
     private Boolean isDeleted;
@@ -25,12 +25,12 @@ public class AccidentAgent {
         this.id = id;
     }
 
-    public String getAgentName() {
-        return agentName;
+    public String getName() {
+        return name;
     }
 
-    public void setAgentName(String agentName) {
-        this.agentName = agentName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Boolean getIsDeleted() {

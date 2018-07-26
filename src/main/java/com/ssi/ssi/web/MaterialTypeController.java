@@ -1,10 +1,13 @@
 package com.ssi.ssi.web;
 
+import com.ssi.ssi.common.response.rest.SuccessRestResponse;
 import com.ssi.ssi.domain.model.MaterialType;
 import com.ssi.ssi.domain.repository.exception.MaterialTypeNotFountException;
+import com.ssi.ssi.request.EmployeeRequest;
 import com.ssi.ssi.resources.MaterialTypeResource;
 import com.ssi.ssi.service.MaterialTypeService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -44,5 +47,34 @@ public class MaterialTypeController {
             materialTypeService.deleteById(id);
             return ResponseEntity.noContent().build();
         }).orElseThrow(() -> new MaterialTypeNotFountException(id));
+    }
+    /* Method for create Material Type*/
+    @ApiOperation(value = "Create new materialType")
+    @RequestMapping(
+            method = RequestMethod.POST)
+    public SuccessRestResponse createMaterialType(@RequestBody MaterialTypeResource materialTypeResource){
+        materialTypeService.addMaterialType(materialTypeResource);
+        return new SuccessRestResponse();
+    }
+    /* Method for update Material Type*/
+    @ApiOperation(value = "Update MaterialType")
+    @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
+    public SuccessRestResponse updateMaterialType(@RequestBody MaterialTypeResource materialTypeResource, @PathVariable Long id){
+        materialTypeService.updateMaterialType(materialTypeResource, id);
+        return new SuccessRestResponse();
+    }
+    /* Method for delete Material Type*/
+    @ApiOperation(value = "Delete MaterialType")
+    @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
+    public SuccessRestResponse removeMaterialType(@PathVariable Long id){
+
+        materialTypeService.deleteById(id);
+        return new SuccessRestResponse();
+    }
+
+    public Boolean isRelation (Long id) {
+        Boolean relation = Boolean.FALSE;
+
+        return relation;
     }
 }

@@ -35,7 +35,7 @@ public class Incident {
 
     @ManyToMany
     @JoinTable(name = "incident_incident_tag",
-            joinColumns = {@JoinColumn(name = "indicent_id")},
+            joinColumns = {@JoinColumn(name = "incident_id")},
             inverseJoinColumns = {@JoinColumn(name = "incident_tags_id")})
     private List<IncidentTag> incidentTags;
 
@@ -53,7 +53,7 @@ public class Incident {
     private LesionType lesionType;
 
     @ManyToOne
-    private AccidentAgent accidentAgent;
+    private IncidentAgent incidentAgent;
 
 
     public Long getId() {
@@ -128,12 +128,12 @@ public class Incident {
         this.lesionType = lesionType;
     }
 
-    public AccidentAgent getAccidentAgent() {
-        return accidentAgent;
+    public IncidentAgent getIncidentAgent() {
+        return incidentAgent;
     }
 
-    public void setAccidentAgent(AccidentAgent accidentAgent) {
-        this.accidentAgent = accidentAgent;
+    public void setIncidentAgent(IncidentAgent incidentAgent) {
+        this.incidentAgent = incidentAgent;
     }
 
     public String getAffectedPart() {

@@ -1,15 +1,18 @@
 package com.ssi.ssi.web;
 
-import com.ssi.ssi.domain.model.PersonalInformation;
-import com.ssi.ssi.resources.PersonalInformationResource;
+import com.ssi.ssi.common.response.rest.ListRestResponse;
+import com.ssi.ssi.common.response.rest.SingleRestResponse;
+import com.ssi.ssi.common.response.rest.SuccessRestResponse;
+import com.ssi.ssi.request.PersonalInformationRequest;
+import com.ssi.ssi.resources.PersonalImformationResource;
 import com.ssi.ssi.service.PersonalInformationService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Api(value = "personalInformation" , description = "personalInformation")
 @RestController
@@ -18,67 +21,80 @@ public class PersonalInformationController {
     @Autowired
     PersonalInformationService personalInformationService;
 
+    @RequestMapping(
+            method = RequestMethod.GET
+    )
+    public ListRestResponse<PersonalImformationResource> getAll(){
+        final List<PersonalImformationResource> collection = personalInformationService.findAll().stream()
+                .map(PersonalImformationResource::new).collect(Collectors.toList());
+        return new ListRestResponse<>(collection);
+    }
 
+    @ApiOperation(value = "Get PersonalImformation by Id")
+    @RequestMapping(value = "/{id}",
+            method = RequestMethod.GET
+    )
+    public SingleRestResponse<PersonalImformationResource> getById(@PathVariable Long id){
+        final PersonalImformationResource resource = personalInformationService.findPersonalById(id)
+                .map(PersonalImformationResource::new).get();
+        return new SingleRestResponse<>(resource);
+    }
 
     @RequestMapping(
             method = RequestMethod.POST,
             value = "/createPersonalInformation"
     )
-    public ResponseEntity<PersonalInformation> createPersonalInformation(@RequestBody PersonalInformationResource personalInformationResource) {
-        return new ResponseEntity<PersonalInformation>(personalInformationService.createPersonalInformation(personalInformationResource), HttpStatus.CREATED);
+    public SuccessRestResponse createPersonalInformation(@RequestBody PersonalInformationRequest personalInformationRequest) {
+        personalInformationService.createPersonalInformation(personalInformationRequest);
+        return new SuccessRestResponse();
+        //return new SuccessRestResponse(personalInformationService.createPersonalInformation(personalInformationRequest), HttpStatus.CREATED);
     }
 
     @RequestMapping(
-            method = RequestMethod.POST,
-            value = "/updatePersonalInformation"
+            method = RequestMethod.PUT,
+            value = "/updatePersonalInformation/{id}"
     )
-    public ResponseEntity<PersonalInformation> updatePersonalInformation(@RequestBody PersonalInformationResource personalInformationResource) {
-
-        //Boolean wasUpdated =  personalInformationService.updatePersonalInformation(personalInformationResource);
-        Boolean wasUpdated =  personalInformationService.updatePersonalInformation(personalInformationResource);
-        if(wasUpdated){
-            Optional<PersonalInformation> personalInformation = personalInformationService.findEmployeeById(personalInformationResource.getEmployeeTypeId());
-            return new ResponseEntity<PersonalInformation>(personalInformation.get(), HttpStatus.OK);
-        }
-
-        return new ResponseEntity<PersonalInformation>(HttpStatus.NOT_FOUND);
+    public SuccessRestResponse updatePersonalInformation(@RequestBody PersonalInformationRequest personalInformationRequest,
+                                                         @PathVariable Long id) {
+        personalInformationService.updatePersonalInformation(personalInformationRequest, id);
+        return new SuccessRestResponse();
     }
 
-
-
-
-
-
-
-
+    @ApiOperation(value = "Delete PersonalInformation")
+    @RequestMapping(value = "/{id}",
+            method = RequestMethod.DELETE)
+    public SuccessRestResponse removePersonalInformation(@PathVariable Long id){
+        personalInformationService.deletePersonalInformation(id);
+        return new SuccessRestResponse();
+    }
 
     /*
 
     @GetMapping
-    public ResponseEntity<List<PersonalInformationResource>> getAllPersonal() {
-        final List<PersonalInformationResource> collection = personalInformationService.getAllPersonal().stream().map(PersonalInformationResource::new).collect(Collectors.toList());
+    public ResponseEntity<List<PersonalInformationRequest>> getAllPersonal() {
+        final List<PersonalInformationRequest> collection = personalInformationService.getAllPersonal().stream().map(PersonalInformationRequest::new).collect(Collectors.toList());
         return ResponseEntity.ok(collection);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PersonalInformationResource> get(@PathVariable final long id) {
-        return personalInformationService.getId(id).map(p -> ResponseEntity.ok(new PersonalInformationResource(p))).orElseThrow(() -> new MessageNotFountException(id));
+    public ResponseEntity<PersonalInformationRequest> get(@PathVariable final long id) {
+        return personalInformationService.getId(id).map(p -> ResponseEntity.ok(new PersonalInformationRequest(p))).orElseThrow(() -> new MessageNotFountException(id));
     }
 
     @PostMapping
-    public ResponseEntity<PersonalInformationResource> post(@RequestBody final PersonalInformation personalInformationFromRequest) {
+    public ResponseEntity<PersonalInformationRequest> post(@RequestBody final PersonalInformation personalInformationFromRequest) {
         final PersonalInformation personalInformation = personalInformationService.save(personalInformationFromRequest);
-        return ResponseEntity.ok(new PersonalInformationResource(personalInformation));
+        return ResponseEntity.ok(new PersonalInformationRequest(personalInformation));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PersonalInformationResource> put(@PathVariable("id") final long id, @RequestBody PersonalInformation personalInformationFromRequest) {
+    public ResponseEntity<PersonalInformationRequest> put(@PathVariable("id") final long id, @RequestBody PersonalInformation personalInformationFromRequest) {
         final PersonalInformation personalInformation = personalInformationFromRequest;
-        final PersonalInformationResource resource;
+        final PersonalInformationRequest resource;
         boolean isvalidate = personalInformationService.isValidatePersonalInformation(personalInformation);
         if(isvalidate){
             personalInformationService.save(personalInformation);
-            resource = new PersonalInformationResource(personalInformation);
+            resource = new PersonalInformationRequest(personalInformation);
             return ResponseEntity.ok(resource);
         }
 
@@ -94,9 +110,4 @@ public class PersonalInformationController {
     }
 
 */
-
-
-
-
-
 }
