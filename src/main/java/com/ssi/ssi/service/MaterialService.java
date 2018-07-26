@@ -27,7 +27,8 @@ public class MaterialService {
     private MaterialTypeRepository materialTypeRepository;
 
     public List<Material> getAllMaterial(){
-            return materialRepository.getAllMaterial();
+            /*return materialRepository.getAllMaterial();*/
+            return (List)materialRepository.findAll();
         }
 
     public Optional<Material> getMaterialById(Long id){
@@ -42,7 +43,8 @@ public class MaterialService {
             material.setMatDescription(materialReq.getDescription());
             material.setVidaUtil(materialReq.getVidaUtil());
             material.setMaterialType(matType.get());
-            materialRepository.saveMaterial(material.getName(),material.getMatDescription(), material.getMaterialType().getId(),material.getVidaUtil());
+            /*materialRepository.saveMaterial(material.getName(),material.getMatDescription(), material.getMaterialType().getId(),material.getVidaUtil());*/
+            materialRepository.save(material);
         }
         //return materialRepository.getMaterialById(material.getId());
     }

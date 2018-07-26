@@ -54,7 +54,8 @@ public class CapacityService {
     }
 
     public List<Capacity> getAllCapacity(){
-        return capacityRepository.getAllCapacity();
+        /*return capacityRepository.getAllCapacity();*/
+        return (List)capacityRepository.findAll();
     }
 
     public void addCapacity(CapacityRequest capacityRequest){
@@ -64,14 +65,16 @@ public class CapacityService {
             capacity.setDescription(capacity.getDescription());
             capacity.setName(capacity.getName());
             capacity.setDeleted(false);
-            capacityRepository.createCapacity(capacity.getDescription(),capacity.getName(),capacity.getDeleted(),capacity.getId());
+            /*capacityRepository.createCapacity(capacity.getDescription(),capacity.getName(),capacity.getDeleted(),capacity.getId());*/
+            capacityRepository.save(capacity);
 
         }else{
             System.out.println("The Capacity Type Id, not exist for a valid registry.");
         }
     }
     public Optional<Capacity> findById(Long id) {
-        Optional<Capacity> capacity =  capacityRepository.getCapacity(id);
+        /*Optional<Capacity> capacity =  capacityRepository.getCapacity(id);*/
+        Optional<Capacity> capacity =  capacityRepository.findById(id);
         if(capacity.isPresent() && capacity.get().getDeleted().equals(Boolean.FALSE)){
             return capacity;
         }else {

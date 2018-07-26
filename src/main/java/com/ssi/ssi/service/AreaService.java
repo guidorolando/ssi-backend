@@ -68,7 +68,8 @@ public class AreaService {
     }
 
     public Optional<Area> findById(Long id) {
-        Optional<Area> area = areaRepository.getArea(id);
+        /*Optional<Area> area = areaRepository.getArea(id);*/
+        Optional<Area> area = areaRepository.findById(id);
         if(area.isPresent() && area.get().getDeleted().equals(Boolean.FALSE)){
             return area;
         }else {
@@ -78,7 +79,8 @@ public class AreaService {
 
 
     public List<Area> getAllAreas(){
-        return areaRepository.getAllAreas();
+        /*return areaRepository.getAllAreas();*/
+        return (List)areaRepository.findAll();
     }
 
     public void addArea(AreaRequest areaRequest){
@@ -89,7 +91,8 @@ public class AreaService {
             area.setDescription(area.getDescription());
             area.setName(area.getName());
             area.setDeleted(false);
-            areaRepository.createArea(area.getCodigo(),area.getDescription(),area.getName(),area.getDeleted(),area.getId());
+            /*areaRepository.createArea(area.getCodigo(),area.getDescription(),area.getName(),area.getDeleted(),area.getId());*/
+            areaRepository.save(area);
 
         }else{
             System.out.println("The Area Type Id, not exist for a valid registry.");

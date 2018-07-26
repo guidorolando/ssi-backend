@@ -91,7 +91,8 @@ public class AssignmentService {
     }
 
     public List<Assignment> getAllAssignment(){
-        return assignmentRepository.getAllAssignment();
+        /*return assignmentRepository.getAllAssignment();*/
+        return (List)assignmentRepository.findAll();
     }
 
     /*

@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface AssignmentRepository extends CrudRepository<Assignment, Long> {
 
-    @Query(nativeQuery = true, value = "exec GetAllAssignment")
-    List<Assignment> getAllAssignment();
+    /*@Query(nativeQuery = true, value = "exec GetAllAssignment")
+    List<Assignment> getAllAssignment();*/
 }

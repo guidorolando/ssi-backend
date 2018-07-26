@@ -14,18 +14,18 @@ import java.util.Optional;
 
 public interface PersonalInformationRepository extends CrudRepository<PersonalInformation,Long> {
 
-    /*@Query("SELECT personalInformation FROM PersonalInformation personalInformation WHERE personalInformation.isDeleted=0 ")
-    List<PersonalInformation> getAll();*/
+    @Query("SELECT personalInformation FROM PersonalInformation personalInformation WHERE personalInformation.isDeleted=0 ")
+    List<PersonalInformation> getAll();
 
 
-    @Query(nativeQuery = true, value = "exec get_all_personal_information")
+/*    @Query(nativeQuery = true, value = "exec get_all_personal_information")
     List<PersonalInformation> getPersonalInformationFull();
 
     @Procedure(procedureName = "create_personal_information", outputParameterName = "id")
     Long createPersonalInformation(String legal_name, Long area_id, Long employee_id, Date registration_date,Boolean  is_deleted ,Long id );
 
     @Query(nativeQuery = true, value = "exec get_personal_information :id")
-    Optional<PersonalInformation> getPersonalInformation(@Param("id") Long id);
+    Optional<PersonalInformation> getPersonalInformation(@Param("id") Long id);*/
 
 
 

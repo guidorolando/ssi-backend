@@ -13,9 +13,10 @@ import java.util.Optional;
 @Repository
 public interface CapacityRepository extends CrudRepository<Capacity,Long> {
 
-    /*@Query("SELECT capacity FROM Capacity capacity WHERE capacity.isDeleted=0 ")
-    List<Capacity> getAll(); */
+    @Query("SELECT capacity FROM Capacity capacity WHERE capacity.isDeleted=0 ")
+    List<Capacity> getAll();
 
+/*
     @Query(nativeQuery = true, value = "exec get_all_capacity")
     List<Capacity> getAllCapacity();
 
@@ -33,6 +34,7 @@ public interface CapacityRepository extends CrudRepository<Capacity,Long> {
 
     @Query(nativeQuery = true, value = "exec get_area :id")
     Optional<Area> getArea(@Param("id") Long id);
+*/
 
 
 
