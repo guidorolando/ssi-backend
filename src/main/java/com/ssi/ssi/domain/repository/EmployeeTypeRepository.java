@@ -19,12 +19,12 @@ public interface EmployeeTypeRepository extends CrudRepository<EmployeeType, Lon
     List<EmployeeType> searchByName(@Param("name") String name);
 
     // @Procedure(procedureName = "create_employee_type", outputParameterName = "id")
-    @Procedure(procedureName = "create_employee_type")
+/*    @Procedure(procedureName = "create_employee_type")
     Long createEmployeeType(String name, String description);
 
     @Query(nativeQuery = true, value = "exec get_employee_type :id")
     Optional<EmployeeType> getEmployeeType(@Param("id") Long id);
 
     @Query(nativeQuery = true, value = "exec get_all_employee_type")
-    List<EmployeeType> getAll();
+    List<EmployeeType> getAll();*/
 }

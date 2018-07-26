@@ -22,8 +22,13 @@ public class IncidentTypeService {
 
 
     public IncidentType createIncidentType(IncidentTypeResource incidentTypeResource) {
-        Long incidentTypeId = incidentTypeRepository.createIncidentType(incidentTypeResource.getName(), incidentTypeResource.getDescription());
-        return incidentTypeRepository.getIncidentType(incidentTypeId).get();
+        /*Long incidentTypeId = incidentTypeRepository.createIncidentType(incidentTypeResource.getName(), incidentTypeResource.getDescription());
+        return incidentTypeRepository.getIncidentType(incidentTypeId).get();*/
+        IncidentType incidentType = new IncidentType();
+        incidentType.setName(incidentTypeResource.getName());
+        incidentType.setDescription(incidentTypeResource.getDescription());
+        incidentType.setIsDeleted(false);
+        return incidentTypeRepository.save(incidentType);
     }
 
     public Boolean updateIncidentType(IncidentType incidentType) {
@@ -42,7 +47,8 @@ public class IncidentTypeService {
     }
 
     public List<IncidentType> getAllIncidentType() {
-        return incidentTypeRepository.getAllIncidentType();
+        /*return incidentTypeRepository.getAllIncidentType();*/
+        return incidentTypeRepository.findAll();
     }
 
     public void delete(Long id) {

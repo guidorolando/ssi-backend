@@ -12,16 +12,16 @@ import java.util.Optional;
 
 public interface IncidentTypeRepository extends CrudRepository<IncidentType, Long> {
 
-    /*@Query("SELECT incidentType FROM IncidentType incidentType WHERE incidentType.isDeleted=0 ")
-    List<IncidentType> findAll();*/
+    @Query("SELECT incidentType FROM IncidentType incidentType WHERE incidentType.isDeleted=0 ")
+    List<IncidentType> findAll();
 
 
-    @Procedure(procedureName = "create_incident_type")
+    /*@Procedure(procedureName = "create_incident_type")
     Long createIncidentType(String name, String description);
 
     @Query(nativeQuery = true, value = "exec get_incident_type :id")
     Optional<IncidentType> getIncidentType(@Param("id") Long id);
 
     @Query(nativeQuery = true, value = "exec get_all_incident_type")
-    List<IncidentType> getAllIncidentType();
+    List<IncidentType> getAllIncidentType();*/
 }

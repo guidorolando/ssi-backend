@@ -12,14 +12,14 @@ import java.util.List;
 @Repository
 public interface MaterialRepository extends CrudRepository<Material, Long>{
 
-    @Query(nativeQuery = true, value = "exec get_all_material")
+/*    @Query(nativeQuery = true, value = "exec get_all_material")
     List<Material> getAllMaterial();
 
     @Procedure(procedureName = "exec CreateMaterial")
     Long saveMaterial(String name, String description_material, Long material_type_id, Long vida_util);
 
     @Query(nativeQuery = true, value  = "exec get_material:id")
-    Material getMaterialById(@Param("id") Long id);
+    Material getMaterialById(@Param("id") Long id);*/
 
 
 
