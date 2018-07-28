@@ -1,9 +1,8 @@
 package com.ssi.ssi.web;
 
 import com.ssi.ssi.common.response.rest.SuccessRestResponse;
-import com.ssi.ssi.domain.model.MaterialType;
 import com.ssi.ssi.domain.repository.exception.MaterialTypeNotFountException;
-import com.ssi.ssi.request.EmployeeRequest;
+import com.ssi.ssi.request.MaterialTypeRequest;
 import com.ssi.ssi.resources.MaterialTypeResource;
 import com.ssi.ssi.service.MaterialTypeService;
 import io.swagger.annotations.Api;
@@ -23,11 +22,11 @@ public class MaterialTypeController {
     @Autowired
     private MaterialTypeService materialTypeService;
 
-    @PostMapping("/materialType")
+   /* @PostMapping("/materialType")
     public ResponseEntity<MaterialTypeResource> createMaterialType(@RequestBody final MaterialType materialTypeFromRequest) {
         final MaterialType materialType = materialTypeService.save(materialTypeFromRequest);
         return ResponseEntity.ok(new MaterialTypeResource(materialType));
-    }
+    }*/
 
     @GetMapping("/materialType")
     public ResponseEntity<List<MaterialTypeResource>> getAllMaterialType() {
@@ -41,31 +40,55 @@ public class MaterialTypeController {
         return materialTypeService.getById(id).map(p -> ResponseEntity.ok(new MaterialTypeResource(p))).orElseThrow(() -> new MaterialTypeNotFountException(id));
     }
 
-    @DeleteMapping("/materialType/{id}")
+    /*@DeleteMapping("/materialType/{id}")
     public ResponseEntity<?> deleteMaterialType(@PathVariable("id") final long id) {
         return materialTypeService.getById(id).map(p -> {
             materialTypeService.deleteById(id);
             return ResponseEntity.noContent().build();
         }).orElseThrow(() -> new MaterialTypeNotFountException(id));
-    }
-    /* Method for create Material Type*/
+    }*/
+
+    /*=============================================================================================
+     **	Name: createMaterialType
+     **	Desc: Method for Created Material Type
+     **
+     **	Author: Maximiliano Casto Camacho Hidalgo
+     **
+     **	Date: 25/05/2018
+     =============================================================================================*/
     @ApiOperation(value = "Create new materialType")
     @RequestMapping(
-            method = RequestMethod.POST)
-    public SuccessRestResponse createMaterialType(@RequestBody MaterialTypeResource materialTypeResource){
-        materialTypeService.addMaterialType(materialTypeResource);
+            method = RequestMethod.POST, value="/")
+    public SuccessRestResponse createMaterialType(@RequestBody MaterialTypeRequest materialTypeRequest){
+        materialTypeService.addMaterialType(materialTypeRequest);
         return new SuccessRestResponse();
     }
-    /* Method for update Material Type*/
+
+    /*=============================================================================================
+     **	Name: updateMaterialType
+     **	Desc: Method for Update Material Type
+     **
+     **	Author: Maximiliano Casto Camacho Hidalgo
+     **
+     **	Date: 25/05/2018
+     =============================================================================================*/
     @ApiOperation(value = "Update MaterialType")
-    @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
-    public SuccessRestResponse updateMaterialType(@RequestBody MaterialTypeResource materialTypeResource, @PathVariable Long id){
-        materialTypeService.updateMaterialType(materialTypeResource, id);
+    @RequestMapping(method = RequestMethod.PUT, value = "/{id}")
+    public SuccessRestResponse updateMaterialType(@RequestBody MaterialTypeRequest materialTypeRequest, @PathVariable Long id){
+        materialTypeService.updateMaterialType(materialTypeRequest, id);
         return new SuccessRestResponse();
     }
-    /* Method for delete Material Type*/
+
+    /*=============================================================================================
+     **	Name: removeMaterialType
+     **	Desc: Method for Delete Material Type
+     **
+     **	Author: Maximiliano Casto Camacho Hidalgo
+     **
+     **	Date: 25/05/2018
+     =============================================================================================*/
     @ApiOperation(value = "Delete MaterialType")
-    @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     public SuccessRestResponse removeMaterialType(@PathVariable Long id){
 
         materialTypeService.deleteById(id);

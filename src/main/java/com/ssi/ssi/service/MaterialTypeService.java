@@ -1,10 +1,8 @@
 package com.ssi.ssi.service;
 
-import com.ssi.ssi.domain.model.Employee;
-import com.ssi.ssi.domain.model.EmployeeType;
 import com.ssi.ssi.domain.model.MaterialType;
 import com.ssi.ssi.domain.repository.MaterialTypeRepository;
-import com.ssi.ssi.resources.MaterialTypeResource;
+import com.ssi.ssi.request.MaterialTypeRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +19,7 @@ public class MaterialTypeService {
     }
 
     public List<MaterialType> getAll(){
-        return (List<MaterialType>) materialTypeRepository.findAll();
+        return (List<MaterialType>) materialTypeRepository.GetAllMaterialType();
     }
 
     public Optional<MaterialType> getById(Long id){
@@ -50,27 +48,31 @@ public class MaterialTypeService {
         }
     }*/
 
-    public void addMaterialType (MaterialTypeResource materialTypeResource){
-
-        if (materialTypeRepository.existsById(materialTypeResource.getId())) {
-            MaterialType materialType = new MaterialType();
-            materialType.setNameType(materialTypeResource.getNameType());
-            materialTypeRepository.save(materialType);
-        }
-        else {
-          System.out.println("No exist the Material Type for add.");
-         }
+    public void addMaterialType (MaterialTypeRequest materialTypeRequest){
+        MaterialType materialType = new MaterialType();
+        materialType.setNameType(materialTypeRequest.getNameType());
+        materialTypeRepository.save(materialType);
+       /*materialTypeRepository.CreateMaterialType(materialType.setNameType(materialTypeRequest.getNameType()));
+      return materialTypeRepository.get*/
     }
 
-    public void updateMaterialType (MaterialTypeResource materialTypeResource, Long id){
+    public void updateMaterialType (MaterialTypeRequest materialTypeRequest, Long id){
         Optional<MaterialType> materialType = getById(id);
         // && employee.get().getDeleted().equals(false)
-        if (materialTypeRepository.existsById(id)) {
-            materialType.get().setNameType(materialTypeResource.getNameType());
+        if (materialType.isPresent()) {
+            materialType.get().setNameType(materialTypeRequest.getNameType());
             materialTypeRepository.save(materialType.get());
 
         } else {
             System.out.println("No exist the Material Type with id '" + id + "' for update.");
+        }
+    }
+    public void deleteMaterialType(Long id){
+        if(materialTypeRepository.existsById(id)){
+            materialTypeRepository.deleteById(id);
+        }
+        else{
+            System.out.println("No exist the Material Type with id '" + id + "' for delete.");
         }
     }
 }

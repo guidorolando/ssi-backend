@@ -4,26 +4,29 @@ IF OBJECT_ID('dbo.AssignmentHistory','U') IS NOT NULL
 BEGIN
 	DROP TABLE dbo.AssignmentHistory;
 END
-ELSE
-BEGIN
-	CREATE TABLE AssignmentHistory(
-		AssignmentHistoryID		BIGINT			IDENTITY(1,1) NOT NULL
-		,UsersAddress			VARCHAR(30)		NOT NULL
-		,PerformedAction		VARCHAR(20)		NOT NULL
-		,HistoryDate			DATE			NOT NULL
+GO
+PRINT 'Start Create...';
+GO
 
-		,AssignmentIDOld		BIGINT			NULL
-		,AssignmentDateOld		DATE			NULL
-		,QuantityOld			INT				NULL
-		,EmployeeIDOld			BIGINT			NULL
-		,MaterialIDOld			BIGINT			NULL
+CREATE TABLE AssignmentHistory(
+  AssignmentHistoryID		BIGINT			IDENTITY(1,1) NOT NULL
+  ,UsersAddress			VARCHAR(30)		NOT NULL
+  ,PerformedAction		VARCHAR(20)		NOT NULL
+  ,HistoryDate			DATE			NOT NULL
 
-		,AssignmentIDNew		BIGINT			NULL
-		,AssignmentDateNew		DATE			NULL
-		,QuantityNew			INT				NULL
-		,EmployeeIDNew			BIGINT			NULL
-		,MaterialIDNew			BIGINT			NULL
-		,CONSTRAINT Pk_AssignmentHistory PRIMARY KEY (AssignmentHistoryID)
-	) 
-END
+  ,AssignmentIDOld		BIGINT			NULL
+  ,AssignmentDateOld		DATE			NULL
+  ,QuantityOld			INT				NULL
+  ,EmployeeIDOld			BIGINT			NULL
+  ,MaterialIDOld			BIGINT			NULL
+
+  ,AssignmentIDNew		BIGINT			NULL
+  ,AssignmentDateNew		DATE			NULL
+  ,QuantityNew			INT				NULL
+  ,EmployeeIDNew			BIGINT			NULL
+  ,MaterialIDNew			BIGINT			NULL
+  ,CONSTRAINT Pk_AssignmentHistory PRIMARY KEY (AssignmentHistoryID)
+)
+GO
+PRINT 'Table AssignmentHistory created successfully.';
 GO
