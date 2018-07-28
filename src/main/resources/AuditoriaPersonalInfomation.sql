@@ -2,7 +2,7 @@ USE [SSI]
 
 
 /*==============================================================*/
-/* Table: AUDITORIA      Para Personal Information                                         */
+/* Table: AUDITORIA      Para Personal Information              */
 /*==============================================================*/
 PRINT 'create table history_Personal_Information';
 GO
