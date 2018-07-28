@@ -23,7 +23,7 @@ public class CapacityResource {
         this.id = capacity.getId();
         this.name = capacity.getName();
         this.description =capacity.getDescription();
-        this.employeeList =capacity.getEmployeeList();
+        /*this.employeeList =capacity.getEmployeeList();*/
         this.isDeleted = capacity.getDeleted();
 
     }

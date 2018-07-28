@@ -54,11 +54,11 @@ public class Employee {
     @ManyToOne
     private EmployeeType employeeType;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    /*@ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "employee_capacities",
     joinColumns = {@JoinColumn(name = "employee_id")},
     inverseJoinColumns = {@JoinColumn(name = "capacities_id")})
-    private List<Capacity> capacities;
+    private List<Capacity> capacities;*/
 
     public Long getId() {
         return id;
@@ -84,13 +84,13 @@ public class Employee {
         this.salary = salary;
     }
 
-    public List<Capacity> getCapacities() {
+    /*public List<Capacity> getCapacities() {
         return capacities;
     }
 
     public void setCapacities(List<Capacity> capacities) {
         this.capacities = capacities;
-    }
+    }*/
 
     public String getFirstName() {
         return firstName;

@@ -19,8 +19,8 @@ public class Capacity {
     @Column(name = "description")
     private String description;
 
-    @ManyToMany(mappedBy = "capacities")
-    private List<Employee> employeeList;
+    /*@ManyToMany(mappedBy = "capacities")
+    private List<Employee> employeeList;*/
 
     public Long getId() {
         return id;
@@ -58,11 +58,11 @@ public class Capacity {
         this.description = description;
     }
 
-    public List<Employee> getEmployeeList() {
+    /*public List<Employee> getEmployeeList() {
         return employeeList;
     }
 
     public void setEmployeeList(List<Employee> employeeList) {
         this.employeeList = employeeList;
-    }
+    }*/
 }
