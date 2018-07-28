@@ -1,8 +1,11 @@
 package com.ssi.ssi.web;
 
 import com.ssi.ssi.common.response.rest.ListRestResponse;
+import com.ssi.ssi.common.response.rest.SuccessRestResponse;
 import com.ssi.ssi.domain.model.Area;
 import com.ssi.ssi.domain.model.Capacity;
+import com.ssi.ssi.request.CapacityRequest;
+import com.ssi.ssi.request.EmployeeRequest;
 import com.ssi.ssi.resources.CapacityResource;
 import com.ssi.ssi.resources.EmployeeResource;
 import com.ssi.ssi.service.CapacityService;
@@ -36,11 +39,19 @@ public class CapacityController {
         return new ListRestResponse<>(collection);
     }
 
-    @RequestMapping(
+    /*@RequestMapping(
             method = RequestMethod.POST
     )
     private ResponseEntity<Capacity> createArea(@RequestBody Capacity capacity) {
         return new ResponseEntity<Capacity>(capacityService.createCapacity(capacity), HttpStatus.CREATED);
     }
+
+    @ApiOperation(value = "Create new capacity")
+    @RequestMapping(
+            method = RequestMethod.POST)
+    public SuccessRestResponse createCapacity(@RequestBody CapacityRequest capacityRequest){
+        capacityService.addCapacity(capacityRequest);
+        return new SuccessRestResponse();
+    }*/
 
 }
