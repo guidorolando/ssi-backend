@@ -31,6 +31,8 @@
 # the database schema will be automatically updated according to java
 # entities found in the project
 spring.jpa.hibernate.ddl-auto: create-drop
+server:
+  port: 8585
 
 
 #security configuration
