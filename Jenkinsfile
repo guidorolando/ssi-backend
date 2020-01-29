@@ -23,7 +23,7 @@ pipeline {
                 sh 'mvn clean compile'
 
                 withSonarQubeEnv('sonarqube') {
-                    sh "${scannerHome}/bin/sonar-scanner -Dproject.settings=${WORKSPACE}/sonar-project.properties"
+                    sh "mvn clean package sonar:sonar"
                 }
 
                 timeout(time: 10, unit: 'MINUTES') {
