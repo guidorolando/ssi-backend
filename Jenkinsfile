@@ -6,8 +6,6 @@ pipeline {
     }
 
     options {
-        disableConcurrentBuils()
-        buildDiscarder logRotator(numToKeepStr: '2')
         timestamps()
     }
 
